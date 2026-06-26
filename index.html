@@ -255,6 +255,53 @@
     .lb-close { position:absolute; top:16px; right:16px; width:40px; height:40px; border-radius:50%; background:rgba(13,18,32,.8); border:1px solid #1C2A42; color:#64748B; display:flex; align-items:center; justify-content:center; cursor:pointer; opacity:0; transition:color .15s, border-color .15s, opacity .25s; }
     .lb.open .lb-close { opacity:1; }
     .lb-close:hover { color:#EEF2FF; border-color:rgba(0,232,122,.4); }
+    /* ── Scroll reveal ── */
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity .55s cubic-bezier(.4,0,.2,1), transform .55s cubic-bezier(.4,0,.2,1); }
+    .reveal.in { opacity:1; transform:translateY(0); }
+    .reveal-d1 { transition-delay:.08s; }
+    .reveal-d2 { transition-delay:.16s; }
+    .reveal-d3 { transition-delay:.24s; }
+    .reveal-d4 { transition-delay:.32s; }
+    .reveal-d5 { transition-delay:.40s; }
+    .reveal-d6 { transition-delay:.48s; }
+
+    /* ── Floating glow orb on hero ── */
+    @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+    .float-anim { animation: floatY 6s ease-in-out infinite; }
+
+    /* ── Section heading accent line ── */
+    .section-label { display:inline-flex; align-items:center; gap:8px; }
+    .section-label::before { content:''; display:block; width:24px; height:2px; background:#00E87A; border-radius:2px; flex-shrink:0; }
+
+    /* ── Glow pulse on cards ── */
+    @keyframes cardGlow { 0%,100%{ box-shadow:0 0 0 rgba(0,232,122,0); } 50%{ box-shadow:0 0 32px rgba(0,232,122,.08); } }
+
+    /* ── Proj card enhanced ── */
+    .proj-card { transition: transform .28s cubic-bezier(.4,0,.2,1), box-shadow .28s, border-color .28s; }
+    .proj-card:hover { transform: translateY(-6px); box-shadow: 0 24px 64px rgba(0,0,0,.45), 0 0 32px rgba(0,232,122,.07); border-color: rgba(0,232,122,.25); }
+
+    /* ── Fix overlay blocking clicks ── */
+    .proj-overlay { pointer-events: none; }
+    .proj-visit-btn { pointer-events: auto; }
+
+    /* ── Mobile hero ── */
+    @media (max-width: 639px) {
+      .hero-h1 { font-size: 2.1rem !important; line-height: 1.05 !important; }
+      .hero-sub { font-size: 0.875rem !important; }
+      .hero-cta { gap: 10px !important; }
+      .hero-cta .btn-g, .hero-cta .btn-o { font-size: 13px !important; padding: 10px 16px !important; }
+    }
+
+    /* ── Mobile stat cards compact ── */
+    @media (max-width: 479px) {
+      .stat-card-num { font-size: 1.25rem !important; }
+    }
+
+    /* ── Touch: no scale on proj-card hover ── */
+    @media (hover:none) {
+      .proj-card:hover { transform: none; box-shadow: none; }
+    }
+
     /* Lang toggle */
     .lang-btn { font:600 11px 'JetBrains Mono',monospace; padding:4px 9px; border-radius:6px; cursor:pointer; border:1px solid transparent; color:#64748B; background:transparent; transition:all .15s; }
     .lang-btn:hover { color:#EEF2FF; }
@@ -272,7 +319,6 @@
     @media (hover: none) {
       .proj-overlay { opacity: 1; background: linear-gradient(to top, rgba(7,9,15,.88) 0%, rgba(7,9,15,.25) 60%, transparent 100%); }
       .proj-card:hover .proj-img { transform: none; }
-      .proj-card:hover { transform: none; box-shadow: none; }
     }
   </style>
 </head>
@@ -1410,7 +1456,6 @@
     const lbImg = document.getElementById('lb-img');
     function openLb(src, alt) { lbImg.src = src; lbImg.alt = alt; lb.classList.add('open'); document.body.style.overflow = 'hidden'; }
     function closeLb() { lb.classList.remove('open'); document.body.style.overflow = ''; }
-    document.querySelectorAll('.proj-img').forEach(img => img.addEventListener('click', () => openLb(img.src, img.alt)));
     document.getElementById('lb-close').addEventListener('click', closeLb);
     lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
@@ -1915,6 +1960,52 @@ Russian (native), Kyrgyz (native), English (technical)`
 
     // Init lang
     setLang(localStorage.getItem('lang') || 'ru');
+
+    // ── Scroll reveal ──────────────────────────────────────────────────────
+    (function() {
+      // Add reveal classes to children of each section
+      const revealSections = [
+        '#about', '#services', '#experience', '#skills',
+        '#projects', '#stats', '#contact'
+      ];
+      revealSections.forEach(sel => {
+        const sec = document.querySelector(sel);
+        if (!sec) return;
+        const children = sec.querySelectorAll(':scope > div > *');
+        children.forEach((el, i) => {
+          el.classList.add('reveal');
+          if (i > 0 && i <= 5) el.classList.add('reveal-d' + i);
+        });
+      });
+
+      // Also reveal individual project/service/skill cards with stagger
+      document.querySelectorAll('.proj-card, .card.p-5, .card.p-6').forEach((el, i) => {
+        el.classList.add('reveal');
+        el.classList.add('reveal-d' + Math.min((i % 6) + 1, 6));
+      });
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    })();
+
+    // ── Lightbox: bind to proj-img-wrap so overlay doesn't block ──────────
+    document.querySelectorAll('.proj-img-wrap').forEach(wrap => {
+      wrap.style.cursor = 'zoom-in';
+      wrap.addEventListener('click', (e) => {
+        // Don't open if user clicked the visit button
+        if (e.target.closest('.proj-visit-btn')) return;
+        const img = wrap.querySelector('.proj-img');
+        if (img) openLb(img.src, img.alt);
+      });
+    });
   </script>
 </body>
 </html>
