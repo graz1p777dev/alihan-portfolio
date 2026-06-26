@@ -411,7 +411,7 @@
         <!-- Mini stats -->
         <div class="grid grid-cols-3 gap-2">
           <div class="card p-3 sm:p-4 text-center">
-            <p class="font-heading font-black text-xl sm:text-2xl text-accent">2+</p>
+            <p id="exp-years" class="font-heading font-black text-xl sm:text-2xl text-accent">2+</p>
             <p class="font-mono text-muted text-[10px] mt-0.5">года опыта</p>
           </div>
           <div class="card p-3 sm:p-4 text-center">
@@ -1330,6 +1330,13 @@
     window.addEventListener('scroll', () => {
       document.getElementById('nav').style.top = scrollY > 30 ? '6px' : '12px';
     }, { passive: true });
+
+    // Dynamic experience years — started Jan 2024
+    (function() {
+      const start = new Date(2024, 0, 1);
+      const years = Math.floor((Date.now() - start) / (365.25 * 24 * 3600 * 1000));
+      document.getElementById('exp-years').textContent = years + '+';
+    })();
   </script>
 </body>
 </html>
