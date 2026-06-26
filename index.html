@@ -4,31 +4,32 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Алихан — FullStack Developer</title>
-  <meta name="description" content="Алихан — FullStack Developer из Бишкека. Создаю сайты, Telegram-боты, автоматизации и AI-решения для бизнеса." />
+  <meta name="description" content="Алихан — FullStack Developer из Бишкека. Python, JavaScript, Django, Telegram-боты, автоматизации и AI для бизнеса." />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            bg:       '#080C14',
-            surface:  '#0F1623',
-            card:     '#131C2E',
-            border:   '#1E2D45',
-            accent:   '#00FF87',
-            'accent2':'#0070F3',
-            'accent3':'#FF6B35',
-            text:     '#F0F4FF',
-            muted:    '#6B7FA3',
-            dim:      '#3A4A6A',
+            bg:      '#07090F',
+            s1:      '#0D1220',
+            s2:      '#131B2E',
+            border:  '#1C2A42',
+            accent:  '#00E87A',
+            blue:    '#3B82F6',
+            purple:  '#8B5CF6',
+            orange:  '#F97316',
+            text:    '#EEF2FF',
+            muted:   '#64748B',
+            dim:     '#2D3E5A',
           },
           fontFamily: {
+            sans:    ['Space Grotesk', 'sans-serif'],
             heading: ['Archivo', 'sans-serif'],
-            body:    ['Space Grotesk', 'sans-serif'],
             mono:    ['JetBrains Mono', 'monospace'],
           },
         },
@@ -37,829 +38,714 @@
   </script>
 
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { background: #07090F; }
+    body { font-family: 'Space Grotesk', sans-serif; background: #07090F; color: #EEF2FF; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    h1,h2,h3,h4,h5 { font-family: 'Archivo', sans-serif; }
 
-    html { background: #080C14; scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Space Grotesk', sans-serif;
-      background: #080C14;
-      color: #F0F4FF;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    h1,h2,h3,h4 { font-family: 'Archivo', sans-serif; }
-    code, .mono { font-family: 'JetBrains Mono', monospace; }
-
-    /* ── Scrollbar ── */
+    /* Scrollbar */
     ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: #080C14; }
-    ::-webkit-scrollbar-thumb { background: #1E2D45; border-radius: 2px; }
-    ::-webkit-scrollbar-thumb:hover { background: #00FF87; }
+    ::-webkit-scrollbar-track { background: #07090F; }
+    ::-webkit-scrollbar-thumb { background: #1C2A42; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #00E87A; }
 
-    /* ── Noise texture overlay ── */
-    body::before {
-      content: '';
-      position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      opacity: 0.4;
+    /* Dot grid */
+    .dot-grid {
+      background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 28px 28px;
     }
 
-    /* ── Grid background ── */
-    .grid-bg {
-      background-image:
-        linear-gradient(rgba(0,255,135,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,255,135,0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-    }
+    /* Glow blobs */
+    .glow { position: fixed; border-radius: 50%; pointer-events: none; filter: blur(100px); z-index: 0; }
+    .glow-1 { width: 600px; height: 600px; background: rgba(0,232,122,0.045); top: -200px; left: -200px; }
+    .glow-2 { width: 500px; height: 500px; background: rgba(59,130,246,0.045); top: 40%; right: -150px; }
+    .glow-3 { width: 350px; height: 350px; background: rgba(139,92,246,0.04); bottom: 10%; left: 30%; }
 
-    /* ── Glow blobs ── */
-    .blob {
-      position: absolute; border-radius: 50%;
-      filter: blur(120px); pointer-events: none;
-    }
-    .blob-green  { width: 500px; height: 500px; background: rgba(0,255,135,0.07); }
-    .blob-blue   { width: 400px; height: 400px; background: rgba(0,112,243,0.07); }
-    .blob-orange { width: 300px; height: 300px; background: rgba(255,107,53,0.05); }
-
-    /* ── Glassmorphism card ── */
+    /* Glass */
     .glass {
-      background: rgba(15,22,35,0.7);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(13,18,32,0.65);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
     }
 
-    /* ── Animated gradient text ── */
-    .grad-text {
-      background: linear-gradient(135deg, #00FF87 0%, #0070F3 50%, #00FF87 100%);
-      background-size: 200% 200%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    /* Gradient text */
+    .grad {
+      background: linear-gradient(120deg, #00E87A 0%, #3B82F6 55%, #00E87A 100%);
+      background-size: 200%;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       background-clip: text;
-      animation: gradShift 4s ease infinite;
+      animation: gradMove 5s linear infinite;
     }
-    @keyframes gradShift {
-      0%   { background-position: 0% 50%; }
-      50%  { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+    @keyframes gradMove { 0%{background-position:0%} 100%{background-position:200%} }
 
-    /* ── Hover border glow ── */
-    .hover-glow {
-      transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+    /* Cards */
+    .card {
+      background: rgba(13,18,32,0.7);
+      border: 1px solid #1C2A42;
+      border-radius: 16px;
+      transition: border-color .22s ease, transform .22s ease, box-shadow .22s ease;
     }
-    .hover-glow:hover {
-      border-color: rgba(0,255,135,0.4) !important;
-      box-shadow: 0 0 30px rgba(0,255,135,0.08), 0 20px 60px rgba(0,0,0,0.4);
-      transform: translateY(-4px);
-    }
-
-    /* ── Nav link underline ── */
-    .nav-link { position: relative; }
-    .nav-link::after {
-      content: ''; position: absolute;
-      bottom: -4px; left: 0; width: 0; height: 1px;
-      background: #00FF87;
-      transition: width 0.25s ease;
-    }
-    .nav-link:hover::after { width: 100%; }
-
-    /* ── Pill badge ── */
-    .pill {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 11px; font-weight: 500; letter-spacing: 0.05em;
-      padding: 4px 10px; border-radius: 100px;
-      font-family: 'JetBrains Mono', monospace;
+    .card:hover {
+      border-color: rgba(0,232,122,0.3);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.35), 0 0 24px rgba(0,232,122,0.06);
     }
 
-    /* ── Skill bar ── */
-    .bar-fill {
-      height: 3px; border-radius: 2px;
-      background: linear-gradient(90deg, #00FF87, #0070F3);
-      width: 0;
-      transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
-    }
+    /* Nav underline */
+    .nav-item { position: relative; }
+    .nav-item::after { content:''; position:absolute; bottom:-3px; left:0; width:0; height:1px; background:#00E87A; transition:width .2s ease; }
+    .nav-item:hover::after { width:100%; }
 
-    /* ── Scroll reveal ── */
-    .reveal {
-      opacity: 0; transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
-    .reveal-delay-4 { transition-delay: 0.4s; }
-    .reveal-delay-5 { transition-delay: 0.5s; }
-
-    /* ── Terminal cursor blink ── */
-    @keyframes termCursor { 0%,49%{opacity:1} 50%,100%{opacity:0} }
-    .term-cursor { animation: termCursor 1s step-end infinite; color: #00FF87; }
-
-    /* ── Typing effect ── */
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-
-    /* ── Lang tag colors ── */
-    .lang-py   { background: rgba(59,130,246,0.12); color: #60A5FA; border-color: rgba(59,130,246,0.2); }
-    .lang-js   { background: rgba(234,179,8,0.12);  color: #FCD34D; border-color: rgba(234,179,8,0.2); }
-    .lang-cpp  { background: rgba(168,85,247,0.12); color: #C084FC; border-color: rgba(168,85,247,0.2); }
-    .lang-java { background: rgba(249,115,22,0.12); color: #FB923C; border-color: rgba(249,115,22,0.2); }
-    .lang-html { background: rgba(239,68,68,0.12);  color: #F87171; border-color: rgba(239,68,68,0.2); }
-    .lang-css  { background: rgba(14,165,233,0.12); color: #38BDF8; border-color: rgba(14,165,233,0.2); }
-    .lang-dj   { background: rgba(34,197,94,0.12);  color: #4ADE80; border-color: rgba(34,197,94,0.2); }
-    .lang-db   { background: rgba(99,102,241,0.12); color: #818CF8; border-color: rgba(99,102,241,0.2); }
-    .lang-tool { background: rgba(107,114,128,0.12);color: #9CA3AF; border-color: rgba(107,114,128,0.2); }
-
-    /* ── Button ── */
-    .btn-primary {
+    /* Buttons */
+    .btn-g {
       display: inline-flex; align-items: center; gap: 8px;
-      background: #00FF87; color: #080C14;
+      background: #00E87A; color: #07090F;
       font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 14px;
-      padding: 12px 24px; border-radius: 12px;
-      transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
-      cursor: pointer; border: none;
+      padding: 11px 22px; border-radius: 10px;
+      transition: background .18s, box-shadow .18s, transform .15s;
+      cursor: pointer; border: none; text-decoration: none;
     }
-    .btn-primary:hover {
-      background: #00e07a;
-      box-shadow: 0 0 24px rgba(0,255,135,0.3);
-      transform: translateY(-1px);
-    }
-    .btn-outline {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: transparent; color: #F0F4FF;
-      font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 14px;
-      padding: 11px 23px; border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.1);
-      transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
-      cursor: pointer;
-    }
-    .btn-outline:hover {
-      border-color: rgba(0,255,135,0.4);
-      background: rgba(0,255,135,0.05);
-      transform: translateY(-1px);
-    }
+    .btn-g:hover { background: #00cc6a; box-shadow: 0 0 20px rgba(0,232,122,0.25); transform: translateY(-1px); }
 
-    /* ── Social icon ── */
-    .social-btn {
+    .btn-o {
       display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(15,22,35,0.8);
-      border: 1px solid rgba(255,255,255,0.07);
-      color: #6B7FA3; font-size: 13px; font-weight: 500;
-      padding: 10px 18px; border-radius: 10px;
-      transition: border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+      background: transparent; color: #EEF2FF;
+      font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 14px;
+      padding: 10px 21px; border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: border-color .18s, background .18s, transform .15s;
       cursor: pointer; text-decoration: none;
     }
-    .social-btn:hover {
-      border-color: rgba(0,255,135,0.3);
-      color: #F0F4FF;
-      transform: translateY(-2px);
-    }
+    .btn-o:hover { border-color: rgba(0,232,122,0.35); background: rgba(0,232,122,0.04); transform: translateY(-1px); }
 
-    /* ── Input focus ── */
-    input:focus, textarea:focus {
-      outline: none;
-      border-color: rgba(0,255,135,0.4) !important;
-      box-shadow: 0 0 0 3px rgba(0,255,135,0.08);
+    /* Social pill */
+    .soc {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(13,18,32,0.8); border: 1px solid #1C2A42;
+      color: #64748B; font-size: 13px; font-weight: 500;
+      padding: 8px 16px; border-radius: 9px;
+      transition: border-color .18s, color .18s, transform .15s;
+      cursor: pointer; text-decoration: none;
     }
+    .soc:hover { border-color: rgba(0,232,122,0.3); color: #EEF2FF; transform: translateY(-2px); }
 
-    /* ── Section label ── */
-    .section-label {
+    /* Skill tag */
+    .tag {
+      display: inline-flex; align-items: center;
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px; font-weight: 500;
-      color: #00FF87; letter-spacing: 0.15em;
-      text-transform: uppercase;
+      padding: 4px 10px; border-radius: 6px; border: 1px solid;
     }
+    .tag-py  { background:rgba(59,130,246,.1);  color:#60A5FA; border-color:rgba(59,130,246,.2); }
+    .tag-js  { background:rgba(234,179,8,.1);   color:#FCD34D; border-color:rgba(234,179,8,.2); }
+    .tag-dj  { background:rgba(0,232,122,.1);   color:#4ADE80; border-color:rgba(0,232,122,.2); }
+    .tag-db  { background:rgba(139,92,246,.1);  color:#A78BFA; border-color:rgba(139,92,246,.2); }
+    .tag-tg  { background:rgba(41,168,224,.1);  color:#38BDF8; border-color:rgba(41,168,224,.2); }
+    .tag-ai  { background:rgba(249,115,22,.1);  color:#FB923C; border-color:rgba(249,115,22,.2); }
+    .tag-dim { background:rgba(45,62,90,.4);    color:#64748B; border-color:rgba(45,62,90,.6); }
+    .tag-cpp { background:rgba(168,85,247,.1);  color:#C084FC; border-color:rgba(168,85,247,.2); }
 
-    /* ── Divider ── */
-    .divider {
-      width: 40px; height: 2px;
-      background: linear-gradient(90deg, #00FF87, transparent);
-    }
+    /* Progress bar */
+    .bar { height: 3px; background: #1C2A42; border-radius: 3px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 3px; width: 0; transition: width 1.1s cubic-bezier(.4,0,.2,1) .2s; }
 
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-      }
+    /* Scroll reveal */
+    .sr { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+    .sr.on { opacity: 1; transform: none; }
+    .d1{transition-delay:.08s} .d2{transition-delay:.16s} .d3{transition-delay:.24s}
+    .d4{transition-delay:.32s} .d5{transition-delay:.40s} .d6{transition-delay:.48s}
+
+    /* Terminal blink */
+    @keyframes blink { 0%,49%{opacity:1}50%,100%{opacity:0} }
+    .cur { animation: blink 1s step-end infinite; }
+
+    /* Input */
+    input, textarea {
+      width: 100%; background: rgba(7,9,15,.7); border: 1px solid #1C2A42;
+      color: #EEF2FF; border-radius: 10px; padding: 11px 16px;
+      font-family: 'Space Grotesk', sans-serif; font-size: 14px;
+      transition: border-color .18s, box-shadow .18s; outline: none;
     }
+    input::placeholder, textarea::placeholder { color: #2D3E5A; }
+    input:focus, textarea:focus { border-color: rgba(0,232,122,.4); box-shadow: 0 0 0 3px rgba(0,232,122,.07); }
+
+    /* Section accent line */
+    .accent-line { width: 32px; height: 2px; background: linear-gradient(90deg,#00E87A,transparent); border-radius: 2px; }
+
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; transition-duration:.01ms!important; } }
   </style>
 </head>
 
-<body class="grid-bg relative">
+<body class="dot-grid relative">
+  <!-- Glows -->
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+  <div class="glow glow-3"></div>
 
-  <!-- Background blobs -->
-  <div class="blob blob-green" style="top:-100px;left:-100px;"></div>
-  <div class="blob blob-blue"  style="top:300px;right:-150px;"></div>
-  <div class="blob blob-orange" style="bottom:200px;left:20%;"></div>
-
-  <!-- ═══════════════════════════════════════════
-       NAVBAR
-  ═══════════════════════════════════════════ -->
-  <nav id="navbar" class="fixed top-4 left-4 right-4 z-50 max-w-6xl mx-auto">
-    <div class="glass rounded-2xl px-5 py-3 flex items-center justify-between transition-all duration-300">
-      <!-- Logo -->
-      <a href="#" class="font-mono text-base font-semibold text-text flex items-center gap-1">
-        <span class="text-accent">~/</span>alihan<span class="text-dim">.dev</span>
+  <!-- ══════════════════════════════════════
+       NAV
+  ══════════════════════════════════════ -->
+  <nav id="nav" class="fixed top-3 inset-x-3 z-50 max-w-6xl mx-auto">
+    <div class="glass border border-border/60 rounded-2xl px-5 py-3 flex items-center justify-between">
+      <a href="#" class="font-mono text-sm font-medium text-text flex items-center gap-0.5">
+        <span class="text-accent">~/</span><span>alihan</span><span class="text-muted">.dev</span>
       </a>
 
-      <!-- Desktop nav -->
-      <ul class="hidden md:flex items-center gap-7 text-sm text-muted">
-        <li><a href="#about"    class="nav-link hover:text-text transition-colors duration-200">about</a></li>
-        <li><a href="#services" class="nav-link hover:text-text transition-colors duration-200">services</a></li>
-        <li><a href="#skills"   class="nav-link hover:text-text transition-colors duration-200">skills</a></li>
-        <li><a href="#projects" class="nav-link hover:text-text transition-colors duration-200">projects</a></li>
-        <li><a href="#contact"  class="nav-link hover:text-text transition-colors duration-200">contact</a></li>
+      <ul class="hidden md:flex items-center gap-6 font-mono text-xs text-muted">
+        <li><a href="#about"    class="nav-item hover:text-text transition-colors">about</a></li>
+        <li><a href="#services" class="nav-item hover:text-text transition-colors">services</a></li>
+        <li><a href="#skills"   class="nav-item hover:text-text transition-colors">skills</a></li>
+        <li><a href="#projects" class="nav-item hover:text-text transition-colors">projects</a></li>
+        <li><a href="#contact"  class="nav-item hover:text-text transition-colors">contact</a></li>
       </ul>
 
-      <div class="hidden md:flex items-center gap-3">
-        <a href="https://github.com/graz1p777dev" target="_blank" class="social-btn">
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg>
-          GitHub
+      <div class="hidden md:flex items-center gap-2">
+        <a href="https://github.com/graz1p777dev" target="_blank" rel="noopener" class="soc py-2 px-3">
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg>
         </a>
-        <a href="#contact" class="btn-primary" style="padding:9px 18px;font-size:13px;border-radius:10px;">
-          Написать
-        </a>
+        <a href="#contact" class="btn-g" style="padding:9px 16px;font-size:13px;border-radius:9px;">Написать</a>
       </div>
 
-      <!-- Burger -->
       <button id="burger" class="md:hidden flex flex-col gap-1.5 p-1 cursor-pointer" aria-label="Меню">
-        <span class="w-5 h-0.5 bg-text rounded transition-all duration-200" id="b1"></span>
-        <span class="w-5 h-0.5 bg-text rounded transition-all duration-200" id="b2"></span>
-        <span class="w-4 h-0.5 bg-muted rounded transition-all duration-200" id="b3"></span>
+        <span class="w-5 h-px bg-text transition-all" id="b1"></span>
+        <span class="w-5 h-px bg-text transition-all" id="b2"></span>
+        <span class="w-4 h-px bg-muted transition-all" id="b3"></span>
       </button>
     </div>
 
-    <!-- Mobile menu -->
-    <div id="mobile-menu" class="hidden mt-2">
-      <div class="glass rounded-2xl px-5 py-4">
-        <ul class="flex flex-col gap-2 text-sm text-muted mb-4">
-          <li><a href="#about"    class="mobile-nav block hover:text-accent transition-colors py-1.5">about</a></li>
-          <li><a href="#services" class="mobile-nav block hover:text-accent transition-colors py-1.5">services</a></li>
-          <li><a href="#skills"   class="mobile-nav block hover:text-accent transition-colors py-1.5">skills</a></li>
-          <li><a href="#projects" class="mobile-nav block hover:text-accent transition-colors py-1.5">projects</a></li>
-          <li><a href="#contact"  class="mobile-nav block hover:text-accent transition-colors py-1.5">contact</a></li>
+    <!-- Mobile drawer -->
+    <div id="mob" class="hidden mt-2">
+      <div class="glass border border-border/60 rounded-2xl px-5 py-4">
+        <ul class="flex flex-col gap-1 font-mono text-sm text-muted mb-4">
+          <li><a href="#about"    class="mob block hover:text-accent py-2 transition-colors">about</a></li>
+          <li><a href="#services" class="mob block hover:text-accent py-2 transition-colors">services</a></li>
+          <li><a href="#skills"   class="mob block hover:text-accent py-2 transition-colors">skills</a></li>
+          <li><a href="#projects" class="mob block hover:text-accent py-2 transition-colors">projects</a></li>
+          <li><a href="#contact"  class="mob block hover:text-accent py-2 transition-colors">contact</a></li>
         </ul>
-        <div class="flex gap-3">
-          <a href="https://github.com/graz1p777dev" target="_blank" class="social-btn flex-1 justify-center">GitHub</a>
-          <a href="#contact" class="mobile-nav btn-primary flex-1 justify-center" style="padding:9px;font-size:13px;border-radius:10px;">Написать</a>
+        <div class="flex gap-2 pt-3 border-t border-border">
+          <a href="https://github.com/graz1p777dev" target="_blank" rel="noopener" class="soc flex-1 justify-center text-xs">GitHub</a>
+          <a href="#contact" class="mob btn-g flex-1 justify-center text-xs" style="padding:9px;border-radius:9px;">Написать</a>
         </div>
       </div>
     </div>
   </nav>
 
-  <!-- ═══════════════════════════════════════════
+  <!-- ══════════════════════════════════════
        HERO
-  ═══════════════════════════════════════════ -->
-  <section class="min-h-screen flex items-center px-4 sm:px-6 lg:px-8 pt-28 pb-16 relative z-10">
-    <div class="max-w-6xl w-full mx-auto">
-      <div class="grid lg:grid-cols-5 gap-12 items-center">
+  ══════════════════════════════════════ -->
+  <section class="relative z-10 min-h-screen flex items-center px-4 sm:px-6 lg:px-8 pt-28 pb-20">
+    <div class="max-w-6xl w-full mx-auto grid lg:grid-cols-5 gap-12 xl:gap-16 items-center">
 
-        <!-- Left — main content -->
-        <div class="lg:col-span-3">
+      <!-- Text side -->
+      <div class="lg:col-span-3 space-y-6">
+        <div class="inline-flex items-center gap-2 border border-accent/20 bg-accent/5 text-accent font-mono text-xs px-3.5 py-1.5 rounded-full">
+          <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
+          open to work · Бишкек, Кыргызстан
+        </div>
 
-          <!-- Status badge -->
-          <div class="inline-flex items-center gap-2 bg-accent/5 border border-accent/15 text-accent text-xs font-mono px-4 py-1.5 rounded-full mb-8">
-            <span class="w-1.5 h-1.5 bg-accent rounded-full animate-pulse"></span>
-            available for work · Бишкек, Кыргызстан
-          </div>
-
-          <h1 class="font-heading font-black text-5xl sm:text-6xl xl:text-7xl leading-[0.95] text-text mb-5">
-            Привет,<br />я <span class="grad-text">Алихан</span>
+        <div>
+          <h1 class="font-heading font-black text-5xl sm:text-6xl xl:text-[72px] leading-[0.93] text-text">
+            Привет,<br />я <span class="grad">Алихан</span>
           </h1>
-
-          <p class="font-mono text-accent text-base sm:text-lg mb-6 flex items-center gap-2">
-            <span>›</span>
-            <span id="typed-text">FullStack Developer</span>
-            <span class="term-cursor">_</span>
+          <p class="mt-4 font-mono text-accent text-lg flex items-center gap-2">
+            <span class="opacity-50">›</span>
+            <span id="typed"></span><span class="cur text-accent">▍</span>
           </p>
-
-          <p class="text-muted text-base leading-relaxed max-w-xl mb-8">
-            Создаю сайты, backend-системы, Telegram-ботов и автоматизации для бизнеса.
-            Не просто пишу код — помогаю бизнесу принимать заявки, подключать CRM и внедрять ИИ.
-          </p>
-
-          <!-- Lang pills -->
-          <div class="flex flex-wrap gap-2 mb-8">
-            <span class="pill lang-py border">Python</span>
-            <span class="pill lang-js border">JavaScript</span>
-            <span class="pill lang-cpp border">C++</span>
-            <span class="pill lang-java border">Java</span>
-            <span class="pill lang-dj border">Django</span>
-            <span class="pill lang-db border">PostgreSQL</span>
-          </div>
-
-          <div class="flex flex-wrap gap-3">
-            <a href="#projects" class="btn-primary">
-              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z" /></svg>
-              Посмотреть проекты
-            </a>
-            <a href="#contact" class="btn-outline">
-              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 0 1 .778-.332 48.294 48.294 0 0 0 5.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" /></svg>
-              Связаться
-            </a>
-          </div>
         </div>
 
-        <!-- Right — terminal card -->
-        <div class="lg:col-span-2">
-          <div class="glass rounded-2xl overflow-hidden border border-border">
-            <!-- Terminal header -->
-            <div class="bg-surface px-4 py-3 flex items-center gap-2 border-b border-border">
-              <div class="flex gap-1.5">
-                <div class="w-3 h-3 rounded-full bg-red-400/70"></div>
-                <div class="w-3 h-3 rounded-full bg-yellow-400/70"></div>
-                <div class="w-3 h-3 rounded-full bg-green-400/70"></div>
-              </div>
-              <span class="font-mono text-xs text-muted ml-2">alihan@dev ~ %</span>
-            </div>
+        <p class="text-muted text-base leading-relaxed max-w-lg">
+          Работаю с <span class="text-text font-medium">Python</span> и <span class="text-text font-medium">JavaScript</span> — пишу backend на Django, делаю сайты, Telegram-боты и автоматизации для бизнеса.
+        </p>
 
-            <!-- Terminal content -->
-            <div class="p-5 font-mono text-sm space-y-2.5 bg-bg/60">
-              <div>
-                <span class="text-accent">$</span>
-                <span class="text-text"> whoami</span>
-              </div>
-              <div class="pl-4 space-y-1 text-xs text-muted">
-                <p><span class="text-dim">name</span>  <span class="text-text">Алихан</span></p>
-                <p><span class="text-dim">role</span>  <span class="text-accent">FullStack Developer</span></p>
-                <p><span class="text-dim">loc</span>   <span class="text-text">Бишкек, KG</span></p>
-                <p><span class="text-dim">exp</span>   <span class="text-[#FCD34D]">2 years</span></p>
-              </div>
-
-              <div class="pt-1">
-                <span class="text-accent">$</span>
-                <span class="text-text"> cat skills.json</span>
-              </div>
-              <div class="pl-4 text-xs space-y-0.5">
-                <p class="text-dim">&#123;</p>
-                <p class="pl-3"><span class="text-[#60A5FA]">"languages"</span>: [<span class="text-[#FCD34D]">"Python"</span>, <span class="text-[#FCD34D]">"JS"</span>, <span class="text-[#FCD34D]">"C++"</span>, <span class="text-[#FCD34D]">"Java"</span>],</p>
-                <p class="pl-3"><span class="text-[#60A5FA]">"backend"</span>: [<span class="text-[#4ADE80]">"Django"</span>, <span class="text-[#4ADE80]">"DRF"</span>],</p>
-                <p class="pl-3"><span class="text-[#60A5FA]">"db"</span>: [<span class="text-[#818CF8]">"PostgreSQL"</span>, <span class="text-[#818CF8]">"Supabase"</span>],</p>
-                <p class="pl-3"><span class="text-[#60A5FA]">"ai"</span>: <span class="text-accent">true</span>,</p>
-                <p class="pl-3"><span class="text-[#60A5FA]">"open_to_work"</span>: <span class="text-accent">true</span></p>
-                <p class="text-dim">&#125;</p>
-              </div>
-
-              <div class="pt-1">
-                <span class="text-accent">$</span>
-                <span class="text-text"> git log --oneline</span>
-              </div>
-              <div class="pl-4 text-xs space-y-0.5 text-muted">
-                <p><span class="text-dim">a3f1c2</span> feat: Demi Results CRM + AI</p>
-                <p><span class="text-dim">7b2e90</span> feat: Codygram DRF API</p>
-                <p><span class="text-dim">2d8fa1</span> feat: business landing pages</p>
-              </div>
-
-              <div class="flex items-center gap-1 pt-1">
-                <span class="text-accent">$</span>
-                <span class="text-muted term-cursor">▋</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Stats row -->
-          <div class="grid grid-cols-3 gap-3 mt-4">
-            <div class="glass rounded-xl p-4 text-center border border-border">
-              <p class="font-heading font-black text-2xl text-accent">2+</p>
-              <p class="text-muted text-xs mt-0.5 font-mono">года</p>
-            </div>
-            <div class="glass rounded-xl p-4 text-center border border-border">
-              <p class="font-heading font-black text-2xl text-[#0070F3]">6+</p>
-              <p class="text-muted text-xs mt-0.5 font-mono">языков</p>
-            </div>
-            <div class="glass rounded-xl p-4 text-center border border-border">
-              <p class="font-heading font-black text-2xl text-[#FF6B35]">3+</p>
-              <p class="text-muted text-xs mt-0.5 font-mono">проекта</p>
-            </div>
-          </div>
+        <div class="flex flex-wrap gap-2">
+          <span class="tag tag-py">Python</span>
+          <span class="tag tag-js">JavaScript</span>
+          <span class="tag tag-dj">Django · DRF</span>
+          <span class="tag tag-db">PostgreSQL</span>
+          <span class="tag tag-tg">Telegram API</span>
+          <span class="tag tag-ai">AI integrations</span>
         </div>
 
+        <div class="flex flex-wrap gap-3 pt-1">
+          <a href="#projects" class="btn-g">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z"/></svg>
+            Проекты
+          </a>
+          <a href="#contact" class="btn-o">Связаться</a>
+        </div>
       </div>
+
+      <!-- Terminal side -->
+      <div class="lg:col-span-2 space-y-3">
+        <div class="card overflow-hidden">
+          <!-- Terminal bar -->
+          <div class="flex items-center gap-1.5 px-4 py-3 bg-s2 border-b border-border">
+            <span class="w-2.5 h-2.5 rounded-full bg-red-400/60"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-yellow-400/60"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-green-400/60"></span>
+            <span class="font-mono text-xs text-muted ml-3">alihan @ dev</span>
+          </div>
+          <!-- Terminal body -->
+          <div class="p-5 font-mono text-xs space-y-3 bg-bg/50">
+            <div class="space-y-1">
+              <p><span class="text-accent">$</span> <span class="text-text">cat about.json</span></p>
+              <div class="pl-3 text-muted space-y-0.5 mt-1">
+                <p class="text-dim">{</p>
+                <p class="pl-3"><span class="text-blue">"name"</span>: <span class="text-accent">"Алихан"</span>,</p>
+                <p class="pl-3"><span class="text-blue">"role"</span>: <span class="text-yellow-300">"FullStack Dev"</span>,</p>
+                <p class="pl-3"><span class="text-blue">"location"</span>: <span class="text-yellow-300">"Бишкек, KG"</span>,</p>
+                <p class="pl-3"><span class="text-blue">"exp"</span>: <span class="text-purple-400">2</span> <span class="text-dim">// years</span></p>
+                <p class="text-dim">}</p>
+              </div>
+            </div>
+            <div class="space-y-1">
+              <p><span class="text-accent">$</span> <span class="text-text">python3 main.py</span></p>
+              <div class="pl-3 mt-1 space-y-0.5">
+                <p class="text-muted">Initializing stack...</p>
+                <p><span class="text-accent">✓</span> <span class="text-text">Python</span> <span class="text-dim">— primary</span></p>
+                <p><span class="text-accent">✓</span> <span class="text-text">JavaScript</span> <span class="text-dim">— primary</span></p>
+                <p><span class="text-accent">✓</span> <span class="text-text">Django / DRF</span> <span class="text-dim">— backend</span></p>
+                <p><span class="text-blue-400">i</span> <span class="text-text">C++ / C / Java / C# / Lua / Ruby</span> <span class="text-dim">— basics</span></p>
+              </div>
+            </div>
+            <div class="flex items-center gap-1">
+              <span class="text-accent">$</span>
+              <span class="text-muted cur">▍</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mini stats -->
+        <div class="grid grid-cols-3 gap-2">
+          <div class="card p-4 text-center">
+            <p class="font-heading font-black text-2xl text-accent">2+</p>
+            <p class="font-mono text-muted text-[10px] mt-0.5">года опыта</p>
+          </div>
+          <div class="card p-4 text-center">
+            <p class="font-heading font-black text-2xl text-blue">8+</p>
+            <p class="font-mono text-muted text-[10px] mt-0.5">языков</p>
+          </div>
+          <div class="card p-4 text-center">
+            <p class="font-heading font-black text-2xl text-orange">3+</p>
+            <p class="font-mono text-muted text-[10px] mt-0.5">проекта</p>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════
+  <!-- ══════════════════════════════════════
        ABOUT
-  ═══════════════════════════════════════════ -->
-  <section id="about" class="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
-    <div class="max-w-6xl mx-auto">
-      <div class="grid lg:grid-cols-2 gap-16 items-center">
+  ══════════════════════════════════════ -->
+  <section id="about" class="relative z-10 py-24 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-14 items-center">
 
-        <div class="reveal">
-          <p class="section-label mb-3">// 01 — about</p>
-          <div class="divider mb-6"></div>
-          <h2 class="font-heading font-black text-4xl sm:text-5xl text-text leading-tight mb-6">
-            Разработчик,<br />который <span class="grad-text">понимает</span><br />задачу клиента
-          </h2>
-          <p class="text-muted leading-relaxed mb-4">
-            Привет! Меня зовут Алихан, я FullStack Developer из Бишкека. Мне 28 лет, и я уже 2 года занимаюсь программированием.
-          </p>
-          <p class="text-muted leading-relaxed mb-4">
-            Создаю современные сайты, backend-системы, Telegram-ботов и автоматизации для бизнеса. Помогаю принимать заявки, подключать CRM, Google Sheets и ИИ-ассистентов.
-          </p>
-          <p class="text-muted leading-relaxed">
-            Работал в технической поддержке <span class="text-text font-medium">Codify</span> — понимаю важность удобных и рабочих решений.
-          </p>
+      <div class="sr">
+        <p class="font-mono text-xs text-accent mb-2">// 01 — about</p>
+        <div class="accent-line mb-5"></div>
+        <h2 class="font-heading font-black text-4xl sm:text-5xl text-text leading-tight mb-6">
+          Разработчик,<br />который <span class="grad">понимает</span><br />задачу клиента
+        </h2>
+        <p class="text-muted leading-relaxed mb-4">
+          Привет! Меня зовут Алихан, мне 28 лет. Я FullStack Developer из Бишкека с 2 годами опыта в программировании.
+        </p>
+        <p class="text-muted leading-relaxed mb-4">
+          Работаю с Python и JavaScript: пишу backend-системы на Django и DRF, создаю сайты, Telegram-ботов и автоматизации. Умею не просто сделать красивую страницу — помогаю бизнесу принимать заявки, подключать CRM и внедрять ИИ.
+        </p>
+        <p class="text-muted leading-relaxed">
+          Работал в технической поддержке <span class="text-text font-medium">Codify</span> — понимаю важность удобных и рабочих решений, а не «сайта ради сайта».
+        </p>
+      </div>
+
+      <div class="space-y-3 sr d2">
+        <div class="card p-5 hover:border-accent/30 transition-colors">
+          <div class="flex items-start gap-4">
+            <div class="w-9 h-9 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
+              <svg class="w-4 h-4 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"/></svg>
+            </div>
+            <div>
+              <h3 class="font-heading font-semibold text-text mb-1">Python & JavaScript — основные языки</h3>
+              <p class="text-muted text-sm">Backend на Django/DRF, фронт на JS, Telegram-боты, API-интеграции и автоматизации.</p>
+            </div>
+          </div>
         </div>
 
-        <div class="space-y-4 reveal reveal-delay-2">
-          <div class="glass border border-border rounded-2xl p-5 hover-glow cursor-default">
-            <div class="flex items-start gap-4">
-              <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center shrink-0 mt-0.5">
-                <svg class="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0M12 12.75h.008v.008H12v-.008Z" /></svg>
-              </div>
-              <div>
-                <h3 class="font-heading font-semibold text-text mb-1">Техподдержка — Codify</h3>
-                <p class="text-muted text-sm">Работа с клиентами, решение технических проблем, объяснение сложных решений простым языком.</p>
-              </div>
+        <div class="card p-5 hover:border-blue/30 transition-colors">
+          <div class="flex items-start gap-4">
+            <div class="w-9 h-9 rounded-xl bg-blue/10 flex items-center justify-center shrink-0">
+              <svg class="w-4 h-4 text-blue" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0 0 21 18V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v12a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+            </div>
+            <div>
+              <h3 class="font-heading font-semibold text-text mb-1">C++, C, Java, C#, Lua, Ruby — знакомые</h3>
+              <p class="text-muted text-sm">Писал простые программы: переменные, условия, циклы, функции, ООП, базовая структура кода.</p>
             </div>
           </div>
+        </div>
 
-          <div class="glass border border-border rounded-2xl p-5 hover-glow cursor-default">
-            <div class="flex items-start gap-4">
-              <div class="w-10 h-10 rounded-xl bg-[#0070F3]/10 flex items-center justify-center shrink-0 mt-0.5">
-                <svg class="w-5 h-5 text-[#0070F3]" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" /></svg>
-              </div>
-              <div>
-                <h3 class="font-heading font-semibold text-text mb-1">FullStack разработка — 2 года</h3>
-                <p class="text-muted text-sm">Сайты, API, боты, автоматизации. Python + Django + JavaScript + интеграции.</p>
-              </div>
+        <div class="card p-5 hover:border-orange/30 transition-colors">
+          <div class="flex items-start gap-4">
+            <div class="w-9 h-9 rounded-xl bg-orange/10 flex items-center justify-center shrink-0">
+              <svg class="w-4 h-4 text-orange" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z"/></svg>
             </div>
-          </div>
-
-          <div class="glass border border-border rounded-2xl p-5 hover-glow cursor-default">
-            <div class="flex items-start gap-4">
-              <div class="w-10 h-10 rounded-xl bg-[#FF6B35]/10 flex items-center justify-center shrink-0 mt-0.5">
-                <svg class="w-5 h-5 text-[#FF6B35]" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z" /></svg>
-              </div>
-              <div>
-                <h3 class="font-heading font-semibold text-text mb-1">Алгоритмы & C++ / Java</h3>
-                <p class="text-muted text-sm">Базовые знания C++ и Java, алгоритмы, консольные приложения, структуры данных.</p>
-              </div>
+            <div>
+              <h3 class="font-heading font-semibold text-text mb-1">Техподдержка — Codify</h3>
+              <p class="text-muted text-sm">Работа с клиентами, объяснение решений, понимание реальных задач бизнеса.</p>
             </div>
           </div>
         </div>
       </div>
+
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════
+  <!-- ══════════════════════════════════════
        SERVICES
-  ═══════════════════════════════════════════ -->
-  <section id="services" class="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
+  ══════════════════════════════════════ -->
+  <section id="services" class="relative z-10 py-24 px-4 sm:px-6 lg:px-8">
     <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16 reveal">
-        <p class="section-label mb-3">// 02 — services</p>
-        <div class="divider mx-auto mb-6"></div>
+      <div class="text-center mb-14 sr">
+        <p class="font-mono text-xs text-accent mb-2">// 02 — services</p>
+        <div class="accent-line mx-auto mb-5"></div>
         <h2 class="font-heading font-black text-4xl sm:text-5xl text-text">Что я делаю</h2>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
 
-        <!-- Website dev -->
-        <div class="glass border border-border rounded-2xl p-6 hover-glow cursor-default reveal">
-          <div class="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center mb-5">
-            <svg class="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" /></svg>
+        <div class="card p-6 sr d1">
+          <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"/></svg>
           </div>
-          <h3 class="font-heading font-bold text-lg text-text mb-2">Разработка сайтов</h3>
-          <p class="text-muted text-sm leading-relaxed mb-4">Лендинги, визитки, портфолио, каталоги, формы заявок — под ключ.</p>
+          <h3 class="font-heading font-bold text-text mb-2">Сайты под ключ</h3>
+          <p class="text-muted text-sm leading-relaxed mb-3">Лендинги, визитки, портфолио, каталоги, формы заявок.</p>
           <div class="flex flex-wrap gap-1.5">
-            <span class="pill lang-html border text-[10px]">HTML/CSS</span>
-            <span class="pill lang-js border text-[10px]">JavaScript</span>
+            <span class="tag tag-js">JavaScript</span>
+            <span class="tag tag-dim">HTML / CSS</span>
           </div>
         </div>
 
-        <!-- Backend -->
-        <div class="glass border border-border rounded-2xl p-6 hover-glow cursor-default reveal reveal-delay-1">
-          <div class="w-11 h-11 rounded-xl bg-[#0070F3]/10 flex items-center justify-center mb-5">
-            <svg class="w-5 h-5 text-[#0070F3]" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3m3 3a3 3 0 1 0 0 6h13.5a3 3 0 1 0 0-6m-16.5-3a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3m-19.5 0a4.5 4.5 0 0 1 .9-2.7L5.737 5.1a3.375 3.375 0 0 1 2.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 0 1 .9 2.7m0 0a3 3 0 0 1-3 3m0 3h.008v.008h-.008v-.008Zm0-6h.008v.008h-.008v-.008Zm-3 6h.008v.008h-.008v-.008Zm0-6h.008v.008h-.008v-.008Z" /></svg>
+        <div class="card p-6 sr d2">
+          <div class="w-10 h-10 rounded-xl bg-blue/10 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-blue" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3m3 3a3 3 0 1 0 0 6h13.5a3 3 0 1 0 0-6m-16.5-3a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3m-19.5 0a4.5 4.5 0 0 1 .9-2.7L5.737 5.1a3.375 3.375 0 0 1 2.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 0 1 .9 2.7m0 0a3 3 0 0 1-3 3m0 3h.008v.008h-.008v-.008Zm0-6h.008v.008h-.008v-.008Zm-3 6h.008v.008h-.008v-.008Zm0-6h.008v.008h-.008v-.008Z"/></svg>
           </div>
-          <h3 class="font-heading font-bold text-lg text-text mb-2">Backend разработка</h3>
-          <p class="text-muted text-sm leading-relaxed mb-4">Python, Django, DRF — REST API, базы данных, серверная логика приложений.</p>
+          <h3 class="font-heading font-bold text-text mb-2">Backend разработка</h3>
+          <p class="text-muted text-sm leading-relaxed mb-3">REST API, базы данных, серверная логика на Python и Django.</p>
           <div class="flex flex-wrap gap-1.5">
-            <span class="pill lang-py border text-[10px]">Python</span>
-            <span class="pill lang-dj border text-[10px]">Django</span>
-            <span class="pill lang-db border text-[10px]">PostgreSQL</span>
+            <span class="tag tag-py">Python</span>
+            <span class="tag tag-dj">Django / DRF</span>
           </div>
         </div>
 
-        <!-- Telegram bots -->
-        <div class="glass border border-border rounded-2xl p-6 hover-glow cursor-default reveal reveal-delay-2">
-          <div class="w-11 h-11 rounded-xl bg-[#29A8E0]/10 flex items-center justify-center mb-5">
-            <svg class="w-5 h-5 text-[#29A8E0]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.289c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.19 14.565l-2.965-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.63.021z"/></svg>
+        <div class="card p-6 sr d3">
+          <div class="w-10 h-10 rounded-xl bg-teal-500/10 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-teal-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.289c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.19 14.565l-2.965-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.63.021z"/></svg>
           </div>
-          <h3 class="font-heading font-bold text-lg text-text mb-2">Telegram-боты</h3>
-          <p class="text-muted text-sm leading-relaxed mb-4">Боты для приёма заявок, уведомлений, консультаций и автоматизации общения.</p>
+          <h3 class="font-heading font-bold text-text mb-2">Telegram-боты</h3>
+          <p class="text-muted text-sm leading-relaxed mb-3">Приём заявок, уведомления, AI-ответы, автоматизация общения.</p>
           <div class="flex flex-wrap gap-1.5">
-            <span class="pill lang-py border text-[10px]">Python</span>
-            <span class="pill lang-dj border text-[10px]">aiogram</span>
+            <span class="tag tag-py">Python</span>
+            <span class="tag tag-tg">aiogram</span>
           </div>
         </div>
 
-        <!-- CRM -->
-        <div class="glass border border-border rounded-2xl p-6 hover-glow cursor-default reveal reveal-delay-3">
-          <div class="w-11 h-11 rounded-xl bg-[#FF6B35]/10 flex items-center justify-center mb-5">
-            <svg class="w-5 h-5 text-[#FF6B35]" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" /></svg>
+        <div class="card p-6 sr d4">
+          <div class="w-10 h-10 rounded-xl bg-orange/10 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-orange" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"/></svg>
           </div>
-          <h3 class="font-heading font-bold text-lg text-text mb-2">CRM & интеграции</h3>
-          <p class="text-muted text-sm leading-relaxed mb-4">Подключение amoCRM, Google Sheets, Supabase, Telegram к бизнес-процессам.</p>
+          <h3 class="font-heading font-bold text-text mb-2">CRM & интеграции</h3>
+          <p class="text-muted text-sm leading-relaxed mb-3">amoCRM, Google Sheets, Supabase, Telegram — всё в один поток.</p>
           <div class="flex flex-wrap gap-1.5">
-            <span class="pill border text-[10px]" style="background:rgba(255,107,53,0.12);color:#FB923C;border-color:rgba(255,107,53,0.2)">amoCRM</span>
-            <span class="pill lang-dj border text-[10px]">Sheets</span>
+            <span class="tag tag-ai">amoCRM</span>
+            <span class="tag tag-dj">Sheets API</span>
           </div>
         </div>
 
-        <!-- AI -->
-        <div class="glass border border-border rounded-2xl p-6 hover-glow cursor-default reveal reveal-delay-4">
-          <div class="w-11 h-11 rounded-xl bg-[#818CF8]/10 flex items-center justify-center mb-5">
-            <svg class="w-5 h-5 text-[#818CF8]" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z" /></svg>
+        <div class="card p-6 sr d5">
+          <div class="w-10 h-10 rounded-xl bg-purple/10 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-purple" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z"/></svg>
           </div>
-          <h3 class="font-heading font-bold text-lg text-text mb-2">Внедрение ИИ</h3>
-          <p class="text-muted text-sm leading-relaxed mb-4">AI-ассистенты, умные ответы клиентам, автоматизация с ИИ для бизнеса.</p>
+          <h3 class="font-heading font-bold text-text mb-2">Внедрение ИИ</h3>
+          <p class="text-muted text-sm leading-relaxed mb-3">AI-ассистенты, умные ответы, автоматизация с ИИ для бизнеса.</p>
           <div class="flex flex-wrap gap-1.5">
-            <span class="pill lang-db border text-[10px]">AI APIs</span>
-            <span class="pill lang-py border text-[10px]">Python</span>
+            <span class="tag tag-py">Python</span>
+            <span class="tag tag-ai">AI APIs</span>
           </div>
         </div>
 
-        <!-- Automation -->
-        <div class="glass border border-border rounded-2xl p-6 hover-glow cursor-default reveal reveal-delay-5">
-          <div class="w-11 h-11 rounded-xl bg-[#FCD34D]/10 flex items-center justify-center mb-5">
-            <svg class="w-5 h-5 text-[#FCD34D]" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0 0 15 0m-15 0a7.5 7.5 0 1 1 15 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077 1.41-.513m14.095-5.13 1.41-.513M5.106 17.785l1.15-.964m11.49-9.642 1.149-.964M7.501 19.795l.75-1.3m7.5-12.99.75-1.3m-6.063 16.658.26-1.477m2.605-14.772.26-1.477m0 17.726-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205 12 12m6.894 5.785-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864-1.41-.513M4.954 9.435l-1.41-.514M12.002 12l-3.75 6.495" /></svg>
+        <div class="card p-6 sr d6">
+          <div class="w-10 h-10 rounded-xl bg-yellow-500/10 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0 0 15 0m-15 0a7.5 7.5 0 1 1 15 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077 1.41-.513m14.095-5.13 1.41-.513M5.106 17.785l1.15-.964m11.49-9.642 1.149-.964M7.501 19.795l.75-1.3m7.5-12.99.75-1.3m-6.063 16.658.26-1.477m2.605-14.772.26-1.477m0 17.726-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205 12 12m6.894 5.785-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864-1.41-.513M4.954 9.435l-1.41-.514M12.002 12l-3.75 6.495"/></svg>
           </div>
-          <h3 class="font-heading font-bold text-lg text-text mb-2">Автоматизация</h3>
-          <p class="text-muted text-sm leading-relaxed mb-4">n8n, автозаявки, уведомления, отчёты — бизнес без ручного труда.</p>
+          <h3 class="font-heading font-bold text-text mb-2">Автоматизация</h3>
+          <p class="text-muted text-sm leading-relaxed mb-3">n8n, вебхуки, авто-уведомления, отчёты без ручного труда.</p>
           <div class="flex flex-wrap gap-1.5">
-            <span class="pill lang-js border text-[10px]">n8n</span>
-            <span class="pill lang-dj border text-[10px]">webhooks</span>
+            <span class="tag tag-js">n8n</span>
+            <span class="tag tag-dim">webhooks</span>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════
+  <!-- ══════════════════════════════════════
        SKILLS
-  ═══════════════════════════════════════════ -->
-  <section id="skills" class="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
+  ══════════════════════════════════════ -->
+  <section id="skills" class="relative z-10 py-24 px-4 sm:px-6 lg:px-8">
     <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16 reveal">
-        <p class="section-label mb-3">// 03 — skills</p>
-        <div class="divider mx-auto mb-6"></div>
+      <div class="text-center mb-14 sr">
+        <p class="font-mono text-xs text-accent mb-2">// 03 — skills</p>
+        <div class="accent-line mx-auto mb-5"></div>
         <h2 class="font-heading font-black text-4xl sm:text-5xl text-text">Технологии</h2>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-6">
+      <div class="grid lg:grid-cols-2 gap-5">
 
-        <!-- Programming Languages -->
-        <div class="glass border border-border rounded-2xl p-6 reveal">
-          <h3 class="font-heading font-bold text-text flex items-center gap-2 mb-5">
-            <span class="font-mono text-accent text-sm">01.</span> Языки программирования
+        <!-- Primary languages -->
+        <div class="card p-7 sr">
+          <h3 class="font-heading font-bold text-text flex items-center gap-2 mb-6">
+            <span class="font-mono text-accent text-xs">01</span>
+            <span class="w-px h-4 bg-border"></span>
+            Основные языки
           </h3>
-          <div class="space-y-4">
+          <div class="space-y-5">
             <div>
-              <div class="flex justify-between mb-2">
-                <span class="text-sm font-medium text-muted flex items-center gap-2">
-                  <span class="pill lang-py border text-[10px] px-2 py-0.5">Python</span>
-                </span>
-                <span class="font-mono text-xs text-accent">80%</span>
+              <div class="flex justify-between items-center mb-2">
+                <div class="flex items-center gap-2">
+                  <span class="tag tag-py">Python</span>
+                  <span class="text-muted text-xs">backend · боты · автоматизация</span>
+                </div>
+                <span class="font-mono text-xs text-accent">primary</span>
               </div>
-              <div class="h-px bg-border rounded-full overflow-hidden">
-                <div class="bar-fill" data-width="80"></div>
-              </div>
+              <div class="bar"><div class="bar-fill" data-w="82" style="background:linear-gradient(90deg,#3B82F6,#00E87A)"></div></div>
             </div>
             <div>
-              <div class="flex justify-between mb-2">
-                <span class="text-sm font-medium text-muted flex items-center gap-2">
-                  <span class="pill lang-js border text-[10px] px-2 py-0.5">JavaScript</span>
-                </span>
-                <span class="font-mono text-xs text-[#FCD34D]">70%</span>
+              <div class="flex justify-between items-center mb-2">
+                <div class="flex items-center gap-2">
+                  <span class="tag tag-js">JavaScript</span>
+                  <span class="text-muted text-xs">frontend · сайты · логика</span>
+                </div>
+                <span class="font-mono text-xs text-accent">primary</span>
               </div>
-              <div class="h-px bg-border rounded-full overflow-hidden">
-                <div class="bar-fill" data-width="70" style="background:linear-gradient(90deg,#FCD34D,#F59E0B)"></div>
-              </div>
+              <div class="bar"><div class="bar-fill" data-w="72" style="background:linear-gradient(90deg,#FCD34D,#F59E0B)"></div></div>
             </div>
-            <div>
-              <div class="flex justify-between mb-2">
-                <span class="text-sm font-medium text-muted flex items-center gap-2">
-                  <span class="pill lang-cpp border text-[10px] px-2 py-0.5">C++</span>
-                  <span class="text-xs text-dim">базовый</span>
-                </span>
-                <span class="font-mono text-xs text-[#C084FC]">45%</span>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-border">
+            <h3 class="font-heading font-bold text-text flex items-center gap-2 mb-5">
+              <span class="font-mono text-blue text-xs">02</span>
+              <span class="w-px h-4 bg-border"></span>
+              Backend стек
+            </h3>
+            <div class="space-y-4">
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <span class="tag tag-dj">Django · DRF</span>
+                  <span class="font-mono text-xs text-muted">API · сервер</span>
+                </div>
+                <div class="bar"><div class="bar-fill" data-w="76" style="background:linear-gradient(90deg,#00E87A,#16A34A)"></div></div>
               </div>
-              <div class="h-px bg-border rounded-full overflow-hidden">
-                <div class="bar-fill" data-width="45" style="background:linear-gradient(90deg,#C084FC,#A855F7)"></div>
-              </div>
-            </div>
-            <div>
-              <div class="flex justify-between mb-2">
-                <span class="text-sm font-medium text-muted flex items-center gap-2">
-                  <span class="pill lang-java border text-[10px] px-2 py-0.5">Java</span>
-                  <span class="text-xs text-dim">базовый</span>
-                </span>
-                <span class="font-mono text-xs text-[#FB923C]">40%</span>
-              </div>
-              <div class="h-px bg-border rounded-full overflow-hidden">
-                <div class="bar-fill" data-width="40" style="background:linear-gradient(90deg,#FB923C,#EA580C)"></div>
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <span class="tag tag-db">PostgreSQL · Supabase</span>
+                  <span class="font-mono text-xs text-muted">базы данных</span>
+                </div>
+                <div class="bar"><div class="bar-fill" data-w="68" style="background:linear-gradient(90deg,#8B5CF6,#6366F1)"></div></div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Backend & Frontend -->
-        <div class="glass border border-border rounded-2xl p-6 reveal reveal-delay-1">
-          <h3 class="font-heading font-bold text-text flex items-center gap-2 mb-5">
-            <span class="font-mono text-[#0070F3] text-sm">02.</span> Backend & Frontend
-          </h3>
-          <div class="space-y-4">
-            <div>
-              <div class="flex justify-between mb-2">
-                <span class="text-sm font-medium text-muted flex items-center gap-2">
-                  <span class="pill lang-dj border text-[10px] px-2 py-0.5">Django / DRF</span>
-                </span>
-                <span class="font-mono text-xs text-accent">75%</span>
-              </div>
-              <div class="h-px bg-border rounded-full overflow-hidden">
-                <div class="bar-fill" data-width="75"></div>
-              </div>
-            </div>
-            <div>
-              <div class="flex justify-between mb-2">
-                <span class="text-sm font-medium text-muted flex items-center gap-2">
-                  <span class="pill lang-html border text-[10px] px-2 py-0.5">HTML</span>
-                  <span class="pill lang-css border text-[10px] px-2 py-0.5">CSS</span>
-                </span>
-                <span class="font-mono text-xs text-[#F87171]">85%</span>
-              </div>
-              <div class="h-px bg-border rounded-full overflow-hidden">
-                <div class="bar-fill" data-width="85" style="background:linear-gradient(90deg,#F87171,#EF4444)"></div>
-              </div>
-            </div>
-            <div>
-              <div class="flex justify-between mb-2">
-                <span class="text-sm font-medium text-muted flex items-center gap-2">
-                  <span class="pill lang-db border text-[10px] px-2 py-0.5">PostgreSQL</span>
-                  <span class="pill lang-db border text-[10px] px-2 py-0.5">Supabase</span>
-                </span>
-                <span class="font-mono text-xs text-[#818CF8]">72%</span>
-              </div>
-              <div class="h-px bg-border rounded-full overflow-hidden">
-                <div class="bar-fill" data-width="72" style="background:linear-gradient(90deg,#818CF8,#6366F1)"></div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <!-- Right column -->
+        <div class="space-y-5">
 
-        <!-- Tools & Platforms -->
-        <div class="glass border border-border rounded-2xl p-6 reveal reveal-delay-2 md:col-span-2">
-          <h3 class="font-heading font-bold text-text flex items-center gap-2 mb-5">
-            <span class="font-mono text-[#FF6B35] text-sm">03.</span> Инструменты & платформы
-          </h3>
-          <div class="flex flex-wrap gap-2">
-            <span class="pill lang-tool border">Git</span>
-            <span class="pill lang-tool border">GitHub</span>
-            <span class="pill lang-tool border">Docker</span>
-            <span class="pill lang-tool border">Linux</span>
-            <span class="pill lang-tool border">Postman</span>
-            <span class="pill lang-tool border">Swagger</span>
-            <span class="pill lang-dj border">n8n</span>
-            <span class="pill lang-db border">Supabase</span>
-            <span class="pill border text-[#29A8E0]" style="background:rgba(41,168,224,0.1);border-color:rgba(41,168,224,0.2)">Telegram API</span>
-            <span class="pill border text-[#FF6B35]" style="background:rgba(255,107,53,0.1);border-color:rgba(255,107,53,0.2)">amoCRM</span>
-            <span class="pill lang-dj border">Google Sheets API</span>
-            <span class="pill lang-db border">REST API</span>
-            <span class="pill lang-cpp border">Алгоритмы</span>
-            <span class="pill lang-java border">ООП</span>
+          <!-- Familiar languages -->
+          <div class="card p-7 sr d2">
+            <h3 class="font-heading font-bold text-text flex items-center gap-2 mb-2">
+              <span class="font-mono text-purple text-xs">03</span>
+              <span class="w-px h-4 bg-border"></span>
+              Знакомые языки
+            </h3>
+            <p class="text-muted text-xs mb-4 font-mono">// писал программы, знаю базовую логику</p>
+            <div class="flex flex-wrap gap-2">
+              <div class="tag tag-cpp flex items-center gap-1.5">
+                C++
+                <span class="text-[9px] opacity-60">vars · loops · funcs</span>
+              </div>
+              <div class="tag tag-dim flex items-center gap-1.5">
+                C
+                <span class="text-[9px] opacity-60">basics</span>
+              </div>
+              <div class="tag tag-ai flex items-center gap-1.5">
+                Java
+                <span class="text-[9px] opacity-60">OOP basics</span>
+              </div>
+              <div class="tag tag-db flex items-center gap-1.5">
+                C#
+                <span class="text-[9px] opacity-60">basics</span>
+              </div>
+              <div class="tag tag-dj flex items-center gap-1.5">
+                Lua
+                <span class="text-[9px] opacity-60">scripting</span>
+              </div>
+              <div class="tag tag-js flex items-center gap-1.5">
+                Ruby
+                <span class="text-[9px] opacity-60">basics</span>
+              </div>
+            </div>
           </div>
+
+          <!-- Tools -->
+          <div class="card p-7 sr d3">
+            <h3 class="font-heading font-bold text-text flex items-center gap-2 mb-5">
+              <span class="font-mono text-orange text-xs">04</span>
+              <span class="w-px h-4 bg-border"></span>
+              Инструменты & интеграции
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag tag-dim">Git</span>
+              <span class="tag tag-dim">GitHub</span>
+              <span class="tag tag-dim">Docker</span>
+              <span class="tag tag-dim">Linux</span>
+              <span class="tag tag-dim">Postman</span>
+              <span class="tag tag-dim">Swagger</span>
+              <span class="tag tag-tg">Telegram API</span>
+              <span class="tag tag-ai">amoCRM</span>
+              <span class="tag tag-dj">Google Sheets</span>
+              <span class="tag tag-db">Supabase</span>
+              <span class="tag tag-js">n8n</span>
+              <span class="tag tag-dim">REST API</span>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════
+  <!-- ══════════════════════════════════════
        PROJECTS
-  ═══════════════════════════════════════════ -->
-  <section id="projects" class="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
+  ══════════════════════════════════════ -->
+  <section id="projects" class="relative z-10 py-24 px-4 sm:px-6 lg:px-8">
     <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16 reveal">
-        <p class="section-label mb-3">// 04 — projects</p>
-        <div class="divider mx-auto mb-6"></div>
+      <div class="text-center mb-14 sr">
+        <p class="font-mono text-xs text-accent mb-2">// 04 — projects</p>
+        <div class="accent-line mx-auto mb-5"></div>
         <h2 class="font-heading font-black text-4xl sm:text-5xl text-text">Проекты</h2>
       </div>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
 
-        <!-- Demi Results -->
-        <div class="glass border border-border rounded-2xl overflow-hidden hover-glow cursor-default reveal group lg:col-span-2">
-          <div class="h-1 bg-gradient-to-r from-accent via-[#0070F3] to-accent"></div>
-          <div class="p-7">
-            <div class="flex items-start justify-between mb-5">
-              <div>
-                <div class="flex items-center gap-2 mb-2">
-                  <span class="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
-                  <span class="font-mono text-xs text-accent">featured project</span>
-                </div>
-                <h3 class="font-heading font-black text-xl text-text">Demi Results CRM</h3>
-                <p class="text-muted text-sm mt-0.5">AI-ассистент для магазина косметики</p>
+        <!-- Featured: Demi Results -->
+        <div class="card p-7 sr md:col-span-2 relative overflow-hidden group">
+          <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent to-transparent opacity-60"></div>
+          <div class="flex items-start justify-between mb-5">
+            <div>
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
+                <span class="font-mono text-xs text-accent">featured</span>
               </div>
-              <a href="https://github.com/graz1p777dev" target="_blank" class="social-btn p-2.5" style="padding:10px;">
-                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg>
-              </a>
+              <h3 class="font-heading font-black text-2xl text-text">Demi Results CRM</h3>
+              <p class="text-muted text-sm mt-0.5">AI-ассистент для магазина косметики</p>
             </div>
-
-            <p class="text-muted text-sm leading-relaxed mb-5">
-              CRM-система и AI-ассистент для магазина уходовой косметики. Управление товарами, продажами, заявками. Интеграции с amoCRM, Telegram, Google Sheets. AI-ответы клиентам.
-            </p>
-
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="pill lang-py border text-[10px]">Python</span>
-              <span class="pill lang-dj border text-[10px]">Django</span>
-              <span class="pill lang-db border text-[10px]">PostgreSQL</span>
-              <span class="pill border text-[10px]" style="background:rgba(41,168,224,0.1);color:#29A8E0;border-color:rgba(41,168,224,0.2)">Telegram</span>
-              <span class="pill border text-[10px]" style="background:rgba(255,107,53,0.1);color:#FF6B35;border-color:rgba(255,107,53,0.2)">amoCRM</span>
-              <span class="pill lang-dj border text-[10px]">AI</span>
+            <a href="https://github.com/graz1p777dev" target="_blank" rel="noopener"
+               class="soc w-9 h-9 flex items-center justify-center p-0">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg>
+            </a>
+          </div>
+          <p class="text-muted text-sm leading-relaxed mb-5">
+            CRM-система и AI-ассистент для магазина уходовой косметики. Управление товарами, продажами, заявками. Интеграции с amoCRM, Telegram, Google Sheets. AI-консультации клиентам в реальном времени.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-5">
+            <span class="tag tag-py">Python</span>
+            <span class="tag tag-dj">Django</span>
+            <span class="tag tag-db">PostgreSQL</span>
+            <span class="tag tag-tg">Telegram</span>
+            <span class="tag tag-ai">amoCRM</span>
+            <span class="tag tag-ai">AI</span>
+          </div>
+          <div class="grid grid-cols-3 gap-3 pt-5 border-t border-border">
+            <div class="text-center">
+              <p class="font-heading font-black text-xl text-accent">CRM</p>
+              <p class="font-mono text-muted text-[10px] mt-0.5">система</p>
             </div>
-
-            <div class="grid grid-cols-3 gap-3 pt-4 border-t border-border">
-              <div class="text-center">
-                <p class="font-heading font-black text-xl text-accent">CRM</p>
-                <p class="text-xs text-muted font-mono mt-0.5">система</p>
-              </div>
-              <div class="text-center">
-                <p class="font-heading font-black text-xl text-[#0070F3]">AI</p>
-                <p class="text-xs text-muted font-mono mt-0.5">ассистент</p>
-              </div>
-              <div class="text-center">
-                <p class="font-heading font-black text-xl text-[#FF6B35]">4+</p>
-                <p class="text-xs text-muted font-mono mt-0.5">интеграции</p>
-              </div>
+            <div class="text-center">
+              <p class="font-heading font-black text-xl text-blue">AI</p>
+              <p class="font-mono text-muted text-[10px] mt-0.5">ассистент</p>
+            </div>
+            <div class="text-center">
+              <p class="font-heading font-black text-xl text-orange">4+</p>
+              <p class="font-mono text-muted text-[10px] mt-0.5">интеграции</p>
             </div>
           </div>
         </div>
 
         <!-- Codygram -->
-        <div class="glass border border-border rounded-2xl overflow-hidden hover-glow cursor-default reveal reveal-delay-1">
-          <div class="h-1 bg-gradient-to-r from-[#0070F3] to-[#818CF8]"></div>
-          <div class="p-6">
-            <div class="flex items-start justify-between mb-4">
-              <div>
-                <span class="font-mono text-xs text-[#0070F3]">hackathon</span>
-                <h3 class="font-heading font-black text-xl text-text mt-0.5">Codygram</h3>
-              </div>
-              <a href="https://github.com/graz1p777dev" target="_blank" class="social-btn p-2.5" style="padding:10px;">
-                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg>
-              </a>
+        <div class="card p-6 sr d1 relative overflow-hidden">
+          <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue to-transparent opacity-40"></div>
+          <div class="flex items-start justify-between mb-4">
+            <div>
+              <span class="font-mono text-xs text-blue">hackathon</span>
+              <h3 class="font-heading font-black text-xl text-text mt-0.5">Codygram</h3>
             </div>
-            <p class="text-muted text-sm leading-relaxed mb-4">Django REST Framework проект с хакатона Codify. API для пользователей, товаров и корзины.</p>
-            <div class="flex flex-wrap gap-1.5">
-              <span class="pill lang-py border text-[10px]">Python</span>
-              <span class="pill lang-dj border text-[10px]">DRF</span>
-              <span class="pill lang-db border text-[10px]">PostgreSQL</span>
-            </div>
+            <a href="https://github.com/graz1p777dev" target="_blank" rel="noopener"
+               class="soc w-9 h-9 flex items-center justify-center p-0">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg>
+            </a>
+          </div>
+          <p class="text-muted text-sm leading-relaxed mb-4">
+            Хакатон Codify. DRF-проект с API для пользователей, товаров и корзины.
+          </p>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="tag tag-py">Python</span>
+            <span class="tag tag-dj">DRF</span>
+            <span class="tag tag-db">PostgreSQL</span>
           </div>
         </div>
 
         <!-- Business sites -->
-        <div class="glass border border-border rounded-2xl overflow-hidden hover-glow cursor-default reveal reveal-delay-2">
-          <div class="h-1 bg-gradient-to-r from-[#FF6B35] to-[#FCD34D]"></div>
-          <div class="p-6">
-            <div class="flex items-start justify-between mb-4">
-              <div>
-                <span class="font-mono text-xs text-[#FF6B35]">web design</span>
-                <h3 class="font-heading font-black text-xl text-text mt-0.5">Сайты для бизнеса</h3>
-              </div>
-              <a href="https://github.com/graz1p777dev" target="_blank" class="social-btn p-2.5" style="padding:10px;">
-                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg>
-              </a>
+        <div class="card p-6 sr d2 relative overflow-hidden">
+          <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-orange to-transparent opacity-40"></div>
+          <div class="flex items-start justify-between mb-4">
+            <div>
+              <span class="font-mono text-xs text-orange">web</span>
+              <h3 class="font-heading font-black text-xl text-text mt-0.5">Сайты для бизнеса</h3>
             </div>
-            <p class="text-muted text-sm leading-relaxed mb-4">Лендинги и сайты-визитки для услуг, магазинов и личных проектов. Адаптивный дизайн.</p>
-            <div class="flex flex-wrap gap-1.5">
-              <span class="pill lang-html border text-[10px]">HTML</span>
-              <span class="pill lang-css border text-[10px]">CSS</span>
-              <span class="pill lang-js border text-[10px]">JS</span>
-            </div>
+            <a href="https://github.com/graz1p777dev" target="_blank" rel="noopener"
+               class="soc w-9 h-9 flex items-center justify-center p-0">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg>
+            </a>
+          </div>
+          <p class="text-muted text-sm leading-relaxed mb-4">
+            Лендинги и сайты-визитки для услуг, магазинов, личных проектов.
+          </p>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="tag tag-js">JavaScript</span>
+            <span class="tag tag-dim">HTML / CSS</span>
           </div>
         </div>
 
-        <!-- Algorithms project -->
-        <div class="glass border border-border rounded-2xl overflow-hidden hover-glow cursor-default reveal reveal-delay-3">
-          <div class="h-1 bg-gradient-to-r from-[#C084FC] to-[#818CF8]"></div>
-          <div class="p-6">
-            <div class="mb-4">
-              <span class="font-mono text-xs text-[#C084FC]">learning</span>
-              <h3 class="font-heading font-black text-xl text-text mt-0.5">Алгоритмы & C++/Java</h3>
+        <!-- Automation / bots -->
+        <div class="card p-6 sr d3 relative overflow-hidden">
+          <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple to-transparent opacity-40"></div>
+          <div class="flex items-start justify-between mb-4">
+            <div>
+              <span class="font-mono text-xs text-purple">automation</span>
+              <h3 class="font-heading font-black text-xl text-text mt-0.5">Боты & автоматизации</h3>
             </div>
-            <p class="text-muted text-sm leading-relaxed mb-4">Изучение алгоритмов, структур данных и ООП через консольные приложения на C++ и Java.</p>
-            <div class="flex flex-wrap gap-1.5">
-              <span class="pill lang-cpp border text-[10px]">C++</span>
-              <span class="pill lang-java border text-[10px]">Java</span>
-              <span class="pill lang-tool border text-[10px]">Алгоритмы</span>
-            </div>
+            <a href="https://github.com/graz1p777dev" target="_blank" rel="noopener"
+               class="soc w-9 h-9 flex items-center justify-center p-0">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg>
+            </a>
+          </div>
+          <p class="text-muted text-sm leading-relaxed mb-4">
+            Telegram-боты для бизнеса, n8n-автоматизации, вебхуки, AI-интеграции.
+          </p>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="tag tag-py">Python</span>
+            <span class="tag tag-tg">Telegram</span>
+            <span class="tag tag-js">n8n</span>
           </div>
         </div>
 
@@ -867,53 +753,45 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════
+  <!-- ══════════════════════════════════════
        CONTACT
-  ═══════════════════════════════════════════ -->
-  <section id="contact" class="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
-    <div class="max-w-3xl mx-auto">
-      <div class="text-center mb-12 reveal">
-        <p class="section-label mb-3">// 05 — contact</p>
-        <div class="divider mx-auto mb-6"></div>
-        <h2 class="font-heading font-black text-4xl sm:text-5xl text-text mb-4">
-          Начнём работу?
-        </h2>
-        <p class="text-muted text-lg">
-          Есть проект или задача — напишите, обсудим детали.
-        </p>
+  ══════════════════════════════════════ -->
+  <section id="contact" class="relative z-10 py-24 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-2xl mx-auto">
+      <div class="text-center mb-10 sr">
+        <p class="font-mono text-xs text-accent mb-2">// 05 — contact</p>
+        <div class="accent-line mx-auto mb-5"></div>
+        <h2 class="font-heading font-black text-4xl sm:text-5xl text-text mb-3">Начнём работу?</h2>
+        <p class="text-muted">Есть задача — напишите, обсудим детали и найдём решение.</p>
       </div>
 
-      <div class="glass border border-border rounded-2xl p-7 sm:p-8 reveal reveal-delay-1">
+      <div class="card p-7 sr d1">
         <div class="grid sm:grid-cols-2 gap-4 mb-4">
           <div>
-            <label for="name" class="block font-mono text-xs text-muted mb-2">// имя</label>
-            <input id="name" type="text" placeholder="Иван Иванов"
-              class="w-full bg-surface border border-border text-text placeholder-dim rounded-xl px-4 py-3 text-sm transition-all duration-200" />
+            <label class="font-mono text-xs text-muted block mb-1.5">// имя</label>
+            <input id="inp-name" type="text" placeholder="Иван Иванов" />
           </div>
           <div>
-            <label for="tg" class="block font-mono text-xs text-muted mb-2">// telegram</label>
-            <input id="tg" type="text" placeholder="@username"
-              class="w-full bg-surface border border-border text-text placeholder-dim rounded-xl px-4 py-3 text-sm transition-all duration-200" />
+            <label class="font-mono text-xs text-muted block mb-1.5">// telegram</label>
+            <input id="inp-tg" type="text" placeholder="@username" />
           </div>
         </div>
         <div class="mb-5">
-          <label for="msg" class="block font-mono text-xs text-muted mb-2">// задача</label>
-          <textarea id="msg" rows="4" placeholder="Опишите ваш проект..."
-            class="w-full bg-surface border border-border text-text placeholder-dim rounded-xl px-4 py-3 text-sm transition-all duration-200 resize-none"></textarea>
+          <label class="font-mono text-xs text-muted block mb-1.5">// задача</label>
+          <textarea id="inp-msg" rows="4" placeholder="Опишите проект или задачу..." style="resize:none;"></textarea>
         </div>
-        <button onclick="sendToTelegram()" class="btn-primary w-full justify-center text-base" style="padding:14px;">
-          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.289c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.19 14.565l-2.965-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.63.021z"/></svg>
+        <button onclick="sendMsg()" class="btn-g w-full justify-center text-[15px]" style="padding:13px;">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.289c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.19 14.565l-2.965-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.63.021z"/></svg>
           Написать в Telegram
         </button>
       </div>
 
-      <!-- Social row -->
-      <div class="flex flex-wrap items-center justify-center gap-3 mt-8 reveal reveal-delay-2">
-        <a href="https://t.me/graz1p777" target="_blank" class="social-btn">
+      <div class="flex flex-wrap justify-center gap-3 mt-6 sr d2">
+        <a href="https://t.me/graz1p777" target="_blank" rel="noopener" class="soc">
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.289c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.19 14.565l-2.965-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.63.021z"/></svg>
           @graz1p777
         </a>
-        <a href="https://github.com/graz1p777dev" target="_blank" class="social-btn">
+        <a href="https://github.com/graz1p777dev" target="_blank" rel="noopener" class="soc">
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg>
           graz1p777dev
         </a>
@@ -921,105 +799,80 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════
+  <!-- ══════════════════════════════════════
        FOOTER
-  ═══════════════════════════════════════════ -->
-  <footer class="py-8 px-4 border-t border-border relative z-10">
-    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-      <span class="font-mono text-sm text-muted">
-        <span class="text-accent">~/</span>alihan<span class="text-dim">.dev</span>
-      </span>
-      <p class="font-mono text-xs text-dim">
-        © 2025 · Бишкек, Кыргызстан
-      </p>
+  ══════════════════════════════════════ -->
+  <footer class="relative z-10 py-7 px-4 border-t border-border/50">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+      <span class="font-mono text-sm text-muted"><span class="text-accent">~/</span>alihan<span class="text-dim">.dev</span></span>
+      <p class="font-mono text-xs text-dim">© 2025 · Бишкек, Кыргызстан</p>
       <div class="flex items-center gap-2">
-        <span class="w-1.5 h-1.5 bg-accent rounded-full animate-pulse"></span>
-        <span class="font-mono text-xs text-muted">available for work</span>
+        <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
+        <span class="font-mono text-xs text-muted">open to work</span>
       </div>
     </div>
   </footer>
 
-  <!-- ═══════════════════════════════════════════
-       SCRIPTS
-  ═══════════════════════════════════════════ -->
+  <!-- ══════════════════════════════════════
+       JS
+  ══════════════════════════════════════ -->
   <script>
-    // ── Burger menu ──────────────────────────
-    const burger = document.getElementById('burger');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const b1 = document.getElementById('b1'), b2 = document.getElementById('b2'), b3 = document.getElementById('b3');
-    let menuOpen = false;
-
+    // ── Burger ──────────────────────
+    const [burger, mob, b1, b2, b3] = ['burger','mob','b1','b2','b3'].map(id => document.getElementById(id));
+    let open = false;
     burger.addEventListener('click', () => {
-      menuOpen = !menuOpen;
-      mobileMenu.classList.toggle('hidden', !menuOpen);
-      b1.style.transform = menuOpen ? 'rotate(45deg) translateY(7px)' : '';
-      b2.style.opacity   = menuOpen ? '0' : '1';
-      b3.style.transform = menuOpen ? 'rotate(-45deg) translateY(-7px)' : '';
-      b3.style.width     = menuOpen ? '20px' : '';
+      open = !open;
+      mob.classList.toggle('hidden', !open);
+      b1.style.transform = open ? 'rotate(45deg) translateY(6px)' : '';
+      b2.style.opacity   = open ? '0' : '1';
+      b3.style.transform = open ? 'rotate(-45deg) translateY(-6px)' : '';
+      b3.style.width     = open ? '20px' : '';
     });
+    document.querySelectorAll('.mob').forEach(el => el.addEventListener('click', () => {
+      open = false; mob.classList.add('hidden');
+      b1.style.transform = b3.style.transform = ''; b2.style.opacity = '1'; b3.style.width = '';
+    }));
 
-    document.querySelectorAll('.mobile-nav').forEach(el => {
-      el.addEventListener('click', () => {
-        menuOpen = false; mobileMenu.classList.add('hidden');
-        b1.style.transform = b3.style.transform = '';
-        b2.style.opacity = '1'; b3.style.width = '';
-      });
-    });
-
-    // ── Telegram send ────────────────────────
-    function sendToTelegram() {
-      const name = document.getElementById('name').value.trim();
-      const tg   = document.getElementById('tg').value.trim();
-      const msg  = document.getElementById('msg').value.trim();
-      if (!name && !msg) { alert('Заполните имя или сообщение'); return; }
-      const text = encodeURIComponent(`👤 Имя: ${name||'—'}\n📱 Контакт: ${tg||'—'}\n\n💬 ${msg||'—'}`);
-      window.open(`https://t.me/graz1p777?text=${text}`, '_blank');
+    // ── Telegram ─────────────────────
+    function sendMsg() {
+      const n = document.getElementById('inp-name').value.trim();
+      const t = document.getElementById('inp-tg').value.trim();
+      const m = document.getElementById('inp-msg').value.trim();
+      if (!n && !m) { alert('Заполните имя или сообщение'); return; }
+      const txt = encodeURIComponent(`👤 ${n||'—'}\n📱 ${t||'—'}\n\n💬 ${m||'—'}`);
+      window.open(`https://t.me/graz1p777?text=${txt}`, '_blank');
     }
 
-    // ── Scroll reveal ────────────────────────
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    // ── Scroll reveal ─────────────────
+    const ro = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); }), { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.sr').forEach(el => ro.observe(el));
 
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-    // ── Skill bars ───────────────────────────
-    const barObserver = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.querySelectorAll('.bar-fill').forEach(bar => {
-            const w = bar.dataset.width;
-            setTimeout(() => { bar.style.width = w + '%'; }, 200);
-          });
-        }
+    // ── Skill bars ───────────────────
+    const bo = new IntersectionObserver(es => {
+      es.forEach(e => {
+        if (e.isIntersecting) e.target.querySelectorAll('.bar-fill').forEach(b => {
+          setTimeout(() => { b.style.width = b.dataset.w + '%'; }, 150);
+        });
       });
-    }, { threshold: 0.3 });
+    }, { threshold: 0.2 });
+    document.querySelectorAll('.card').forEach(el => bo.observe(el));
 
-    document.querySelectorAll('.glass').forEach(el => barObserver.observe(el));
-
-    // ── Typing effect ────────────────────────
-    const phrases = ['FullStack Developer', 'Backend Engineer', 'Python Developer', 'Bot & AI Builder'];
-    let pi = 0, ci = 0, deleting = false;
-    const el = document.getElementById('typed-text');
-
-    function typeLoop() {
-      const phrase = phrases[pi];
-      if (!deleting) {
-        el.textContent = phrase.slice(0, ++ci);
-        if (ci === phrase.length) { deleting = true; setTimeout(typeLoop, 2000); return; }
-      } else {
-        el.textContent = phrase.slice(0, --ci);
-        if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; }
-      }
-      setTimeout(typeLoop, deleting ? 60 : 90);
+    // ── Typing ───────────────────────
+    const phrases = ['FullStack Developer', 'Python Developer', 'Backend Engineer', 'Bot & AI Builder', 'Automation Specialist'];
+    let pi = 0, ci = 0, del = false;
+    const typed = document.getElementById('typed');
+    function tick() {
+      const p = phrases[pi];
+      if (!del) { typed.textContent = p.slice(0, ++ci); if (ci === p.length) { del = true; setTimeout(tick, 2200); return; } }
+      else { typed.textContent = p.slice(0, --ci); if (ci === 0) { del = false; pi = (pi+1) % phrases.length; } }
+      setTimeout(tick, del ? 50 : 80);
     }
-    setTimeout(typeLoop, 1000);
+    setTimeout(tick, 800);
 
-    // ── Navbar scroll style ──────────────────
+    // ── Navbar shrink ─────────────────
     window.addEventListener('scroll', () => {
-      document.getElementById('navbar').style.top = window.scrollY > 20 ? '8px' : '16px';
-    });
+      document.getElementById('nav').style.top = scrollY > 30 ? '6px' : '12px';
+    }, { passive: true });
   </script>
-
 </body>
 </html>
