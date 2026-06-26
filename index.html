@@ -172,6 +172,60 @@
     /* Section accent line */
     .accent-line { width: 32px; height: 2px; background: linear-gradient(90deg,#00E87A,transparent); border-radius: 2px; }
 
+    /* ── Project image cards ── */
+    .proj-card {
+      background: rgba(13,18,32,0.7);
+      border: 1px solid #1C2A42;
+      border-radius: 16px;
+      overflow: hidden;
+      transition: border-color .22s ease, transform .22s ease, box-shadow .22s ease;
+    }
+    .proj-card:hover {
+      border-color: rgba(0,232,122,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 56px rgba(0,0,0,0.45), 0 0 28px rgba(0,232,122,0.07);
+    }
+    .proj-img-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      background: #0D1220;
+    }
+    .proj-img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top;
+      transition: transform .4s ease;
+      display: block;
+    }
+    .proj-card:hover .proj-img { transform: scale(1.04); }
+    .proj-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(7,9,15,.92) 0%, rgba(7,9,15,.4) 50%, transparent 100%);
+      display: flex; flex-direction: column;
+      justify-content: flex-end; align-items: flex-start;
+      gap: 10px; padding: 16px;
+      opacity: 0; transition: opacity .22s ease;
+    }
+    .proj-card:hover .proj-overlay { opacity: 1; }
+    .proj-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; font-weight: 500;
+      background: rgba(0,232,122,0.12); color: #00E87A;
+      border: 1px solid rgba(0,232,122,0.2);
+      padding: 3px 9px; border-radius: 5px;
+    }
+    .proj-visit-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #00E87A; color: #07090F;
+      font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 12px;
+      padding: 8px 14px; border-radius: 8px;
+      text-decoration: none;
+      transition: background .15s ease, transform .15s ease;
+    }
+    .proj-visit-btn:hover { background: #00cc6a; transform: translateY(-1px); }
+    .proj-body { padding: 16px; }
+
     @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; transition-duration:.01ms!important; } }
   </style>
 </head>
@@ -633,119 +687,180 @@
         <p class="font-mono text-xs text-accent mb-2">// 04 — projects</p>
         <div class="accent-line mx-auto mb-5"></div>
         <h2 class="font-heading font-black text-4xl sm:text-5xl text-text">Проекты</h2>
+        <p class="text-muted mt-3 text-sm">7 проектов — CRM, автоматизации, лендинги, сайты для бизнеса</p>
       </div>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <!-- ─ Featured: 2 Demi projects ─ -->
+      <div class="grid md:grid-cols-2 gap-5 mb-5">
 
-        <!-- Featured: Demi Results -->
-        <div class="card p-7 sr md:col-span-2 relative overflow-hidden group">
-          <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent to-transparent opacity-60"></div>
-          <div class="flex items-start justify-between mb-5">
-            <div>
-              <div class="flex items-center gap-2 mb-1.5">
-                <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
-                <span class="font-mono text-xs text-accent">featured</span>
-              </div>
-              <h3 class="font-heading font-black text-2xl text-text">Demi Results CRM</h3>
-              <p class="text-muted text-sm mt-0.5">AI-ассистент для магазина косметики</p>
+        <!-- DemiResultsCRM -->
+        <div class="proj-card sr">
+          <div class="proj-img-wrap">
+            <img src="img/DemiResultsCRM.webp" alt="Demi Results CRM" class="proj-img" loading="lazy">
+            <div class="proj-overlay">
+              <span class="proj-badge">featured · CRM</span>
+              <a href="https://github.com/graz1p777dev" target="_blank" rel="noopener" class="proj-visit-btn">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg>
+                GitHub
+              </a>
             </div>
-            <a href="https://github.com/graz1p777dev" target="_blank" rel="noopener"
-               class="soc w-9 h-9 flex items-center justify-center p-0">
-              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg>
-            </a>
           </div>
-          <p class="text-muted text-sm leading-relaxed mb-5">
-            CRM-система и AI-ассистент для магазина уходовой косметики. Управление товарами, продажами, заявками. Интеграции с amoCRM, Telegram, Google Sheets. AI-консультации клиентам в реальном времени.
-          </p>
-          <div class="flex flex-wrap gap-2 mb-5">
-            <span class="tag tag-py">Python</span>
-            <span class="tag tag-dj">Django</span>
-            <span class="tag tag-db">PostgreSQL</span>
-            <span class="tag tag-tg">Telegram</span>
-            <span class="tag tag-ai">amoCRM</span>
-            <span class="tag tag-ai">AI</span>
-          </div>
-          <div class="grid grid-cols-3 gap-3 pt-5 border-t border-border">
-            <div class="text-center">
-              <p class="font-heading font-black text-xl text-accent">CRM</p>
-              <p class="font-mono text-muted text-[10px] mt-0.5">система</p>
-            </div>
-            <div class="text-center">
-              <p class="font-heading font-black text-xl text-blue">AI</p>
-              <p class="font-mono text-muted text-[10px] mt-0.5">ассистент</p>
-            </div>
-            <div class="text-center">
-              <p class="font-heading font-black text-xl text-orange">4+</p>
-              <p class="font-mono text-muted text-[10px] mt-0.5">интеграции</p>
+          <div class="proj-body">
+            <p class="font-mono text-[10px] text-accent mb-1">featured · ai · crm</p>
+            <h3 class="font-heading font-black text-lg text-text mb-1.5">Demi Results CRM</h3>
+            <p class="text-muted text-xs leading-relaxed mb-3">CRM-система и AI-ассистент для магазина уходовой косметики. Интеграции с amoCRM, Telegram, Google Sheets.</p>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="tag tag-py">Python</span>
+              <span class="tag tag-dj">Django</span>
+              <span class="tag tag-db">PostgreSQL</span>
+              <span class="tag tag-tg">Telegram</span>
+              <span class="tag tag-ai">AI</span>
             </div>
           </div>
         </div>
 
-        <!-- Codygram -->
-        <div class="card p-6 sr d1 relative overflow-hidden">
-          <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue to-transparent opacity-40"></div>
-          <div class="flex items-start justify-between mb-4">
-            <div>
-              <span class="font-mono text-xs text-blue">hackathon</span>
-              <h3 class="font-heading font-black text-xl text-text mt-0.5">Codygram</h3>
+        <!-- DemiResults Bot -->
+        <div class="proj-card sr d1">
+          <div class="proj-img-wrap">
+            <img src="img/DemiresultsCRM-BOT.webp" alt="DemiResults n8n Bot" class="proj-img" loading="lazy">
+            <div class="proj-overlay">
+              <span class="proj-badge">automation · n8n</span>
+              <a href="https://demireusltsn8nbotcopy.vercel.app" target="_blank" rel="noopener" class="proj-visit-btn">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Открыть
+              </a>
             </div>
-            <a href="https://github.com/graz1p777dev" target="_blank" rel="noopener"
-               class="soc w-9 h-9 flex items-center justify-center p-0">
-              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg>
-            </a>
           </div>
-          <p class="text-muted text-sm leading-relaxed mb-4">
-            Хакатон Codify. DRF-проект с API для пользователей, товаров и корзины.
-          </p>
-          <div class="flex flex-wrap gap-1.5">
-            <span class="tag tag-py">Python</span>
-            <span class="tag tag-dj">DRF</span>
-            <span class="tag tag-db">PostgreSQL</span>
+          <div class="proj-body">
+            <p class="font-mono text-[10px] text-purple mb-1">automation · telegram · n8n</p>
+            <h3 class="font-heading font-black text-lg text-text mb-1.5">DemiResults Bot</h3>
+            <p class="text-muted text-xs leading-relaxed mb-3">Telegram-бот с n8n автоматизацией для обработки заявок, уведомлений и AI-ответов клиентам.</p>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="tag tag-py">Python</span>
+              <span class="tag tag-tg">Telegram</span>
+              <span class="tag tag-js">n8n</span>
+              <span class="tag tag-ai">AI</span>
+            </div>
           </div>
         </div>
 
-        <!-- Business sites -->
-        <div class="card p-6 sr d2 relative overflow-hidden">
-          <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-orange to-transparent opacity-40"></div>
-          <div class="flex items-start justify-between mb-4">
-            <div>
-              <span class="font-mono text-xs text-orange">web</span>
-              <h3 class="font-heading font-black text-xl text-text mt-0.5">Сайты для бизнеса</h3>
+      </div>
+
+      <!-- ─ Websites catalog ─ -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        <!-- Holy Korea -->
+        <div class="proj-card sr">
+          <div class="proj-img-wrap">
+            <img src="img/Holy-korea.webp" alt="Holi Korea" class="proj-img" loading="lazy">
+            <div class="proj-overlay">
+              <span class="proj-badge">web · landing</span>
+              <a href="https://holi-korea-phi.vercel.app" target="_blank" rel="noopener" class="proj-visit-btn">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Открыть
+              </a>
             </div>
-            <a href="https://github.com/graz1p777dev" target="_blank" rel="noopener"
-               class="soc w-9 h-9 flex items-center justify-center p-0">
-              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg>
-            </a>
           </div>
-          <p class="text-muted text-sm leading-relaxed mb-4">
-            Лендинги и сайты-визитки для услуг, магазинов, личных проектов.
-          </p>
-          <div class="flex flex-wrap gap-1.5">
-            <span class="tag tag-js">JavaScript</span>
-            <span class="tag tag-dim">HTML / CSS</span>
+          <div class="proj-body">
+            <p class="font-mono text-[10px] text-orange mb-1">web · корейская косметика</p>
+            <h3 class="font-heading font-black text-base text-text mb-1.5">Holi Korea</h3>
+            <p class="text-muted text-xs leading-relaxed mb-3">Лендинг магазина корейской косметики с каталогом и формой заказа.</p>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="tag tag-js">JavaScript</span>
+              <span class="tag tag-dim">HTML / CSS</span>
+            </div>
           </div>
         </div>
 
-        <!-- Automation / bots -->
-        <div class="card p-6 sr d3 relative overflow-hidden">
-          <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple to-transparent opacity-40"></div>
-          <div class="flex items-start justify-between mb-4">
-            <div>
-              <span class="font-mono text-xs text-purple">automation</span>
-              <h3 class="font-heading font-black text-xl text-text mt-0.5">Боты & автоматизации</h3>
+        <!-- Nomad Place -->
+        <div class="proj-card sr d1">
+          <div class="proj-img-wrap">
+            <img src="img/Nomad-place.webp" alt="Nomad Place" class="proj-img" loading="lazy">
+            <div class="proj-overlay">
+              <span class="proj-badge">web · coworking</span>
+              <a href="https://nomad-place-gilt.vercel.app" target="_blank" rel="noopener" class="proj-visit-btn">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Открыть
+              </a>
             </div>
-            <a href="https://github.com/graz1p777dev" target="_blank" rel="noopener"
-               class="soc w-9 h-9 flex items-center justify-center p-0">
-              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg>
-            </a>
           </div>
-          <p class="text-muted text-sm leading-relaxed mb-4">
-            Telegram-боты для бизнеса, n8n-автоматизации, вебхуки, AI-интеграции.
-          </p>
-          <div class="flex flex-wrap gap-1.5">
-            <span class="tag tag-py">Python</span>
-            <span class="tag tag-tg">Telegram</span>
-            <span class="tag tag-js">n8n</span>
+          <div class="proj-body">
+            <p class="font-mono text-[10px] text-blue mb-1">web · коворкинг</p>
+            <h3 class="font-heading font-black text-base text-text mb-1.5">Nomad Place</h3>
+            <p class="text-muted text-xs leading-relaxed mb-3">Сайт коворкинга в Бишкеке с бронированием мест и описанием тарифов.</p>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="tag tag-js">JavaScript</span>
+              <span class="tag tag-dim">HTML / CSS</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tatyr KG -->
+        <div class="proj-card sr d2">
+          <div class="proj-img-wrap">
+            <img src="img/Tatyr.webp" alt="Tatyr KG" class="proj-img" loading="lazy">
+            <div class="proj-overlay">
+              <span class="proj-badge">web · кыргызская кухня</span>
+              <a href="https://tatyr-kg.vercel.app" target="_blank" rel="noopener" class="proj-visit-btn">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Открыть
+              </a>
+            </div>
+          </div>
+          <div class="proj-body">
+            <p class="font-mono text-[10px] text-accent mb-1">web · ресторан</p>
+            <h3 class="font-heading font-black text-base text-text mb-1.5">Tatyr KG</h3>
+            <p class="text-muted text-xs leading-relaxed mb-3">Сайт ресторана кыргызской кухни с меню и возможностью бронирования стола.</p>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="tag tag-js">JavaScript</span>
+              <span class="tag tag-dim">HTML / CSS</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Jewelry Studio -->
+        <div class="proj-card sr d1">
+          <div class="proj-img-wrap">
+            <img src="img/jewelry-studio.webp" alt="Ювелирная студия" class="proj-img" loading="lazy">
+            <div class="proj-overlay">
+              <span class="proj-badge">web · ювелирный</span>
+              <a href="https://yuvelirnaya-studia.vercel.app" target="_blank" rel="noopener" class="proj-visit-btn">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Открыть
+              </a>
+            </div>
+          </div>
+          <div class="proj-body">
+            <p class="font-mono text-[10px] text-purple mb-1">web · ювелирная студия</p>
+            <h3 class="font-heading font-black text-base text-text mb-1.5">Jewelry Studio</h3>
+            <p class="text-muted text-xs leading-relaxed mb-3">Лендинг ювелирной мастерской с каталогом украшений и формой заказа.</p>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="tag tag-js">JavaScript</span>
+              <span class="tag tag-dim">HTML / CSS</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ademi Portfolio -->
+        <div class="proj-card sr d2">
+          <div class="proj-img-wrap">
+            <img src="img/DemiPortfolio.webp" alt="Ademi Portfolio" class="proj-img" loading="lazy">
+            <div class="proj-overlay">
+              <span class="proj-badge">web · портфолио</span>
+              <a href="https://ademi-portfolio.vercel.app" target="_blank" rel="noopener" class="proj-visit-btn">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Открыть
+              </a>
+            </div>
+          </div>
+          <div class="proj-body">
+            <p class="font-mono text-[10px] text-orange mb-1">web · личное портфолио</p>
+            <h3 class="font-heading font-black text-base text-text mb-1.5">Ademi Portfolio</h3>
+            <p class="text-muted text-xs leading-relaxed mb-3">Портфолио-сайт с разделами о навыках, проектах и контактной информацией.</p>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="tag tag-js">JavaScript</span>
+              <span class="tag tag-dim">HTML / CSS</span>
+            </div>
           </div>
         </div>
 
