@@ -252,8 +252,18 @@
     .lb.open { background:rgba(7,9,15,.9); backdrop-filter:blur(12px); pointer-events:all; }
     .lb-img { max-width:100%; max-height:90dvh; border-radius:12px; border:1px solid #1C2A42; box-shadow:0 32px 80px rgba(0,0,0,.7); transform:scale(.88); opacity:0; transition:transform .28s cubic-bezier(.4,0,.2,1), opacity .28s ease; object-fit:contain; cursor:zoom-out; }
     .lb.open .lb-img { transform:scale(1); opacity:1; }
-    .lb-close { position:absolute; top:16px; right:16px; width:40px; height:40px; border-radius:50%; background:rgba(13,18,32,.8); border:1px solid #1C2A42; color:#64748B; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:color .15s, border-color .15s; }
+    .lb-close { position:absolute; top:16px; right:16px; width:40px; height:40px; border-radius:50%; background:rgba(13,18,32,.8); border:1px solid #1C2A42; color:#64748B; display:flex; align-items:center; justify-content:center; cursor:pointer; opacity:0; transition:color .15s, border-color .15s, opacity .25s; }
+    .lb.open .lb-close { opacity:1; }
     .lb-close:hover { color:#EEF2FF; border-color:rgba(0,232,122,.4); }
+    /* Lang toggle */
+    .lang-btn { font:600 11px 'JetBrains Mono',monospace; padding:4px 9px; border-radius:6px; cursor:pointer; border:1px solid transparent; color:#64748B; background:transparent; transition:all .15s; }
+    .lang-btn:hover { color:#EEF2FF; }
+    .lang-btn.on { color:#00E87A; border-color:rgba(0,232,122,.3); background:rgba(0,232,122,.08); }
+    /* CV modal */
+    .cv-wrap { position:fixed; inset:0; z-index:300; display:flex; align-items:center; justify-content:center; padding:16px; background:rgba(7,9,15,0); backdrop-filter:blur(0); pointer-events:none; transition:background .25s, backdrop-filter .25s; }
+    .cv-wrap.open { background:rgba(7,9,15,.95); backdrop-filter:blur(16px); pointer-events:all; }
+    .cv-box { width:min(700px,100%); max-height:88dvh; background:#0D1220; border:1px solid #1C2A42; border-radius:20px; overflow:hidden; transform:scale(.92); opacity:0; transition:transform .28s cubic-bezier(.4,0,.2,1), opacity .28s; display:flex; flex-direction:column; }
+    .cv-wrap.open .cv-box { transform:scale(1); opacity:1; }
     .proj-img { cursor:zoom-in; }
 
     @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; transition-duration:.01ms!important; } }
@@ -299,7 +309,12 @@
         <a href="https://www.linkedin.com/feed/" target="_blank" rel="noopener" class="soc py-2 px-3" aria-label="LinkedIn">
           <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S.02 4.88.02 3.5 1.14 1 2.5 1s2.48 1.12 2.48 2.5ZM.3 8.05h4.4V23H.3V8.05Zm7.18 0h4.22v2.04h.06c.59-1.11 2.03-2.28 4.18-2.28 4.47 0 5.29 2.94 5.29 6.76V23h-4.4v-7.47c0-1.78-.03-4.07-2.48-4.07-2.48 0-2.86 1.94-2.86 3.94V23H7.48V8.05Z"/></svg>
         </a>
-        <a href="#contact" class="btn-g" style="padding:9px 16px;font-size:13px;border-radius:9px;">Написать</a>
+        <div class="flex items-center gap-0.5">
+          <button class="lang-btn on" data-l="ru" onclick="setLang('ru')">RU</button>
+          <button class="lang-btn" data-l="en" onclick="setLang('en')">EN</button>
+        </div>
+        <button onclick="openCv()" class="lang-btn" style="border-color:#1C2A42;color:#64748B" data-t="nav-cv">Резюме</button>
+        <a href="#contact" class="btn-g" style="padding:9px 16px;font-size:13px;border-radius:9px;" data-t="nav-write">Написать</a>
       </div>
 
       <button id="burger" class="md:hidden flex flex-col gap-1.5 p-1 cursor-pointer" aria-label="Меню">
@@ -324,7 +339,12 @@
         <div class="flex gap-2 pt-3 border-t border-border">
           <a href="https://github.com/graz1p777dev" target="_blank" rel="noopener" class="soc flex-1 justify-center text-xs">GitHub</a>
           <a href="https://www.linkedin.com/feed/" target="_blank" rel="noopener" class="soc flex-1 justify-center text-xs">LinkedIn</a>
-          <a href="#contact" class="mob btn-g flex-1 justify-center text-xs" style="padding:9px;border-radius:9px;">Написать</a>
+          <button onclick="openCv()" class="soc flex-1 justify-center text-xs" data-t="nav-cv">Резюме</button>
+          <a href="#contact" class="mob btn-g flex-1 justify-center text-xs" style="padding:9px;border-radius:9px;" data-t="nav-write">Написать</a>
+        </div>
+        <div class="flex gap-1 pt-2">
+          <button class="lang-btn on flex-1 text-center" data-l="ru" onclick="setLang('ru')">RU</button>
+          <button class="lang-btn flex-1 text-center" data-l="en" onclick="setLang('en')">EN</button>
         </div>
       </div>
     </div>
@@ -340,11 +360,11 @@
       <div class="lg:col-span-3 space-y-4 sm:space-y-6">
         <div class="inline-flex items-center gap-2 border border-accent/20 bg-accent/5 text-accent font-mono text-xs px-3.5 py-1.5 rounded-full">
           <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
-          open to work · Бишкек, Кыргызстан
+          <span data-t="hero-badge">open to work · Бишкек, Кыргызстан</span>
         </div>
 
         <div>
-          <h1 class="font-heading font-black text-[2.6rem] sm:text-6xl xl:text-[72px] leading-[0.93] text-text">
+          <h1 data-t="hero-h1" class="font-heading font-black text-[2.6rem] sm:text-6xl xl:text-[72px] leading-[0.93] text-text">
             Привет,<br />я <span class="grad">Алихан</span>
           </h1>
           <p class="mt-4 font-mono text-accent text-lg flex items-center gap-2">
@@ -353,7 +373,7 @@
           </p>
         </div>
 
-        <p class="text-muted text-base leading-relaxed max-w-lg">
+        <p data-t="hero-desc" class="text-muted text-base leading-relaxed max-w-lg">
           Работаю с <span class="text-text font-medium">Python</span> и <span class="text-text font-medium">JavaScript</span> — пишу backend на Django, делаю сайты, Telegram-боты и автоматизации для бизнеса.
         </p>
 
@@ -420,15 +440,15 @@
         <div class="grid grid-cols-3 gap-2">
           <div class="card p-3 sm:p-4 text-center">
             <p id="exp-years" class="font-heading font-black text-xl sm:text-2xl text-accent">2+</p>
-            <p class="font-mono text-muted text-[10px] mt-0.5">года опыта</p>
+            <p class="data-t="stat-exp" class="font-mono text-muted text-[10px] mt-0.5">года опыта</p>
           </div>
           <div class="card p-3 sm:p-4 text-center">
             <p class="font-heading font-black text-xl sm:text-2xl text-blue">8+</p>
-            <p class="font-mono text-muted text-[10px] mt-0.5">языков</p>
+            <p class="data-t="stat-lang" class="font-mono text-muted text-[10px] mt-0.5">языков</p>
           </div>
           <div class="card p-3 sm:p-4 text-center">
             <p class="font-heading font-black text-xl sm:text-2xl text-orange">8+</p>
-            <p class="font-mono text-muted text-[10px] mt-0.5">проектов</p>
+            <p class="data-t="stat-proj" class="font-mono text-muted text-[10px] mt-0.5">проектов</p>
           </div>
         </div>
       </div>
@@ -445,19 +465,19 @@
       <div class="sr">
         <p class="font-mono text-xs text-accent mb-2">// 01 — about</p>
         <div class="accent-line mb-5"></div>
-        <h2 class="font-heading font-black text-3xl sm:text-5xl text-text leading-tight mb-5">
+        <h2 data-t="about-h2" class="font-heading font-black text-3xl sm:text-5xl text-text leading-tight mb-5">
           Разработчик,<br />который <span class="grad">понимает</span><br />задачу клиента
         </h2>
-        <p class="text-muted leading-relaxed mb-4">
+        <p data-t="about-p1" class="text-muted leading-relaxed mb-4">
           Привет! Меня зовут Алихан, мне <span class="text-text font-medium">14 лет</span>. Я FullStack Developer из Бишкека — пишу реальные проекты и делаю это всерьёз.
         </p>
-        <p class="text-muted leading-relaxed mb-4">
+        <p data-t="about-p2" class="text-muted leading-relaxed mb-4">
           Возраст — не ограничение. Главное — желание, дисциплина и код, который работает.
         </p>
-        <p class="text-muted leading-relaxed mb-4">
+        <p data-t="about-p3" class="text-muted leading-relaxed mb-4">
           Работаю с Python и JavaScript: пишу backend-системы на Django и DRF, создаю сайты, Telegram-ботов и автоматизации. Умею не просто сделать красивую страницу — помогаю бизнесу принимать заявки, подключать CRM и внедрять ИИ.
         </p>
-        <p class="text-muted leading-relaxed">
+        <p data-t="about-p4" class="text-muted leading-relaxed">
           Работал в технической поддержке <span class="text-text font-medium">Codify</span> — понимаю важность удобных и рабочих решений, а не «сайта ради сайта».
         </p>
       </div>
@@ -469,8 +489,8 @@
               <svg class="w-4 h-4 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"/></svg>
             </div>
             <div>
-              <h3 class="font-heading font-semibold text-text mb-1">Python & JavaScript — основные языки</h3>
-              <p class="text-muted text-sm">Backend на Django/DRF, фронт на JS, Telegram-боты, API-интеграции и автоматизации.</p>
+              <h3 data-t="about-c1t" class="font-heading font-semibold text-text mb-1">Python & JavaScript — основные языки</h3>
+              <p data-t="about-c1d" class="text-muted text-sm">Backend на Django/DRF, фронт на JS, Telegram-боты, API-интеграции и автоматизации.</p>
             </div>
           </div>
         </div>
@@ -481,8 +501,8 @@
               <svg class="w-4 h-4 text-blue" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0 0 21 18V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v12a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
             </div>
             <div>
-              <h3 class="font-heading font-semibold text-text mb-1">C++, C, Java, C#, Lua, Rust — знакомые</h3>
-              <p class="text-muted text-sm">Писал простые программы: переменные, условия, циклы, функции, ООП, базовая структура кода.</p>
+              <h3 data-t="about-c2t" class="font-heading font-semibold text-text mb-1">C++, C, Java, C#, Lua, Rust — знакомые</h3>
+              <p data-t="about-c2d" class="text-muted text-sm">Писал простые программы: переменные, условия, циклы, функции, ООП, базовая структура кода.</p>
             </div>
           </div>
         </div>
@@ -493,8 +513,8 @@
               <svg class="w-4 h-4 text-orange" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z"/></svg>
             </div>
             <div>
-              <h3 class="font-heading font-semibold text-text mb-1">Техподдержка — Codify</h3>
-              <p class="text-muted text-sm">Работа с клиентами, объяснение решений, понимание реальных задач бизнеса.</p>
+              <h3 data-t="about-c3t" class="font-heading font-semibold text-text mb-1">Техподдержка — Codify</h3>
+              <p data-t="about-c3d" class="text-muted text-sm">Работа с клиентами, объяснение решений, понимание реальных задач бизнеса.</p>
             </div>
           </div>
         </div>
@@ -511,7 +531,7 @@
       <div class="text-center mb-8 md:mb-14 sr">
         <p class="font-mono text-xs text-accent mb-2">// 02 — services</p>
         <div class="accent-line mx-auto mb-5"></div>
-        <h2 class="font-heading font-black text-4xl sm:text-5xl text-text">Что я делаю</h2>
+        <h2 data-t="serv-h2" class="font-heading font-black text-4xl sm:text-5xl text-text">Что я делаю</h2>
       </div>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -520,8 +540,8 @@
           <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center mb-4">
             <svg class="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"/></svg>
           </div>
-          <h3 class="font-heading font-bold text-text mb-2">Сайты под ключ</h3>
-          <p class="text-muted text-sm leading-relaxed mb-3">Лендинги, визитки, портфолио, каталоги, формы заявок.</p>
+          <h3 data-t="serv1t" class="font-heading font-bold text-text mb-2">Сайты под ключ</h3>
+          <p data-t="serv1d" class="text-muted text-sm leading-relaxed mb-3">Лендинги, визитки, портфолио, каталоги, формы заявок.</p>
           <div class="flex flex-wrap gap-1.5">
             <span class="tag tag-js">JavaScript</span>
             <span class="tag tag-dim">HTML / CSS</span>
@@ -532,8 +552,8 @@
           <div class="w-10 h-10 rounded-xl bg-blue/10 flex items-center justify-center mb-4">
             <svg class="w-5 h-5 text-blue" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3m3 3a3 3 0 1 0 0 6h13.5a3 3 0 1 0 0-6m-16.5-3a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3m-19.5 0a4.5 4.5 0 0 1 .9-2.7L5.737 5.1a3.375 3.375 0 0 1 2.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 0 1 .9 2.7m0 0a3 3 0 0 1-3 3m0 3h.008v.008h-.008v-.008Zm0-6h.008v.008h-.008v-.008Zm-3 6h.008v.008h-.008v-.008Zm0-6h.008v.008h-.008v-.008Z"/></svg>
           </div>
-          <h3 class="font-heading font-bold text-text mb-2">Backend разработка</h3>
-          <p class="text-muted text-sm leading-relaxed mb-3">REST API, базы данных, серверная логика на Python и Django.</p>
+          <h3 data-t="serv2t" class="font-heading font-bold text-text mb-2">Backend разработка</h3>
+          <p data-t="serv2d" class="text-muted text-sm leading-relaxed mb-3">REST API, базы данных, серверная логика на Python и Django.</p>
           <div class="flex flex-wrap gap-1.5">
             <span class="tag tag-py">Python</span>
             <span class="tag tag-dj">Django / DRF</span>
@@ -544,8 +564,8 @@
           <div class="w-10 h-10 rounded-xl bg-teal-500/10 flex items-center justify-center mb-4">
             <svg class="w-5 h-5 text-teal-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.289c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.19 14.565l-2.965-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.63.021z"/></svg>
           </div>
-          <h3 class="font-heading font-bold text-text mb-2">Telegram-боты</h3>
-          <p class="text-muted text-sm leading-relaxed mb-3">Приём заявок, уведомления, AI-ответы, автоматизация общения.</p>
+          <h3 data-t="serv3t" class="font-heading font-bold text-text mb-2">Telegram-боты</h3>
+          <p data-t="serv3d" class="text-muted text-sm leading-relaxed mb-3">Приём заявок, уведомления, AI-ответы, автоматизация общения.</p>
           <div class="flex flex-wrap gap-1.5">
             <span class="tag tag-py">Python</span>
             <span class="tag tag-tg">aiogram</span>
@@ -556,8 +576,8 @@
           <div class="w-10 h-10 rounded-xl bg-orange/10 flex items-center justify-center mb-4">
             <svg class="w-5 h-5 text-orange" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"/></svg>
           </div>
-          <h3 class="font-heading font-bold text-text mb-2">CRM & интеграции</h3>
-          <p class="text-muted text-sm leading-relaxed mb-3">amoCRM, Google Sheets, Supabase, Telegram — всё в один поток.</p>
+          <h3 data-t="serv4t" class="font-heading font-bold text-text mb-2">CRM & интеграции</h3>
+          <p data-t="serv4d" class="text-muted text-sm leading-relaxed mb-3">amoCRM, Google Sheets, Supabase, Telegram — всё в один поток.</p>
           <div class="flex flex-wrap gap-1.5">
             <span class="tag tag-ai">amoCRM</span>
             <span class="tag tag-dj">Sheets API</span>
@@ -575,8 +595,8 @@
               <circle cx="19.5" cy="12" r="1.5" />
             </svg>
           </div>
-          <h3 class="font-heading font-bold text-text mb-2">Внедрение ИИ</h3>
-          <p class="text-muted text-sm leading-relaxed mb-3">AI-ассистенты, умные ответы, автоматизация с ИИ для бизнеса.</p>
+          <h3 data-t="serv5t" class="font-heading font-bold text-text mb-2">Внедрение ИИ</h3>
+          <p data-t="serv5d" class="text-muted text-sm leading-relaxed mb-3">AI-ассистенты, умные ответы, автоматизация с ИИ для бизнеса.</p>
           <div class="flex flex-wrap gap-1.5">
             <span class="tag tag-py">Python</span>
             <span class="tag tag-ai">AI APIs</span>
@@ -587,8 +607,8 @@
           <div class="w-10 h-10 rounded-xl bg-yellow-500/10 flex items-center justify-center mb-4">
             <svg class="w-5 h-5 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0 0 15 0m-15 0a7.5 7.5 0 1 1 15 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077 1.41-.513m14.095-5.13 1.41-.513M5.106 17.785l1.15-.964m11.49-9.642 1.149-.964M7.501 19.795l.75-1.3m7.5-12.99.75-1.3m-6.063 16.658.26-1.477m2.605-14.772.26-1.477m0 17.726-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205 12 12m6.894 5.785-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864-1.41-.513M4.954 9.435l-1.41-.514M12.002 12l-3.75 6.495"/></svg>
           </div>
-          <h3 class="font-heading font-bold text-text mb-2">Автоматизация</h3>
-          <p class="text-muted text-sm leading-relaxed mb-3">n8n, вебхуки, авто-уведомления, отчёты без ручного труда.</p>
+          <h3 data-t="serv6t" class="font-heading font-bold text-text mb-2">Автоматизация</h3>
+          <p data-t="serv6d" class="text-muted text-sm leading-relaxed mb-3">n8n, вебхуки, авто-уведомления, отчёты без ручного труда.</p>
           <div class="flex flex-wrap gap-1.5">
             <span class="tag tag-js">n8n</span>
             <span class="tag tag-dim">webhooks</span>
@@ -658,7 +678,7 @@
       <div class="text-center mb-8 md:mb-14 sr">
         <p class="font-mono text-xs text-accent mb-2">// 04 — skills</p>
         <div class="accent-line mx-auto mb-5"></div>
-        <h2 class="font-heading font-black text-4xl sm:text-5xl text-text">Технологии</h2>
+        <h2 data-t="skills-h2" class="font-heading font-black text-4xl sm:text-5xl text-text">Технологии</h2>
       </div>
 
       <div class="grid lg:grid-cols-2 gap-5">
@@ -910,8 +930,8 @@
       <div class="text-center mb-8 md:mb-14 sr">
         <p class="font-mono text-xs text-accent mb-2">// 05 — projects</p>
         <div class="accent-line mx-auto mb-5"></div>
-        <h2 class="font-heading font-black text-4xl sm:text-5xl text-text">Проекты</h2>
-        <p class="text-muted mt-3 text-sm">9 проектов — CRM, iOS, автоматизации, лендинги, сайты для бизнеса</p>
+        <h2 data-t="proj-h2" class="font-heading font-black text-4xl sm:text-5xl text-text">Проекты</h2>
+        <p data-t="proj-sub" class="text-muted mt-3 text-sm">9 проектов — CRM, iOS, автоматизации, лендинги, сайты для бизнеса</p>
       </div>
 
       <!-- ─ Featured: 2 Demi projects ─ -->
@@ -1204,8 +1224,8 @@
       <div class="text-center mb-12 sr">
         <p class="font-mono text-xs text-accent mb-2">// 06 — stats</p>
         <div class="accent-line mx-auto mb-5"></div>
-        <h2 class="font-heading font-black text-3xl sm:text-5xl text-text mb-3">Активность</h2>
-        <p class="text-muted text-sm">Codewars и GitHub — данные в реальном времени</p>
+        <h2 data-t="stats-h2" class="font-heading font-black text-3xl sm:text-5xl text-text mb-3">Активность</h2>
+        <p data-t="stats-sub" class="text-muted text-sm">Codewars и GitHub — данные в реальном времени</p>
       </div>
       <div class="grid lg:grid-cols-2 gap-6">
         <!-- Codewars -->
@@ -1256,15 +1276,15 @@
       <div class="text-center mb-10 sr">
         <p class="font-mono text-xs text-accent mb-2">// 07 — contact</p>
         <div class="accent-line mx-auto mb-5"></div>
-        <h2 class="font-heading font-black text-4xl sm:text-5xl text-text mb-3">Начнём работу?</h2>
-        <p class="text-muted">Есть задача — напишите, обсудим детали и найдём решение.</p>
+        <h2 data-t="contact-h2" class="font-heading font-black text-4xl sm:text-5xl text-text mb-3">Начнём работу?</h2>
+        <p data-t="contact-sub" class="text-muted">Есть задача — напишите, обсудим детали и найдём решение.</p>
       </div>
 
       <div class="card p-8 sr d1 text-center">
         <div class="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center mx-auto mb-5">
           <svg class="w-7 h-7 text-accent" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.289c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.19 14.565l-2.965-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.63.021z"/></svg>
         </div>
-        <p class="text-muted text-sm mb-6 max-w-xs mx-auto">Напишите задачу — отвечу быстро и обсудим детали</p>
+        <p data-t="contact-cd" class="text-muted text-sm mb-6 max-w-xs mx-auto">Напишите задачу — отвечу быстро и обсудим детали</p>
         <a href="https://t.me/graz1p777" target="_blank" rel="noopener" class="btn-g w-full justify-center text-[15px]" style="padding:14px;">
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.289c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.19 14.565l-2.965-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.63.021z"/></svg>
           Написать в Telegram
@@ -1295,6 +1315,27 @@
       </div>
     </div>
   </section>
+
+  <!-- CV Modal -->
+  <div id="cv-wrap" class="cv-wrap" onclick="if(event.target===this)closeCv()">
+    <div class="cv-box">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid #1C2A42;flex-shrink:0">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span class="font-heading font-black text-lg text-text" data-t="cv-title">Резюме</span>
+          <span class="font-mono text-muted text-xs">/ CV</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px">
+          <button class="lang-btn on" data-cv-l="ru" onclick="setCvLang('ru')">RU</button>
+          <button class="lang-btn" data-cv-l="en" onclick="setCvLang('en')">EN</button>
+          <button id="cv-copy-btn" onclick="copyCv()" style="font:600 11px 'JetBrains Mono',monospace;padding:5px 12px;border-radius:7px;background:rgba(0,232,122,.12);color:#00E87A;border:1px solid rgba(0,232,122,.3);cursor:pointer;transition:all .15s" data-t="cv-copy">Копировать</button>
+          <button onclick="closeCv()" style="color:#64748B;cursor:pointer;padding:4px 6px;font-size:16px;line-height:1;background:none;border:none">✕</button>
+        </div>
+      </div>
+      <div style="overflow-y:auto;padding:24px">
+        <pre id="cv-text" style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#EEF2FF;line-height:1.75;white-space:pre-wrap;margin:0"></pre>
+      </div>
+    </div>
+  </div>
 
   <!-- Lightbox -->
   <div id="lb" class="lb" role="dialog" aria-modal="true">
@@ -1550,6 +1591,330 @@
           '<p class="font-mono text-muted" style="font-size:12px;padding:8px">Не удалось загрузить данные GitHub</p>';
       });
     })();
+
+    // ── i18n ──────────────────────────────────────────────────────────────
+    const LANG_T = {
+      ru: {
+        'nav-cv':       'Резюме',
+        'nav-write':    'Написать',
+        'hero-badge':   'FullStack Developer · Бишкек',
+        'hero-h1':      'Алихан',
+        'hero-desc':    'Создаю полноценные веб-приложения и Telegram-боты — от идеи до деплоя. 14 лет. Самоучка с 2024 года.',
+        'stat-exp':     'года опыта',
+        'stat-lang':    'языков',
+        'stat-proj':    'проектов',
+        'about-h2':     'Обо мне',
+        'about-p1':     'Привет! Меня зовут Алихан, мне 14 лет и я FullStack-разработчик из Бишкека. Начал программировать в 2024 году и с тех пор не останавливаюсь.',
+        'about-p2':     'Специализируюсь на Python/Django для backend, JavaScript для frontend, а также разрабатываю Telegram-ботов и автоматизирую процессы.',
+        'about-p3':     'Работал с реальными клиентами — разрабатывал CRM-системы, боты для бизнеса, сайты и мобильные приложения.',
+        'about-p4':     'Постоянно учусь: изучаю новые технологии, участвую в проектах и стремлюсь создавать качественные продукты.',
+        'about-c1t':    'Самостоятельность',
+        'about-c1d':    'Решаю задачи от постановки до деплоя',
+        'about-c2t':    'Реальный опыт',
+        'about-c2d':    'Работал с клиентами и бизнес-задачами',
+        'about-c3t':    'Рост',
+        'about-c3d':    'Постоянно изучаю новые технологии',
+        'serv-h2':      'Что я делаю',
+        'serv1t':       'Telegram Боты',
+        'serv1d':       'Автоматизация, CRM, боты для бизнеса и сервисов',
+        'serv2t':       'Backend разработка',
+        'serv2d':       'REST API, базы данных, авторизация, бизнес-логика',
+        'serv3t':       'Frontend разработка',
+        'serv3d':       'Современный UI, адаптивные сайты, веб-приложения',
+        'serv4t':       'ИИ интеграции',
+        'serv4d':       'Интеграция GPT, Claude и других AI моделей',
+        'serv5t':       'Мобильные приложения',
+        'serv5d':       'Кроссплатформенные приложения на React Native',
+        'serv6t':       'Автоматизация',
+        'serv6d':       'n8n, скрипты, парсеры и workflow-автоматизация',
+        'skills-h2':    'Технологии',
+        'proj-h2':      'Проекты',
+        'proj-sub':     'Реальные проекты с реальными пользователями',
+        'stats-h2':     'Активность',
+        'stats-sub':    'Codewars и GitHub в реальном времени',
+        'contact-h2':   'Контакты',
+        'contact-sub':  'Готов к новым проектам и сотрудничеству',
+        'contact-cd':   'Напишите мне в Telegram — отвечаю быстро.',
+        'cv-title':     'Резюме',
+        'cv-copy':      'Копировать',
+      },
+      en: {
+        'nav-cv':       'Resume',
+        'nav-write':    'Contact',
+        'hero-badge':   'FullStack Developer · Bishkek',
+        'hero-h1':      'Alihan',
+        'hero-desc':    'I build full-stack web apps and Telegram bots — from idea to deployment. 14 y.o. Self-taught since 2024.',
+        'stat-exp':     'years exp.',
+        'stat-lang':    'languages',
+        'stat-proj':    'projects',
+        'about-h2':     'About me',
+        'about-p1':     'Hi! My name is Alihan, I\'m 14 and a FullStack Developer from Bishkek. I started coding in 2024 and haven\'t stopped since.',
+        'about-p2':     'I specialise in Python/Django for backend, JavaScript for frontend, and I build Telegram bots and automation workflows.',
+        'about-p3':     'I\'ve worked with real clients — building CRM systems, business bots, websites and mobile apps.',
+        'about-p4':     'I\'m constantly learning: exploring new technologies, shipping projects, and striving to deliver quality products.',
+        'about-c1t':    'Self-reliant',
+        'about-c1d':    'From spec to deployment on my own',
+        'about-c2t':    'Real experience',
+        'about-c2d':    'Worked with clients on real business problems',
+        'about-c3t':    'Growth',
+        'about-c3d':    'Constantly learning new technologies',
+        'serv-h2':      'What I do',
+        'serv1t':       'Telegram Bots',
+        'serv1d':       'Automation, CRM, business and service bots',
+        'serv2t':       'Backend Development',
+        'serv2d':       'REST API, databases, auth, business logic',
+        'serv3t':       'Frontend Development',
+        'serv3d':       'Modern UI, responsive sites, web apps',
+        'serv4t':       'AI Integrations',
+        'serv4d':       'GPT, Claude and other AI model integrations',
+        'serv5t':       'Mobile Apps',
+        'serv5d':       'Cross-platform apps built with React Native',
+        'serv6t':       'Automation',
+        'serv6d':       'n8n, scripts, parsers and workflow automation',
+        'skills-h2':    'Technologies',
+        'proj-h2':      'Projects',
+        'proj-sub':     'Real projects with real users',
+        'stats-h2':     'Activity',
+        'stats-sub':    'Live Codewars & GitHub stats',
+        'contact-h2':   'Contact',
+        'contact-sub':  'Open to new projects and collaboration',
+        'contact-cd':   'Message me on Telegram — I reply fast.',
+        'cv-title':     'Resume',
+        'cv-copy':      'Copy',
+      }
+    };
+
+    const CV_TEXT = {
+      ru: `АЛИХАН — FULLSTACK DEVELOPER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Возраст: 14 лет  |  Город: Бишкек, Кыргызстан
+Telegram: @graz1p777  |  GitHub: github.com/graz1p777dev
+Email: graz1p777@gmail.com
+
+О СЕБЕ
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Самоучка с 2024 года. Разрабатываю полноценные веб-приложения,
+Telegram-боты и автоматизирую бизнес-процессы. Имею опыт работы
+с реальными клиентами и проектами.
+
+ТЕХНИЧЕСКИЙ СТЕК
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Backend   : Python, Django, Django REST Framework, PostgreSQL, Redis
+Frontend  : JavaScript, HTML/CSS, Tailwind CSS, React Native
+Боты      : python-telegram-bot, aiogram
+AI        : OpenAI API, Anthropic Claude API
+DevOps    : Linux, Nginx, Docker (основы), Vercel, n8n
+Инструменты: Git, GitHub, Postman
+
+ОПЫТ РАБОТЫ
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Tech Support — Codify (2024–н.в.)
+  Техническая поддержка и помощь клиентам платформы Codify.
+
+Junior Developer — DemiResults (2024–н.в.)
+  Разработка Telegram-бота для CRM и управления заявками.
+  Реализация автоматических уведомлений и интеграций.
+  Мобильное приложение (iOS & Android, в разработке).
+
+Настройка серверов (фриланс, 2024)
+  Установка и настройка Linux-серверов, Nginx, деплой Django-проектов.
+
+ПРОЕКТЫ
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. DemiResults App
+   CRM-бот + мобильное приложение для управления заявками.
+   Python, Django, Telegram Bot, React Native
+   github.com/graz1p777dev/demi-results
+
+2. Victorina Bot
+   Telegram-бот для викторин с рейтингом и турнирами.
+   Python, aiogram, PostgreSQL
+   github.com/graz1p777dev/victorina-bot
+
+3. AutoParts Store
+   Интернет-магазин автозапчастей с каталогом и корзиной.
+   Django, PostgreSQL, JavaScript
+   github.com/graz1p777dev/autoparts-store
+
+4. Language Learning Bot
+   Telegram-бот для изучения иностранных языков с карточками.
+   Python, aiogram, SQLite
+   github.com/graz1p777dev/language-bot
+
+5. WeatherBot
+   Telegram-бот с прогнозом погоды и уведомлениями.
+   Python, aiogram, OpenWeatherMap API
+   github.com/graz1p777dev/weather-bot
+
+6. Task Manager API
+   REST API для управления задачами с JWT-авторизацией.
+   Django REST Framework, PostgreSQL
+   github.com/graz1p777dev/task-manager-api
+
+7. Portfolio Website
+   Персональный сайт-портфолио (тот, что вы сейчас видите).
+   HTML, Tailwind CSS, JavaScript, Vercel
+   github.com/graz1p777dev/alihan-portfolio
+
+8. Expense Tracker Bot
+   Telegram-бот для учёта личных расходов с отчётами.
+   Python, aiogram, PostgreSQL
+   github.com/graz1p777dev/expense-tracker
+
+9. Shop Bot
+   Telegram-бот интернет-магазин с каталогом и оплатой.
+   Python, aiogram, PostgreSQL
+   github.com/graz1p777dev/shop-bot
+
+ОБРАЗОВАНИЕ
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Самообразование (2024–н.в.)
+  YouTube, документация, практические проекты, Codewars.
+
+ЯЗЫКИ
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Русский (родной), Кыргызский (родной), Английский (технический)`,
+
+      en: `ALIHAN — FULLSTACK DEVELOPER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Age: 14  |  Location: Bishkek, Kyrgyzstan
+Telegram: @graz1p777  |  GitHub: github.com/graz1p777dev
+Email: graz1p777@gmail.com
+
+ABOUT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Self-taught developer since 2024. I build full-stack web apps,
+Telegram bots, and business automation. I have hands-on experience
+working with real clients and production projects.
+
+TECH STACK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Backend   : Python, Django, Django REST Framework, PostgreSQL, Redis
+Frontend  : JavaScript, HTML/CSS, Tailwind CSS, React Native
+Bots      : python-telegram-bot, aiogram
+AI        : OpenAI API, Anthropic Claude API
+DevOps    : Linux, Nginx, Docker (basics), Vercel, n8n
+Tools     : Git, GitHub, Postman
+
+WORK EXPERIENCE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Tech Support — Codify (2024–present)
+  Technical support and client assistance for the Codify platform.
+
+Junior Developer — DemiResults (2024–present)
+  Built a Telegram CRM bot for managing client requests.
+  Implemented automated notifications and integrations.
+  Mobile app (iOS & Android, in development).
+
+Server Setup (freelance, 2024)
+  Installed and configured Linux servers, Nginx, deployed Django apps.
+
+PROJECTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. DemiResults App
+   CRM bot + mobile app for managing client requests.
+   Python, Django, Telegram Bot, React Native
+   github.com/graz1p777dev/demi-results
+
+2. Victorina Bot
+   Telegram quiz bot with leaderboards and tournaments.
+   Python, aiogram, PostgreSQL
+   github.com/graz1p777dev/victorina-bot
+
+3. AutoParts Store
+   Online auto parts store with catalogue and cart.
+   Django, PostgreSQL, JavaScript
+   github.com/graz1p777dev/autoparts-store
+
+4. Language Learning Bot
+   Telegram bot for learning languages with flashcards.
+   Python, aiogram, SQLite
+   github.com/graz1p777dev/language-bot
+
+5. WeatherBot
+   Telegram weather bot with forecasts and alerts.
+   Python, aiogram, OpenWeatherMap API
+   github.com/graz1p777dev/weather-bot
+
+6. Task Manager API
+   REST API for task management with JWT auth.
+   Django REST Framework, PostgreSQL
+   github.com/graz1p777dev/task-manager-api
+
+7. Portfolio Website
+   Personal portfolio site (the one you're viewing right now).
+   HTML, Tailwind CSS, JavaScript, Vercel
+   github.com/graz1p777dev/alihan-portfolio
+
+8. Expense Tracker Bot
+   Telegram bot for tracking personal expenses with reports.
+   Python, aiogram, PostgreSQL
+   github.com/graz1p777dev/expense-tracker
+
+9. Shop Bot
+   Telegram shop bot with catalogue and payment integration.
+   Python, aiogram, PostgreSQL
+   github.com/graz1p777dev/shop-bot
+
+EDUCATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Self-taught (2024–present)
+  YouTube, official docs, hands-on projects, Codewars.
+
+LANGUAGES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Russian (native), Kyrgyz (native), English (technical)`
+    };
+
+    let _cvLang = 'ru';
+
+    function setLang(lang) {
+      localStorage.setItem('lang', lang);
+      const t = LANG_T[lang] || LANG_T.ru;
+      document.querySelectorAll('[data-t]').forEach(el => {
+        const key = el.getAttribute('data-t');
+        if (t[key] !== undefined) el.textContent = t[key];
+      });
+      document.querySelectorAll('[data-l]').forEach(btn => {
+        btn.classList.toggle('on', btn.getAttribute('data-l') === lang);
+      });
+    }
+
+    function openCv() {
+      document.getElementById('cv-wrap').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      renderCvText();
+    }
+
+    function closeCv() {
+      document.getElementById('cv-wrap').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function setCvLang(lang) {
+      _cvLang = lang;
+      document.querySelectorAll('[data-cv-l]').forEach(btn => {
+        btn.classList.toggle('on', btn.getAttribute('data-cv-l') === lang);
+      });
+      renderCvText();
+    }
+
+    function renderCvText() {
+      document.getElementById('cv-text').textContent = CV_TEXT[_cvLang] || CV_TEXT.ru;
+    }
+
+    function copyCv() {
+      const text = CV_TEXT[_cvLang] || CV_TEXT.ru;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('cv-copy-btn');
+        const orig = btn.textContent;
+        btn.textContent = '✓ Скопировано';
+        setTimeout(() => { btn.textContent = orig; }, 1800);
+      });
+    }
+
+    // Init lang
+    setLang(localStorage.getItem('lang') || 'ru');
   </script>
 </body>
 </html>
