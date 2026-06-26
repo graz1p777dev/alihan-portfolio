@@ -948,25 +948,15 @@
         <p class="text-muted">Есть задача — напишите, обсудим детали и найдём решение.</p>
       </div>
 
-      <div class="card p-7 sr d1">
-        <div class="grid sm:grid-cols-2 gap-4 mb-4">
-          <div>
-            <label class="font-mono text-xs text-muted block mb-1.5">// имя</label>
-            <input id="inp-name" type="text" placeholder="Иван Иванов" />
-          </div>
-          <div>
-            <label class="font-mono text-xs text-muted block mb-1.5">// telegram</label>
-            <input id="inp-tg" type="text" placeholder="@username" />
-          </div>
+      <div class="card p-8 sr d1 text-center">
+        <div class="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center mx-auto mb-5">
+          <svg class="w-7 h-7 text-accent" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.289c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.19 14.565l-2.965-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.63.021z"/></svg>
         </div>
-        <div class="mb-5">
-          <label class="font-mono text-xs text-muted block mb-1.5">// задача</label>
-          <textarea id="inp-msg" rows="4" placeholder="Опишите проект или задачу..." style="resize:none;"></textarea>
-        </div>
-        <button onclick="sendMsg()" class="btn-g w-full justify-center text-[15px]" style="padding:13px;">
+        <p class="text-muted text-sm mb-6 max-w-xs mx-auto">Напишите задачу — отвечу быстро и обсудим детали</p>
+        <a href="https://t.me/graz1p777" target="_blank" rel="noopener" class="btn-g w-full justify-center text-[15px]" style="padding:14px;">
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.289c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.19 14.565l-2.965-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.63.021z"/></svg>
           Написать в Telegram
-        </button>
+        </a>
       </div>
 
       <div class="flex flex-wrap justify-center gap-3 mt-6 sr d2">
@@ -977,6 +967,10 @@
         <a href="https://github.com/graz1p777dev" target="_blank" rel="noopener" class="soc">
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg>
           graz1p777dev
+        </a>
+        <a href="https://www.youtube.com/@graz1p777dev" target="_blank" rel="noopener" class="soc">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          YouTube
         </a>
       </div>
     </div>
@@ -1023,16 +1017,6 @@
       open = false; mob.classList.add('hidden');
       b1.style.transform = b3.style.transform = ''; b2.style.opacity = '1'; b3.style.width = '';
     }));
-
-    // ── Telegram ─────────────────────
-    function sendMsg() {
-      const n = document.getElementById('inp-name').value.trim();
-      const t = document.getElementById('inp-tg').value.trim();
-      const m = document.getElementById('inp-msg').value.trim();
-      if (!n && !m) { alert('Заполните имя или сообщение'); return; }
-      const txt = encodeURIComponent(`👤 ${n||'—'}\n📱 ${t||'—'}\n\n💬 ${m||'—'}`);
-      window.open(`https://t.me/graz1p777?text=${txt}`, '_blank');
-    }
 
     // ── Scroll reveal ─────────────────
     const ro = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); }), { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
