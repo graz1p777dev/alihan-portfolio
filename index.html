@@ -227,6 +227,13 @@
     .proj-body { padding: 16px; }
 
     @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; transition-duration:.01ms!important; } }
+
+    /* ── Mobile: overlay always visible on touch screens ── */
+    @media (hover: none) {
+      .proj-overlay { opacity: 1; background: linear-gradient(to top, rgba(7,9,15,.88) 0%, rgba(7,9,15,.25) 60%, transparent 100%); }
+      .proj-card:hover .proj-img { transform: none; }
+      .proj-card:hover { transform: none; box-shadow: none; }
+    }
   </style>
 </head>
 
@@ -288,7 +295,7 @@
   <!-- ══════════════════════════════════════
        HERO
   ══════════════════════════════════════ -->
-  <section class="relative z-10 min-h-screen flex items-center px-4 sm:px-6 lg:px-8 pt-28 pb-20">
+  <section class="relative z-10 min-h-screen flex items-center px-4 sm:px-6 lg:px-8 pt-20 sm:pt-28 pb-12 sm:pb-20">
     <div class="max-w-6xl w-full mx-auto grid lg:grid-cols-5 gap-12 xl:gap-16 items-center">
 
       <!-- Text side -->
@@ -299,7 +306,7 @@
         </div>
 
         <div>
-          <h1 class="font-heading font-black text-5xl sm:text-6xl xl:text-[72px] leading-[0.93] text-text">
+          <h1 class="font-heading font-black text-[2.6rem] sm:text-6xl xl:text-[72px] leading-[0.93] text-text">
             Привет,<br />я <span class="grad">Алихан</span>
           </h1>
           <p class="mt-4 font-mono text-accent text-lg flex items-center gap-2">
@@ -341,7 +348,7 @@
             <span class="font-mono text-xs text-muted ml-3">alihan @ dev</span>
           </div>
           <!-- Terminal body -->
-          <div class="p-5 font-mono text-xs space-y-3 bg-bg/50">
+          <div class="p-5 font-mono text-xs space-y-3 bg-bg/50 overflow-x-auto">
             <div class="space-y-1">
               <p><span class="text-accent">$</span> <span class="text-text">cat about.json</span></p>
               <div class="pl-3 text-muted space-y-0.5 mt-1">
@@ -393,8 +400,8 @@
   <!-- ══════════════════════════════════════
        ABOUT
   ══════════════════════════════════════ -->
-  <section id="about" class="relative z-10 py-24 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-14 items-center">
+  <section id="about" class="relative z-10 py-14 md:py-24 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
 
       <div class="sr">
         <p class="font-mono text-xs text-accent mb-2">// 01 — about</p>
@@ -457,9 +464,9 @@
   <!-- ══════════════════════════════════════
        SERVICES
   ══════════════════════════════════════ -->
-  <section id="services" class="relative z-10 py-24 px-4 sm:px-6 lg:px-8">
+  <section id="services" class="relative z-10 py-14 md:py-24 px-4 sm:px-6 lg:px-8">
     <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-14 sr">
+      <div class="text-center mb-8 md:mb-14 sr">
         <p class="font-mono text-xs text-accent mb-2">// 02 — services</p>
         <div class="accent-line mx-auto mb-5"></div>
         <h2 class="font-heading font-black text-4xl sm:text-5xl text-text">Что я делаю</h2>
@@ -546,9 +553,9 @@
   <!-- ══════════════════════════════════════
        SKILLS
   ══════════════════════════════════════ -->
-  <section id="skills" class="relative z-10 py-24 px-4 sm:px-6 lg:px-8">
+  <section id="skills" class="relative z-10 py-14 md:py-24 px-4 sm:px-6 lg:px-8">
     <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-14 sr">
+      <div class="text-center mb-8 md:mb-14 sr">
         <p class="font-mono text-xs text-accent mb-2">// 03 — skills</p>
         <div class="accent-line mx-auto mb-5"></div>
         <h2 class="font-heading font-black text-4xl sm:text-5xl text-text">Технологии</h2>
@@ -568,7 +575,7 @@
               <div class="flex justify-between items-center mb-2">
                 <div class="flex items-center gap-2">
                   <span class="tag tag-py">Python</span>
-                  <span class="text-muted text-xs">backend · боты · автоматизация</span>
+                  <span class="hidden sm:inline text-muted text-xs">backend · боты · автоматизация</span>
                 </div>
                 <span class="font-mono text-xs text-accent">primary</span>
               </div>
@@ -578,7 +585,7 @@
               <div class="flex justify-between items-center mb-2">
                 <div class="flex items-center gap-2">
                   <span class="tag tag-js">JavaScript</span>
-                  <span class="text-muted text-xs">frontend · сайты · логика</span>
+                  <span class="hidden sm:inline text-muted text-xs">frontend · сайты · логика</span>
                 </div>
                 <span class="font-mono text-xs text-accent">primary</span>
               </div>
@@ -596,14 +603,14 @@
               <div>
                 <div class="flex justify-between items-center mb-2">
                   <span class="tag tag-dj">Django · DRF</span>
-                  <span class="font-mono text-xs text-muted">API · сервер</span>
+                  <span class="hidden sm:inline font-mono text-xs text-muted">API · сервер</span>
                 </div>
                 <div class="bar"><div class="bar-fill" data-w="76" style="background:linear-gradient(90deg,#00E87A,#16A34A)"></div></div>
               </div>
               <div>
                 <div class="flex justify-between items-center mb-2">
                   <span class="tag tag-db">PostgreSQL · Supabase</span>
-                  <span class="font-mono text-xs text-muted">базы данных</span>
+                  <span class="hidden sm:inline font-mono text-xs text-muted">базы данных</span>
                 </div>
                 <div class="bar"><div class="bar-fill" data-w="68" style="background:linear-gradient(90deg,#8B5CF6,#6366F1)"></div></div>
               </div>
@@ -681,9 +688,9 @@
   <!-- ══════════════════════════════════════
        PROJECTS
   ══════════════════════════════════════ -->
-  <section id="projects" class="relative z-10 py-24 px-4 sm:px-6 lg:px-8">
+  <section id="projects" class="relative z-10 py-14 md:py-24 px-4 sm:px-6 lg:px-8">
     <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-14 sr">
+      <div class="text-center mb-8 md:mb-14 sr">
         <p class="font-mono text-xs text-accent mb-2">// 04 — projects</p>
         <div class="accent-line mx-auto mb-5"></div>
         <h2 class="font-heading font-black text-4xl sm:text-5xl text-text">Проекты</h2>
@@ -871,7 +878,7 @@
   <!-- ══════════════════════════════════════
        CONTACT
   ══════════════════════════════════════ -->
-  <section id="contact" class="relative z-10 py-24 px-4 sm:px-6 lg:px-8">
+  <section id="contact" class="relative z-10 py-14 md:py-24 px-4 sm:px-6 lg:px-8">
     <div class="max-w-2xl mx-auto">
       <div class="text-center mb-10 sr">
         <p class="font-mono text-xs text-accent mb-2">// 05 — contact</p>
