@@ -1,4 +1,4 @@
-module.exports = async function handler(request, response) {
+export default async function handler(request, response) {
   try {
     const [profileResponse, reposResponse, eventsResponse] = await Promise.all([
       fetch('https://api.github.com/users/graz1p777dev', {
@@ -26,4 +26,4 @@ module.exports = async function handler(request, response) {
   } catch (error) {
     response.status(500).json({ error: 'GitHub API unavailable' });
   }
-};
+}

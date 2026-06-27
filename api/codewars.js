@@ -1,4 +1,4 @@
-module.exports = async function handler(request, response) {
+export default async function handler(request, response) {
   try {
     const apiResponse = await fetch('https://www.codewars.com/api/v1/users/graz1p777dev', {
       headers: { Accept: 'application/json' },
@@ -14,4 +14,4 @@ module.exports = async function handler(request, response) {
   } catch (error) {
     response.status(500).json({ error: 'Codewars API unavailable' });
   }
-};
+}
