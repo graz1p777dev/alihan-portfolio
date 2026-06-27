@@ -363,10 +363,10 @@
         <a href="#contact" class="btn-g" style="padding:9px 16px;font-size:13px;border-radius:9px;" data-t="nav-write">Написать</a>
       </div>
 
-      <button id="burger" class="md:hidden flex flex-col gap-1.5 p-1 cursor-pointer" aria-label="Меню">
-        <span class="w-5 h-px bg-text transition-all" id="b1"></span>
-        <span class="w-5 h-px bg-text transition-all" id="b2"></span>
-        <span class="w-4 h-px bg-muted transition-all" id="b3"></span>
+      <button id="burger" class="md:hidden flex flex-col justify-center gap-[5px] w-9 h-9 rounded-lg cursor-pointer bg-transparent border-0" aria-label="Меню">
+        <span class="block w-5 h-0.5 bg-text rounded-full transition-all duration-250 origin-center mx-auto" id="b1"></span>
+        <span class="block w-5 h-0.5 bg-text rounded-full transition-all duration-250 mx-auto" id="b2"></span>
+        <span class="block w-5 h-0.5 bg-muted rounded-full transition-all duration-250 origin-center mx-auto" id="b3"></span>
       </button>
     </div>
 
@@ -1415,10 +1415,10 @@
     burger.addEventListener('click', () => {
       open = !open;
       mob.classList.toggle('hidden', !open);
-      b1.style.transform = open ? 'rotate(45deg) translateY(6px)' : '';
+      b1.style.transform = open ? 'translateY(7px) rotate(45deg)' : '';
       b2.style.opacity   = open ? '0' : '1';
-      b3.style.transform = open ? 'rotate(-45deg) translateY(-6px)' : '';
-      b3.style.width     = open ? '20px' : '';
+      b3.style.transform = open ? 'translateY(-7px) rotate(-45deg)' : '';
+      b3.style.width     = open ? '' : '';
     });
     document.querySelectorAll('.mob').forEach(el => el.addEventListener('click', () => {
       open = false; mob.classList.add('hidden');
