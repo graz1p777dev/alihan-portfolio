@@ -1,10 +1,16 @@
+// Модальное окно с текстовым резюме Алихана (из lib/cv.js).
+// Поддерживает переключение языка (ru/en) и копирование текста в буфер обмена.
+// Видимость управляется CSS-классом 'open' — анимация scale+opacity задана в index.css.
 import { useState } from 'react'
 import { CV_TEXT } from '../lib/cv'
 
 export default function CvModal({ open, onClose, t }) {
+  // cvLang — язык резюме внутри модала, независим от глобального lang сайта
   const [cvLang, setCvLang] = useState('ru')
+  // copyLabel — временная метка «✓ Скопировано», сбрасывается через 1800ms
   const [copyLabel, setCopyLabel] = useState(null)
 
+  // Копирует текст резюме в буфер и временно меняет лейбл кнопки
   function copy() {
     navigator.clipboard.writeText(CV_TEXT[cvLang] || CV_TEXT.ru).then(() => {
       setCopyLabel('✓ Скопировано')

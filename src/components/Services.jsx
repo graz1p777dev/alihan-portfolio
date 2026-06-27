@@ -1,3 +1,5 @@
+// Секция «Что я делаю»: сетка из 6 карточек услуг с иконками, описаниями и тегами технологий.
+// Классы sr/d1–d6 задают каскадную задержку появления карточек при скролле.
 export default function Services({ t }) {
   return (
     <section id="services" className="relative z-10 py-14 md:py-24 px-4 sm:px-6 lg:px-8">

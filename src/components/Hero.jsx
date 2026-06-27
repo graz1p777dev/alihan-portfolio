@@ -1,3 +1,5 @@
+// Hero-секция: первый экран портфолио с анимированным typewriter-эффектом и мини-терминалом.
+// Терминал скрыт на мобильных (hidden lg:block) — показывается только на десктопе.
 import { useEffect, useRef } from 'react'
 
 const PHRASES = ['FullStack Developer', 'Python Developer', 'Backend Engineer', 'Bot & AI Builder', 'Automation Specialist']
@@ -5,6 +7,9 @@ const PHRASES = ['FullStack Developer', 'Python Developer', 'Backend Engineer', 
 export default function Hero({ t }) {
   const typedRef = useRef(null)
 
+  // Typewriter-эффект: поочерёдно печатает и стирает фразы из массива PHRASES.
+  // del=false — идёт набор символов (80ms между символами), del=true — стирание (50ms, быстрее).
+  // После паузы 2200ms на полной фразе переходит к следующей.
   useEffect(() => {
     let pi = 0, ci = 0, del = false
     let timer
@@ -23,7 +28,7 @@ export default function Hero({ t }) {
     return () => clearTimeout(timer)
   }, [])
 
-  // Dynamic experience years — started Jan 2024
+  // Считает полные годы с января 2024 — дата начала программирования Алихана
   const years = Math.floor((Date.now() - new Date(2024, 0, 1)) / (365.25 * 24 * 3600 * 1000))
 
   return (

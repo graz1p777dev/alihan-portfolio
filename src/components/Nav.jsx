@@ -1,3 +1,6 @@
+// Навигационная панель: фиксированная плавающая панель с glassmorphism-эффектом.
+// На мобильных устройствах сворачивается в бургер-меню с выдвижным дравером.
+// Пропсы: lang, setLang — управление языком; t — функция перевода; onOpenCv — открыть модал резюме.
 import { useState } from 'react'
 
 const GH_ICON = (
@@ -8,6 +11,7 @@ const LI_ICON = (
 )
 
 export default function Nav({ lang, setLang, t, onOpenCv }) {
+  // open — состояние мобильного дравера
   const [open, setOpen] = useState(false)
 
   function toggle() { setOpen(o => !o) }
@@ -41,6 +45,7 @@ export default function Nav({ lang, setLang, t, onOpenCv }) {
           <a href="#contact" className="btn-g" style={{padding:'9px 16px',fontSize:'13px',borderRadius:'9px'}}>{t('nav-write')}</a>
         </div>
 
+        {/* Три полоски бургера трансформируются в крестик через inline-стили при open=true */}
         <button
           id="burger"
           className="md:hidden flex flex-col justify-center gap-[5px] w-9 h-9 rounded-lg cursor-pointer bg-transparent border-0"

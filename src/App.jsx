@@ -1,3 +1,5 @@
+// Корневой компонент приложения.
+// Собирает все секции портфолио, инициализирует анимации при скролле и загружает данные из API.
 import { useState, useEffect } from 'react'
 import { useLang } from './hooks/useLang'
 import { useLightbox } from './hooks/useLightbox'
@@ -20,7 +22,7 @@ export default function App() {
   const { lbState, openLb, closeLb } = useLightbox()
   const [cvOpen, setCvOpen] = useState(false)
 
-  // Scroll reveal (.sr elements)
+  // Базовый scroll-reveal: добавляет класс 'on' элементам .sr, когда они попадают во вьюпорт
   useEffect(() => {
     const ro = new IntersectionObserver(
       entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on') }),
@@ -31,7 +33,8 @@ export default function App() {
     return () => ro.disconnect()
   }, [])
 
-  // Skill bars animation
+  // Анимация прогресс-баров навыков: ширина устанавливается из data-w при появлении карточки
+  // Задержка 150ms нужна, чтобы анимация CSS-transition успела отработать после смены width
   useEffect(() => {
     const bo = new IntersectionObserver(entries => {
       entries.forEach(e => {
@@ -46,7 +49,8 @@ export default function App() {
     return () => bo.disconnect()
   }, [])
 
-  // Reveal classes for section children
+  // Назначает классы .reveal и .reveal-dN дочерним элементам секций для каскадного появления.
+  // Карточки проектов получают задержку по модулю 6, чтобы цикл повторялся в сетке.
   useEffect(() => {
     const revealSections = ['#about','#services','#experience','#skills','#projects','#stats','#contact']
     revealSections.forEach(sel => {
@@ -64,6 +68,7 @@ export default function App() {
     })
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => {
+        // unobserve после первого срабатывания — анимация проигрывается только один раз
         if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target) }
       })
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' })
@@ -71,7 +76,7 @@ export default function App() {
     return () => io.disconnect()
   }, [])
 
-  // Navbar shrink on scroll
+  // Прижимает навбар к верху при скролле: top меняется с 12px на 6px для компактного вида
   useEffect(() => {
     function onScroll() {
       const nav = document.getElementById('nav')
@@ -81,14 +86,17 @@ export default function App() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Activity API (skills section widget)
+  // Загружает данные активности из Codewars и GitHub API и вставляет их в DOM виджета Skills.
+  // Используется прямая запись в DOM (innerHTML/textContent), так как виджет — вне React-дерева.
   useEffect(() => {
     const setText = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val }
+    // Переводит тип события GitHub API в читаемое русское название
     const eventName = type => ({
       PushEvent:'push', CreateEvent:'created', PullRequestEvent:'pull request',
       IssuesEvent:'issue', WatchEvent:'starred', ForkEvent:'forked'
     }[type] || type.replace('Event','').toLowerCase())
 
+    // Форматирует дату события в относительное время: «2m ago», «3h ago» и т.д.
     function timeAgo(dateString) {
       const seconds = Math.max(1, Math.round((Date.now() - new Date(dateString).getTime()) / 1000))
       if (seconds < 60) return `${seconds}s ago`
@@ -99,6 +107,7 @@ export default function App() {
       return `${Math.round(hours / 24)}d ago`
     }
 
+    // Пробует основной URL, при ошибке — запасной (для GitHub можно обращаться напрямую к API)
     async function fetchJson(url, fallbackUrl) {
       const res = await fetch(url, { headers: { Accept: 'application/json' } }).catch(() => null)
       if (res && res.ok) return res.json()
@@ -110,6 +119,8 @@ export default function App() {
 
     async function loadActivity() {
       try {
+        // Запросы идут параллельно: /api/codewars — Vercel serverless proxy к Codewars API,
+        // /api/github-activity — proxy к GitHub API (чтобы не светить токен на клиенте)
         const [codewars, github] = await Promise.all([
           fetchJson('/api/codewars'),
           fetchJson('/api/github-activity', 'https://api.github.com/users/graz1p777dev/events/public?per_page=5'),
@@ -123,11 +134,14 @@ export default function App() {
         setText('cw-completed', codewars.codeChallenges?.totalCompleted ?? 'n/a')
         setText('cw-python', `${python.name || 'n/a'} · ${python.score || 0}`)
         setText('cw-cpp', `${cpp.name || 'n/a'} · ${cpp.score || 0}`)
+        // Ширина баров Codewars зависит от score: мин. 12% для Python и 8% для C++, чтобы бар был виден
         const pyBar = document.getElementById('cw-python-bar')
         if (pyBar) pyBar.style.width = `${Math.min(100, Math.max(12, python.score || 0))}%`
         const cppBar = document.getElementById('cw-cpp-bar')
+        // C++ score умножается на 8 — у него значительно меньше решённых задач, чем у Python
         if (cppBar) cppBar.style.width = `${Math.min(100, Math.max(8, (cpp.score || 0) * 8))}%`
 
+        // GitHub API может вернуть массив напрямую или объект { events, profile }
         const events = Array.isArray(github.events) ? github.events : github
         setText('gh-repos', github.profile?.public_repos ?? 'live')
         setText('gh-followers', `${github.profile?.followers ?? 0} followers`)

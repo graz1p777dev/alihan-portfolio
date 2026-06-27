@@ -1,8 +1,12 @@
+// Лайтбокс для просмотра скриншотов проектов на весь экран.
+// Открывается/закрывается через useLightbox (состояние живёт в App.jsx).
+// CSS-класс 'open' управляет видимостью и backdrop-blur через transition в index.css.
 import { useEffect } from 'react'
 
 export default function Lightbox({ lbState, closeLb }) {
   const { open, src, alt } = lbState
 
+  // Закрытие по клавише Escape — добавляем и снимаем слушатель при каждом изменении closeLb
   useEffect(() => {
     function onKey(e) { if (e.key === 'Escape') closeLb() }
     document.addEventListener('keydown', onKey)

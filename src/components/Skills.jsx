@@ -1,3 +1,6 @@
+// Секция «Технологии»: сетка карточек с прогресс-барами навыков и виджетом активности.
+// Прогресс-бары (.bar-fill) анимируются из App.jsx — ширина задаётся через data-w при скролле.
+// Виджет активности (#activity-widget) заполняется данными из Codewars и GitHub API тоже в App.jsx.
 export default function Skills({ t }) {
   return (
     <section id="skills" className="relative z-10 py-14 md:py-24 px-4 sm:px-6 lg:px-8">

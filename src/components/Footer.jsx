@@ -1,3 +1,4 @@
+// Нижний колонтитул: логотип, копирайт и мигающий индикатор «open to work».
 export default function Footer() {
   return (
     <footer className="relative z-10 py-7 px-4 border-t border-border/50">

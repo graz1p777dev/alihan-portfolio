@@ -1,3 +1,5 @@
+// Секция «Обо мне»: краткое описание Алихана и три карточки с ключевыми навыками.
+// Класс sr/d2 — scroll-reveal с задержкой (управляется из App.jsx через IntersectionObserver).
 export default function About({ t }) {
   return (
     <section id="about" className="relative z-10 py-14 md:py-24 px-4 sm:px-6 lg:px-8">

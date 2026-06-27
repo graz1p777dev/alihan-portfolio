@@ -1,3 +1,5 @@
+// Секция «Опыт работы»: три карточки — Codify (прошлое), DemiResults (текущее), настройка серверов.
+// Тег «сейчас» / «previous» показывает статус позиции.
 export default function Experience() {
   return (
     <section id="experience" className="relative z-10 py-14 md:py-24 px-4 sm:px-6 lg:px-8">
