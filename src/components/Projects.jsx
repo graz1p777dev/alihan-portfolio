@@ -153,7 +153,7 @@ export default function Projects({ t, openLb }) {
               <img src="/img/Holy-korea.webp" alt="Holi Korea" className="proj-img" loading="lazy" />
               <div className="proj-overlay">
                 <span className="proj-badge">web · landing</span>
-                <a href="https://holi-korea-phi.vercel.app" target="_blank" rel="noopener" className="proj-visit-btn">
+                <a href="/demo/holi-korea/" target="_blank" rel="noopener" className="proj-visit-btn">
                   {EXT_ICON} Открыть
                 </a>
               </div>
@@ -205,7 +205,7 @@ export default function Projects({ t, openLb }) {
               <img src="/img/Tatyr.webp" alt="Tatyr KG" className="proj-img" loading="lazy" />
               <div className="proj-overlay">
                 <span className="proj-badge">web · кыргызская кухня</span>
-                <a href="https://tatyr-kg.vercel.app" target="_blank" rel="noopener" className="proj-visit-btn">
+                <a href="/demo/tatyr/" target="_blank" rel="noopener" className="proj-visit-btn">
                   {EXT_ICON} Открыть
                 </a>
               </div>

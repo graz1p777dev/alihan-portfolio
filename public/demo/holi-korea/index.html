@@ -1,0 +1,1749 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HOLI KOREA — Оптовый поставщик корейской косметики</title>
+  <meta name="description" content="Оригинальная корейская косметика оптом. Прямые поставки из Южной Кореи. 80+ брендов для магазинов, салонов и предпринимателей." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:         #FAFAF8;
+      --white:         #FFFFFF;
+      --ink:           #1A1814;
+      --ink-80:        rgba(26,24,20,.8);
+      --ink-50:        rgba(26,24,20,.5);
+      --ink-20:        rgba(26,24,20,.12);
+      --berry:         #C24B6A;
+      --berry-hover:   #A83A59;
+      --berry-light:   #EDD4DC;
+      --berry-pale:    #FDF2F5;
+      --mint:          #3FBDB5;
+      --mint-hover:    #33A09A;
+      --mint-light:    #D1F0EE;
+      --mint-pale:     #F0FFFE;
+      --purple:        #7B68C8;
+      --purple-light:  #E0DBF5;
+      --border:        #EAE5E1;
+      --shadow-sm:     0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+      --shadow-md:     0 4px 16px rgba(0,0,0,.08), 0 1px 4px rgba(0,0,0,.04);
+      --shadow-lg:     0 8px 32px rgba(0,0,0,.10), 0 2px 8px rgba(0,0,0,.06);
+      --r-sm: 10px;
+      --r-md: 16px;
+      --r-lg: 24px;
+      --r-xl: 32px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', 'Noto Sans KR', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Typography ── */
+    h1,h2,h3,h4,h5 { font-family: 'Noto Sans KR', 'Inter', sans-serif; line-height: 1.2; font-weight: 700; }
+    h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 900; letter-spacing: -.02em; }
+    h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); letter-spacing: -.01em; }
+    h3 { font-size: clamp(1.1rem, 2vw, 1.35rem); }
+    p  { color: var(--ink-80); }
+
+    /* ── Layout ── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    section { padding: 96px 0; }
+    @media (max-width: 768px) { section { padding: 64px 0; } }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600;
+      padding: 14px 28px; border-radius: 12px; border: none;
+      cursor: pointer; text-decoration: none;
+      transition: all 200ms ease; white-space: nowrap;
+    }
+    .btn-primary   { background: var(--berry); color: #fff; }
+    .btn-primary:hover { background: var(--berry-hover); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+    .btn-secondary { background: var(--white); color: var(--ink); border: 1.5px solid var(--border); }
+    .btn-secondary:hover { border-color: var(--berry-light); background: var(--berry-pale); }
+    .btn-mint  { background: var(--mint); color: #fff; }
+    .btn-mint:hover { background: var(--mint-hover); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+    .btn-outline-white { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.5); }
+    .btn-outline-white:hover { background: rgba(255,255,255,.12); border-color: #fff; }
+    .btn-lg { padding: 16px 36px; font-size: 16px; border-radius: 14px; }
+
+    /* ── Badge ── */
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 14px; border-radius: 999px; font-size: 13px; font-weight: 500;
+    }
+    .badge-pink   { background: var(--berry-pale); color: var(--berry); }
+    .badge-mint   { background: var(--mint-pale); color: var(--mint-hover); }
+    .badge-purple { background: var(--purple-light); color: var(--purple); }
+
+    /* ── Pill ── */
+    .pill {
+      display: inline-block; padding: 8px 18px;
+      background: var(--white); border: 1.5px solid var(--border);
+      border-radius: 999px; font-size: 14px; font-weight: 500; color: var(--ink);
+      cursor: pointer; transition: all 180ms ease;
+    }
+    .pill:hover { border-color: var(--berry); color: var(--berry); background: var(--berry-pale); }
+
+    /* ── Navbar ── */
+    #navbar {
+      position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+      width: calc(100% - 48px); max-width: 1200px;
+      background: rgba(250,250,248,.88); backdrop-filter: blur(20px) saturate(1.8);
+      border: 1px solid var(--border); border-radius: 20px;
+      padding: 14px 28px; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      box-shadow: var(--shadow-md); transition: all 200ms ease;
+    }
+    #navbar.scrolled { background: rgba(250,250,248,.96); box-shadow: var(--shadow-lg); }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo-mark {
+      width: 38px; height: 38px; background: var(--berry);
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      font-family: 'Noto Sans KR',sans-serif; font-size: 15px; font-weight: 900; color: #fff; letter-spacing: -.02em;
+    }
+    .nav-logo-text { font-size: 17px; font-weight: 700; color: var(--ink); font-family: 'Noto Sans KR',sans-serif; }
+    .nav-logo-text span { color: var(--berry); }
+    .nav-links { display: flex; gap: 4px; list-style: none; }
+    .nav-links a { padding: 8px 14px; border-radius: 8px; font-size: 14px; font-weight: 500; color: var(--ink-80); text-decoration: none; transition: all 180ms ease; }
+    .nav-links a:hover { background: var(--berry-pale); color: var(--berry); }
+    .nav-cta { display: flex; gap: 10px; align-items: center; }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      #navbar { padding: 12px 18px; }
+    }
+
+    /* ── Hero ── */
+    #hero {
+      min-height: 100vh; display: flex; align-items: center; padding-top: 100px;
+      background: var(--cream);
+      overflow: hidden; position: relative;
+    }
+    #hero::before {
+      content: ''; position: absolute; top: -40%; right: -20%;
+      width: 700px; height: 700px;
+      background: radial-gradient(ellipse, rgba(194,75,106,.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    #hero::after {
+      content: ''; position: absolute; bottom: -10%; left: -10%;
+      width: 500px; height: 500px;
+      background: radial-gradient(ellipse, rgba(63,189,181,.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    @media (max-width: 900px) { .hero-inner { grid-template-columns: 1fr; gap: 48px; } }
+    .hero-eyebrow { margin-bottom: 20px; }
+    .hero-title { margin-bottom: 24px; }
+    .hero-title span { color: var(--berry); }
+    .hero-desc { font-size: 17px; line-height: 1.7; color: var(--ink-80); margin-bottom: 36px; max-width: 520px; }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 52px; }
+    .hero-stats { display: flex; gap: 36px; flex-wrap: wrap; }
+    .hero-stat-val { font-size: 1.75rem; font-weight: 800; color: var(--ink); font-family: 'Noto Sans KR',sans-serif; }
+    .hero-stat-val span { color: var(--berry); }
+    .hero-stat-lbl { font-size: 13px; color: var(--ink-50); font-weight: 500; margin-top: 2px; }
+
+    /* Visual orb cluster */
+    .hero-visual {
+      position: relative; height: 500px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    @media (max-width: 900px) { .hero-visual { height: 320px; } }
+    .orb-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 16px; width: 100%; max-width: 420px;
+    }
+    .orb-card {
+      border-radius: var(--r-md); overflow: hidden;
+      box-shadow: var(--shadow-md); position: relative;
+      transition: transform 300ms ease;
+    }
+    .orb-card:hover { transform: translateY(-4px); }
+    .orb-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .orb-card.tall { grid-row: span 2; }
+    .orb-card.wide { grid-column: span 2; }
+
+    .orb-card.c1 { height: 160px; background: linear-gradient(145deg,#F9D9E3,#EAB9C7); }
+    .orb-card.c2 { height: 160px; background: linear-gradient(145deg,#D5EEF0,#B5E0DE); }
+    .orb-card.c3 { height: 160px; background: linear-gradient(145deg,#E3DEFF,#C8C0F0); }
+    .orb-card.c4 { height: 160px; background: linear-gradient(145deg,#FEF0E8,#FBDCC9); }
+    .orb-card.c5 { height: 160px; background: linear-gradient(145deg,#F3F3F1,#E8E4E0); }
+    .orb-card.c6 { height: 160px; background: linear-gradient(145deg,#D8F5E4,#BBECD0); }
+
+    .orb-inner {
+      width: 100%; height: 100%; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; padding: 16px; text-align: center;
+    }
+    .orb-icon { margin-bottom: 8px; }
+    .orb-label { font-size: 12px; font-weight: 600; color: var(--ink-80); line-height: 1.3; }
+
+    /* Floating badge */
+    .hero-float-badge {
+      position: absolute; z-index: 10;
+      background: rgba(255,255,255,.88);
+      backdrop-filter: blur(16px) saturate(1.6);
+      -webkit-backdrop-filter: blur(16px) saturate(1.6);
+      border: 1px solid rgba(255,255,255,.9);
+      box-shadow: 0 8px 32px rgba(0,0,0,.12), 0 2px 8px rgba(0,0,0,.06);
+      border-radius: 14px;
+      padding: 10px 18px; display: flex; align-items: center; gap: 10px;
+      font-size: 13px; font-weight: 600; color: var(--ink);
+    }
+    .hero-float-badge.top {
+      top: 12px; right: -16px;
+      animation: float-badge 4s ease-in-out infinite;
+    }
+    .hero-float-badge.bot {
+      bottom: -20px; left: 8px;
+      animation: float-badge 4s ease-in-out infinite 2s;
+    }
+    @keyframes float-badge { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+    .dot { width: 8px; height: 8px; border-radius: 50%; }
+    .dot-green { background: #22C55E; box-shadow: 0 0 0 3px rgba(34,197,94,.2); }
+    .dot-pink  { background: var(--berry); box-shadow: 0 0 0 3px rgba(194,75,106,.2); }
+
+    /* ── Section header ── */
+    .section-header { text-align: center; margin-bottom: 56px; }
+    .section-header h2 { margin-bottom: 14px; }
+    .section-header p { font-size: 17px; color: var(--ink-50); max-width: 560px; margin: 0 auto; }
+
+    /* ── Benefits ── */
+    #benefits { background: var(--white); }
+    .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    @media (max-width: 900px) { .benefits-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 540px) { .benefits-grid { grid-template-columns: 1fr; } }
+    .benefit-card {
+      background: var(--cream); border: 1px solid var(--border);
+      border-radius: var(--r-lg); padding: 32px 28px;
+      transition: all 220ms ease; cursor: default;
+    }
+    .benefit-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); border-color: var(--berry-light); background: var(--white); }
+    .benefit-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+    .benefit-icon.pink   { background: var(--berry-pale); }
+    .benefit-icon.mint   { background: var(--mint-pale); }
+    .benefit-icon.purple { background: var(--purple-light); }
+    .benefit-icon.warm   { background: #FFF5F0; }
+    .benefit-icon.blue   { background: #EFF6FF; }
+    .benefit-icon.green  { background: #F0FDF4; }
+    .benefit-card h3 { font-size: 16px; margin-bottom: 8px; }
+    .benefit-card p  { font-size: 14px; line-height: 1.6; color: var(--ink-50); }
+
+    /* ── Brands ── */
+    #brands { background: var(--cream); }
+    .brands-pills { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .brand-pill {
+      padding: 10px 22px; border-radius: 999px;
+      background: var(--white); border: 1.5px solid var(--border);
+      font-size: 14px; font-weight: 600; color: var(--ink);
+      transition: all 180ms ease; cursor: default;
+    }
+    .brand-pill:hover { border-color: var(--berry); color: var(--berry); background: var(--berry-pale); }
+    .brand-pill.featured { background: var(--berry); color: #fff; border-color: var(--berry); }
+    .brands-note { text-align: center; margin-top: 32px; font-size: 14px; color: var(--ink-50); }
+
+    /* ── Categories ── */
+    #categories { background: var(--white); }
+    .categories-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    @media (max-width: 900px) { .categories-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 480px) { .categories-grid { grid-template-columns: 1fr; } }
+    .cat-card {
+      border-radius: var(--r-md); padding: 28px 24px;
+      display: flex; align-items: center; gap: 16px;
+      border: 1px solid var(--border); background: var(--cream);
+      transition: all 220ms ease; cursor: default;
+    }
+    .cat-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); background: var(--white); border-color: var(--berry-light); }
+    .cat-icon-wrap { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .cat-card h3 { font-size: 15px; margin-bottom: 3px; }
+    .cat-card p  { font-size: 13px; color: var(--ink-50); }
+
+    /* ── Steps ── */
+    #steps { background: var(--berry); color: #fff; }
+    #steps h2 { color: #fff; }
+    #steps .section-header p { color: rgba(255,255,255,.7); }
+    .steps-row {
+      display: flex; gap: 0; position: relative;
+      flex-wrap: nowrap; overflow-x: auto; padding-bottom: 8px;
+    }
+    @media (max-width: 900px) { .steps-row { flex-direction: column; gap: 2px; } }
+    .step-item { flex: 1; min-width: 160px; padding: 0 16px; text-align: center; position: relative; }
+    .step-item:not(:last-child)::after {
+      content: '';
+      position: absolute; top: 32px; left: calc(50% + 30px); right: calc(-50% + 30px);
+      height: 1.5px; background: rgba(255,255,255,.25);
+    }
+    @media (max-width: 900px) { .step-item::after { display: none; } }
+    .step-num {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: rgba(255,255,255,.15); border: 2px solid rgba(255,255,255,.35);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; font-weight: 800; color: #fff; margin: 0 auto 18px;
+      font-family: 'Noto Sans KR',sans-serif;
+    }
+    .step-item h3 { font-size: 16px; color: #fff; margin-bottom: 8px; }
+    .step-item p  { font-size: 13px; color: rgba(255,255,255,.7); line-height: 1.6; }
+
+    /* ── Audience ── */
+    #audience { background: var(--cream); }
+    .audience-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    @media (max-width: 900px) { .audience-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 480px) { .audience-grid { grid-template-columns: 1fr; } }
+    .audience-card {
+      border-radius: var(--r-md); padding: 28px 24px;
+      border: 1.5px solid var(--border); background: var(--white);
+      transition: all 220ms ease; cursor: default;
+    }
+    .audience-card:hover { border-color: var(--mint); box-shadow: 0 0 0 3px var(--mint-light); transform: translateY(-2px); }
+    .audience-icon { width: 48px; height: 48px; border-radius: 12px; background: var(--mint-pale); display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+    .audience-card h3 { font-size: 15px; margin-bottom: 6px; }
+    .audience-card p  { font-size: 13px; color: var(--ink-50); line-height: 1.6; }
+
+    /* ── Gallery ── */
+    #gallery { background: var(--white); }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      grid-template-rows: repeat(2, 220px);
+      gap: 12px;
+    }
+    @media (max-width: 900px) { .gallery-grid { grid-template-columns: repeat(2,1fr); grid-template-rows: repeat(3,220px); } }
+    @media (max-width: 480px) { .gallery-grid { grid-template-columns: 1fr; grid-template-rows: auto; } }
+    .gallery-item {
+      border-radius: var(--r-md); overflow: hidden;
+      position: relative; cursor: pointer; transition: all 250ms ease;
+    }
+    .gallery-item:hover { transform: scale(1.025); box-shadow: var(--shadow-lg); z-index: 1; }
+    .gallery-item:hover .gi-overlay { opacity: 1; }
+    .gallery-item.span-2 { grid-column: span 2; }
+    .gallery-item.tall   { grid-row: span 2; }
+    .gi-photo {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block; transition: transform 400ms ease;
+    }
+    .gallery-item:hover .gi-photo { transform: scale(1.06); }
+    .gi-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(26,24,20,.72) 0%, rgba(26,24,20,.12) 50%, transparent 100%);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 18px 16px; opacity: 0; transition: opacity 250ms ease;
+    }
+    .gi-overlay p   { font-size: 13px; font-weight: 600; color: #fff; line-height: 1.4; }
+    .gi-overlay span{ font-size: 11px; color: rgba(255,255,255,.65); margin-top: 3px; }
+    /* always-on label for span-2 / tall items */
+    .gallery-item.always-label .gi-overlay { opacity: 1; }
+    .gi-bg {
+      width: 100%; height: 100%; min-height: 220px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 12px;
+      padding: 20px; text-align: center;
+    }
+    .gi-bg p { font-size: 13px; font-weight: 500; color: var(--ink-80); }
+
+    /* ── Trust ── */
+    #trust { background: var(--cream); }
+    .trust-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    @media (max-width: 768px) { .trust-grid { grid-template-columns: 1fr; gap: 36px; } }
+    .trust-list { display: flex; flex-direction: column; gap: 18px; }
+    .trust-item { display: flex; align-items: flex-start; gap: 16px; }
+    .trust-dot { width: 22px; height: 22px; border-radius: 50%; background: var(--berry); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+    .trust-item h4 { font-size: 15px; margin-bottom: 4px; }
+    .trust-item p  { font-size: 14px; color: var(--ink-50); }
+    .trust-card {
+      background: var(--white); border-radius: var(--r-xl); padding: 36px;
+      border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+    }
+    .trust-stat { padding: 20px 0; border-bottom: 1px solid var(--border); }
+    .trust-stat:last-child { border-bottom: none; padding-bottom: 0; }
+    .trust-stat-val { font-size: 2.25rem; font-weight: 900; color: var(--ink); font-family: 'Noto Sans KR',sans-serif; }
+    .trust-stat-val span { color: var(--berry); }
+    .trust-stat-lbl { font-size: 14px; color: var(--ink-50); margin-top: 4px; }
+
+    /* ── FAQ ── */
+    #faq { background: var(--white); }
+    .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+    .faq-item {
+      border: 1.5px solid var(--border); border-radius: var(--r-md);
+      overflow: hidden; background: var(--cream);
+      transition: border-color 200ms ease;
+    }
+    .faq-item.open { border-color: var(--berry-light); background: var(--white); }
+    .faq-q {
+      width: 100%; padding: 20px 24px; text-align: left; background: none; border: none;
+      font-family: 'Inter','Noto Sans KR',sans-serif; font-size: 15px; font-weight: 600;
+      color: var(--ink); cursor: pointer; display: flex; justify-content: space-between;
+      align-items: center; gap: 16px; transition: color 180ms ease;
+    }
+    .faq-q:hover { color: var(--berry); }
+    .faq-q svg { flex-shrink: 0; transition: transform 250ms ease; }
+    .faq-item.open .faq-q svg { transform: rotate(45deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 280ms ease, padding 200ms ease; }
+    .faq-item.open .faq-a { max-height: 300px; }
+    .faq-a-inner { padding: 0 24px 20px; font-size: 14px; color: var(--ink-50); line-height: 1.7; }
+
+    /* ── CTA final ── */
+    #cta {
+      background: linear-gradient(135deg, #1A1814 0%, #2D2420 100%);
+      position: relative; overflow: hidden;
+    }
+    #cta::before {
+      content: ''; position: absolute; top: -60%; right: -10%;
+      width: 500px; height: 500px;
+      background: radial-gradient(ellipse, rgba(194,75,106,.25) 0%, transparent 65%);
+    }
+    #cta::after {
+      content: ''; position: absolute; bottom: -40%; left: -5%;
+      width: 400px; height: 400px;
+      background: radial-gradient(ellipse, rgba(63,189,181,.15) 0%, transparent 65%);
+    }
+    .cta-inner { text-align: center; position: relative; z-index: 1; }
+    #cta h2 { color: #fff; margin-bottom: 16px; }
+    #cta p   { color: rgba(255,255,255,.65); font-size: 17px; margin-bottom: 40px; max-width: 520px; margin-left: auto; margin-right: auto; }
+    .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px; }
+    .cta-social { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .cta-social-btn {
+      display: flex; align-items: center; gap: 10px;
+      padding: 13px 24px; border-radius: 12px; border: none; cursor: pointer;
+      font-size: 14px; font-weight: 600; text-decoration: none;
+      transition: all 200ms ease;
+    }
+    .cta-social-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,.25); }
+    .cta-social-btn.wa  { background: #25D366; color: #fff; }
+    .cta-social-btn.ig  { background: linear-gradient(135deg,#E1306C,#833AB4); color: #fff; }
+    .cta-social-btn.tg  { background: #26A5E4; color: #fff; }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--ink); padding: 40px 0; color: rgba(255,255,255,.5);
+      font-size: 13px;
+    }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .footer-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .footer-logo-mark { width: 32px; height: 32px; background: var(--berry); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 900; color: #fff; font-family: 'Noto Sans KR',sans-serif; }
+    .footer-logo-name { font-weight: 700; color: #fff; font-size: 15px; font-family: 'Noto Sans KR',sans-serif; }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { color: rgba(255,255,255,.5); text-decoration: none; font-size: 13px; transition: color 180ms ease; }
+    .footer-links a:hover { color: #fff; }
+    .footer-credit { font-size: 13px; color: rgba(255,255,255,.55); }
+    .footer-credit a { color: #C24B6A; text-decoration: none; font-weight: 600; transition: color 180ms ease, opacity 180ms ease; }
+    .footer-credit a:hover { color: #e06080; }
+
+    /* ── Animations ── */
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 500ms ease, transform 500ms ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 80ms; }
+    .reveal-delay-2 { transition-delay: 160ms; }
+    .reveal-delay-3 { transition-delay: 240ms; }
+    .reveal-delay-4 { transition-delay: 320ms; }
+    .reveal-delay-5 { transition-delay: 400ms; }
+    .reveal-delay-6 { transition-delay: 480ms; }
+
+    /* ── Step info pills ── */
+    .step-info-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 20px; border-radius: 999px;
+      background: rgba(255,255,255,.14);
+      border: 1.5px solid rgba(255,255,255,.3);
+      font-size: 14px; color: rgba(255,255,255,.9); font-weight: 500;
+    }
+    .step-info-pill strong { color: #fff; }
+
+    /* ── Map section ── */
+    #location { background: var(--white); }
+    .location-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 40px; align-items: start;
+    }
+    @media (max-width: 768px) { .location-grid { grid-template-columns: 1fr; } }
+    .map-wrap {
+      border-radius: var(--r-lg); overflow: hidden;
+      box-shadow: var(--shadow-lg); border: 1px solid var(--border);
+      aspect-ratio: 4/3;
+    }
+    .map-wrap iframe { width: 100%; height: 100%; display: block; border: 0; }
+    .location-info { display: flex; flex-direction: column; gap: 24px; }
+    .loc-block h3 { font-size: 17px; margin-bottom: 10px; color: var(--ink); }
+    .loc-block p  { font-size: 15px; color: var(--ink-80); line-height: 1.6; }
+    .loc-address {
+      display: flex; gap: 14px; align-items: flex-start;
+      background: var(--cream); border: 1px solid var(--border);
+      border-radius: var(--r-md); padding: 20px 22px;
+    }
+    .loc-address-icon {
+      width: 44px; height: 44px; border-radius: 12px; background: var(--berry-pale);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;
+    }
+    .loc-address-text h4 { font-size: 14px; color: var(--ink-50); font-weight: 500; margin-bottom: 6px; text-transform: uppercase; letter-spacing: .05em; }
+    .loc-address-text p  { font-size: 15px; font-weight: 600; color: var(--ink); line-height: 1.5; }
+    .loc-hours-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 480px) { .loc-hours-grid { grid-template-columns: 1fr; } }
+    .loc-hour-card {
+      background: var(--cream); border: 1px solid var(--border);
+      border-radius: var(--r-sm); padding: 14px 16px;
+    }
+    .loc-hour-label { font-size: 12px; color: var(--ink-50); font-weight: 500; margin-bottom: 4px; text-transform: uppercase; letter-spacing: .04em; }
+    .loc-hour-val   { font-size: 15px; font-weight: 700; color: var(--ink); }
+    .catalog-card {
+      background: linear-gradient(135deg, var(--berry-pale), #F5E8EF);
+      border: 1.5px solid var(--berry-light);
+      border-radius: var(--r-md); padding: 22px 24px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .catalog-card-icon {
+      width: 48px; height: 48px; border-radius: 12px; background: var(--berry);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .catalog-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .catalog-card p  { font-size: 13px; color: var(--ink-50); margin-bottom: 12px; }
+    .catalog-card a.btn { padding: 9px 18px; font-size: 13px; }
+
+    /* ── Nav contact btn ── */
+    .nav-contact-btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 9px 18px; border-radius: 10px;
+      font-size: 14px; font-weight: 500; color: var(--ink-80);
+      text-decoration: none; transition: all 180ms ease;
+      border: 1.5px solid var(--border);
+    }
+    .nav-contact-btn:hover { background: var(--berry-pale); color: var(--berry); border-color: var(--berry-light); }
+
+    /* ── Glass utility ── */
+    .glass {
+      background: rgba(255,255,255,.72);
+      backdrop-filter: blur(20px) saturate(1.8);
+      -webkit-backdrop-filter: blur(20px) saturate(1.8);
+      border: 1px solid rgba(255,255,255,.8);
+    }
+
+    /* ── Trust stats glass grid ── */
+    .stats-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+    }
+    .stat-glass {
+      border-radius: 22px; padding: 28px 24px;
+      backdrop-filter: blur(20px) saturate(1.6);
+      -webkit-backdrop-filter: blur(20px) saturate(1.6);
+      border: 1px solid rgba(255,255,255,.75);
+      transition: transform 220ms ease, box-shadow 220ms ease;
+      cursor: default; position: relative; overflow: hidden;
+    }
+    .stat-glass::before {
+      content: ''; position: absolute; top: -40%; right: -20%;
+      width: 120px; height: 120px; border-radius: 50%;
+      background: rgba(255,255,255,.3); pointer-events: none;
+    }
+    .stat-glass:hover { transform: translateY(-4px); }
+    .stat-glass.s1 { background: linear-gradient(135deg,rgba(253,242,245,.92),rgba(237,212,220,.75)); box-shadow: 0 8px 32px rgba(194,75,106,.14); }
+    .stat-glass.s2 { background: linear-gradient(135deg,rgba(240,255,254,.92),rgba(209,240,238,.75)); box-shadow: 0 8px 32px rgba(63,189,181,.12); }
+    .stat-glass.s3 { background: linear-gradient(135deg,rgba(224,219,245,.92),rgba(208,200,240,.75)); box-shadow: 0 8px 32px rgba(123,104,200,.14); }
+    .stat-glass.s4 { background: linear-gradient(135deg,rgba(250,250,248,.92),rgba(234,229,225,.75)); box-shadow: 0 8px 32px rgba(0,0,0,.07); }
+    .stat-num {
+      font-size: clamp(2.4rem,4vw,3.2rem); font-weight: 900; line-height: 1;
+      font-family: 'Noto Sans KR',sans-serif; margin-bottom: 10px;
+      display: flex; align-items: baseline; gap: 3px;
+    }
+    .stat-num .n { display: inline-block; }
+    .stat-num .plus { font-size: 60%; font-weight: 700; }
+    .stat-glass.s1 .stat-num { color: var(--berry); }
+    .stat-glass.s2 .stat-num { color: var(--mint-hover); }
+    .stat-glass.s3 .stat-num { color: var(--purple); }
+    .stat-glass.s4 .stat-num { color: #C45C2A; }
+    .stat-lbl-g { font-size: 13px; color: var(--ink-50); line-height: 1.5; font-weight: 500; }
+
+    /* ── Navbar glass upgrade ── */
+    #navbar {
+      background: rgba(250,250,248,.72) !important;
+      backdrop-filter: blur(28px) saturate(2.2) !important;
+      -webkit-backdrop-filter: blur(28px) saturate(2.2) !important;
+      border: 1px solid rgba(255,255,255,.8) !important;
+    }
+    #navbar.scrolled {
+      background: rgba(250,250,248,.92) !important;
+      box-shadow: 0 8px 40px rgba(0,0,0,.10), 0 2px 8px rgba(0,0,0,.06) !important;
+    }
+
+    /* ── Divider ── */
+    .section-divider { height: 1px; background: var(--border); }
+
+    /* ── Scroll indicator ── */
+    .scroll-line {
+      position: fixed; top: 0; left: 0; height: 3px;
+      background: linear-gradient(90deg, var(--berry), var(--purple));
+      z-index: 200; transition: width 100ms linear;
+    }
+
+    /* ══════════════════════════════════════
+       MOBILE — 768px
+    ══════════════════════════════════════ */
+    @media (max-width: 768px) {
+      /* Navbar */
+      #navbar { top: 10px; width: calc(100% - 20px); padding: 12px 16px; border-radius: 16px; }
+      .nav-contact-btn { display: none; }
+      .nav-cta .btn { padding: 9px 16px; font-size: 13px; }
+
+      /* Hero */
+      #hero { padding-top: 90px; min-height: auto; padding-bottom: 60px; }
+      .hero-inner { gap: 32px; }
+      .hero-title  { margin-bottom: 18px; }
+      .hero-desc   { font-size: 15px; margin-bottom: 28px; }
+      .hero-btns   { gap: 10px; margin-bottom: 36px; }
+      .btn-lg      { padding: 14px 24px; font-size: 15px; }
+      .hero-stats  { gap: 24px; }
+      .hero-stat-val { font-size: 1.5rem; }
+
+      /* Section header */
+      .section-header { margin-bottom: 36px; }
+      .section-header p { font-size: 15px; }
+
+      /* Steps */
+      .steps-row { gap: 0; }
+      .step-item { padding: 0 8px; min-width: 120px; }
+      .step-num  { width: 52px; height: 52px; font-size: 18px; margin-bottom: 12px; }
+      .step-item h3 { font-size: 14px; }
+      .step-item p  { font-size: 12px; }
+      .steps-catalog .btn-lg { padding: 13px 20px; font-size: 14px; }
+      .steps-info  { gap: 10px; }
+      .step-info-pill { font-size: 13px; padding: 9px 16px; }
+
+      /* Stats glass */
+      .stat-num { font-size: 2.2rem; }
+
+      /* Trust */
+      .trust-dot { width: 20px; height: 20px; }
+      .trust-item h4 { font-size: 14px; }
+
+      /* Gallery */
+      .gallery-grid { grid-template-rows: repeat(3, 200px); }
+
+      /* Location */
+      .loc-hours-grid { grid-template-columns: 1fr 1fr; }
+      .catalog-card   { flex-direction: column; gap: 14px; }
+      .catalog-card-icon { width: 42px; height: 42px; border-radius: 10px; }
+
+      /* CTA */
+      .cta-btns   { flex-direction: column; align-items: stretch; }
+      .cta-btns .btn { justify-content: center; }
+      .cta-social { gap: 10px; }
+      .cta-social-btn { padding: 12px 18px; font-size: 13px; flex: 1; justify-content: center; }
+
+      /* Footer */
+      .footer-inner  { flex-direction: column; align-items: flex-start; gap: 14px; }
+      .footer-links  { flex-wrap: wrap; gap: 10px; }
+      .footer-inner > div:last-child { align-items: flex-start !important; }
+    }
+
+    /* ══════════════════════════════════════
+       MOBILE — 480px  (small phones)
+    ══════════════════════════════════════ */
+    @media (max-width: 480px) {
+      /* Container */
+      .container { padding: 0 16px; }
+      section     { padding: 56px 0; }
+
+      /* Navbar */
+      #navbar { width: calc(100% - 16px); }
+      .nav-logo-text { font-size: 15px; }
+      .nav-logo-mark { width: 32px; height: 32px; font-size: 13px; border-radius: 8px; }
+
+      /* Hero — hide orb visual, make text full-width */
+      .hero-visual { display: none; }
+      .hero-inner  { grid-template-columns: 1fr; gap: 0; }
+      .hero-btns   { flex-direction: column; }
+      .hero-btns a { width: 100%; justify-content: center; }
+      .hero-stats  { gap: 16px; }
+      .hero-stat-val { font-size: 1.35rem; }
+      .hero-stat-lbl { font-size: 12px; }
+
+      /* Section header */
+      h2 { font-size: 1.65rem; }
+
+      /* Benefits grid → 1 col */
+      .benefits-grid { grid-template-columns: 1fr; }
+      .benefit-card  { padding: 24px 20px; }
+      .benefit-icon  { width: 44px; height: 44px; border-radius: 12px; margin-bottom: 14px; }
+
+      /* Brands pills */
+      .brand-pill { padding: 8px 16px; font-size: 13px; }
+
+      /* Steps */
+      .steps-row { flex-direction: column; padding-bottom: 0; }
+      .step-item { padding: 14px 0; min-width: unset; text-align: left;
+                   display: flex; gap: 14px; align-items: flex-start; }
+      .step-num  { width: 44px; height: 44px; font-size: 16px; margin: 0; flex-shrink: 0; }
+      .step-item h3 { font-size: 14px; margin-bottom: 4px; }
+      .step-item p  { font-size: 13px; }
+      .steps-info { flex-direction: column; align-items: stretch; }
+      .step-info-pill { justify-content: center; }
+      .steps-catalog .btn { width: 100%; justify-content: center; white-space: normal; text-align: center; }
+
+      /* Categories */
+      .cat-card h3 { font-size: 14px; }
+      .cat-card p  { font-size: 12px; }
+
+      /* Gallery — remove span/tall on mobile */
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(4, 160px);
+        gap: 8px;
+      }
+      .gallery-item.span-2 { grid-column: span 1; }
+      .gallery-item.tall   { grid-row:    span 1; }
+
+      /* Audience */
+      .audience-card { padding: 22px 18px; }
+
+      /* Trust stats → 1 col */
+      .stats-grid { grid-template-columns: 1fr; }
+      .stat-glass { padding: 22px 20px; border-radius: 18px; }
+      .stat-num   { font-size: 2.5rem; }
+
+      /* Location */
+      .map-wrap     { aspect-ratio: 16/9; }
+      .loc-hour-card { padding: 12px 14px; }
+      .loc-hour-val  { font-size: 13px; }
+      .loc-address   { padding: 16px 18px; gap: 12px; }
+      .location-info > div:last-child { flex-direction: column; }
+
+      /* FAQ */
+      .faq-q       { font-size: 14px; padding: 16px 18px; }
+      .faq-a-inner { font-size: 13px; padding: 0 18px 16px; }
+
+      /* CTA */
+      #cta h2 { font-size: 1.75rem; }
+      #cta p  { font-size: 15px; }
+      .cta-social-btn { flex: unset; width: 100%; justify-content: center; }
+      .cta-social     { flex-direction: column; align-items: stretch; gap: 10px; }
+
+      /* Footer */
+      .footer-links { flex-direction: column; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Scroll progress -->
+<div class="scroll-line" id="scrollLine"></div>
+
+<!-- ─── NAVBAR ─── -->
+<nav id="navbar" aria-label="Главная навигация">
+  <a href="#" class="nav-logo" aria-label="HOLI KOREA — на главную">
+    <div class="nav-logo-mark" aria-hidden="true">HK</div>
+    <span class="nav-logo-text">HOLI<span> KOREA</span></span>
+  </a>
+
+  <ul class="nav-links" role="list">
+    <li><a href="#benefits">Преимущества</a></li>
+    <li><a href="#brands">Бренды</a></li>
+    <li><a href="#steps">Как заказать</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+
+  <div class="nav-cta">
+    <a href="#cta" class="nav-contact-btn">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+      Контакты
+    </a>
+    <a href="#cta" class="btn btn-primary" style="padding:10px 20px;font-size:14px;">
+      Получить прайс
+    </a>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-inner">
+
+      <!-- Left -->
+      <div>
+        <div class="hero-eyebrow reveal">
+          <span class="badge badge-pink">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+            Прямые поставки из Кореи · 1000+ позиций в наличии
+          </span>
+        </div>
+
+        <h1 class="hero-title reveal reveal-delay-1">
+          HOLI KOREA —<br/>
+          <span>оптовый поставщик</span><br/>
+          корейской косметики
+        </h1>
+
+        <p class="hero-desc reveal reveal-delay-2">
+          Holi — дистрибьютор корейской косметики с базой в Корее. Более 10 лет работаем с партнёрами по СНГ и РФ. Актуальный ассортимент, стабильные поставки, оптовые условия.
+        </p>
+
+        <div class="hero-btns reveal reveal-delay-3">
+          <a href="#cta" class="btn btn-primary btn-lg">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            Получить оптовый прайс
+          </a>
+          <a href="https://wa.me/996559996969" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-lg">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.555 4.122 1.524 5.856L.057 23.272a.75.75 0 00.92.92l5.416-1.467A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.96 9.96 0 01-5.06-1.377l-.361-.214-3.741 1.013 1.013-3.741-.214-.361A9.96 9.96 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+            Написать в WhatsApp
+          </a>
+        </div>
+
+        <div class="hero-stats reveal reveal-delay-4">
+          <div>
+            <div class="hero-stat-val"><span id="count1">80</span>+</div>
+            <div class="hero-stat-lbl">корейских брендов</div>
+          </div>
+          <div>
+            <div class="hero-stat-val"><span id="count2">10</span>+</div>
+            <div class="hero-stat-lbl">лет на рынке</div>
+          </div>
+          <div>
+            <div class="hero-stat-val"><span id="count3">1000</span>+</div>
+            <div class="hero-stat-lbl">позиций в наличии</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right visual -->
+      <div class="hero-visual reveal reveal-delay-2" aria-hidden="true">
+        <div style="position:relative;width:100%;max-width:420px;">
+          <div class="orb-grid">
+            <!-- Card 1 -->
+            <div class="orb-card c1" style="height:180px;">
+              <div class="orb-inner">
+                <div class="orb-icon">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C24B6A" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/><path d="M8 6.5A3.5 3.5 0 0112 3a3.5 3.5 0 014 3.5"/></svg>
+                </div>
+                <div class="orb-label">Сыворотки & Тонеры</div>
+              </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="orb-card c2" style="height:180px;">
+              <div class="orb-inner">
+                <div class="orb-icon">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#3FBDB5" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                </div>
+                <div class="orb-label">Прямые поставки</div>
+              </div>
+            </div>
+            <!-- Card 3 tall -->
+            <div class="orb-card c3 tall" style="height:376px;">
+              <div class="orb-inner">
+                <div class="orb-icon">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#7B68C8" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+                </div>
+                <div class="orb-label" style="font-size:15px;font-weight:700;color:#7B68C8;">Korean<br/>Beauty</div>
+                <div style="margin-top:12px;font-size:11px;color:var(--ink-50);line-height:1.5;">Оригинальная<br/>продукция</div>
+              </div>
+            </div>
+            <!-- Card 4 -->
+            <div class="orb-card c4" style="height:180px;">
+              <div class="orb-inner">
+                <div class="orb-icon">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="1.5"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+                </div>
+                <div class="orb-label">Доставка СНГ</div>
+              </div>
+            </div>
+            <!-- Card 5 -->
+            <div class="orb-card c6" style="height:180px;">
+              <div class="orb-inner">
+                <div class="orb-icon">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                </div>
+                <div class="orb-label">Живой склад</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Float badges -->
+          <div class="hero-float-badge top">
+            <span class="dot dot-green"></span>
+            <span>80+ брендов в наличии</span>
+          </div>
+          <div class="hero-float-badge bot">
+            <span class="dot dot-pink"></span>
+            <span>Оптовый прайс — бесплатно</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ─── BENEFITS ─── -->
+<section id="benefits">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="badge badge-mint" style="margin-bottom:14px;">Почему выбирают нас</span>
+      <h2>Всё, что нужно<br/>для работы с опытом</h2>
+      <p>Мы не просто поставщик — мы партнёр, который помогает вашему бизнесу расти</p>
+    </div>
+
+    <div class="benefits-grid">
+      <div class="benefit-card reveal reveal-delay-1">
+        <div class="benefit-icon pink">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C24B6A" stroke-width="2" aria-hidden="true"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h3>Оригинальная продукция</h3>
+        <p>Работаем только с официальными поставщиками и дистрибьюторами из Южной Кореи. Никаких подделок.</p>
+      </div>
+
+      <div class="benefit-card reveal reveal-delay-2">
+        <div class="benefit-icon mint">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3FBDB5" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Прямые поставки из Кореи</h3>
+        <p>Закупаем напрямую у корейских производителей — без лишних посредников, по выгодным ценам.</p>
+      </div>
+
+      <div class="benefit-card reveal reveal-delay-3">
+        <div class="benefit-icon purple">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7B68C8" stroke-width="2" aria-hidden="true"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+        </div>
+        <h3>80+ брендов в наличии</h3>
+        <p>Anua, SKIN1004, TIRTIR, Round Lab, Isntree и десятки других популярных брендов корейской косметики.</p>
+      </div>
+
+      <div class="benefit-card reveal reveal-delay-4">
+        <div class="benefit-icon warm">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2" aria-hidden="true"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h3>Выгодные оптовые условия</h3>
+        <p>Прозрачное ценообразование, гибкие условия сотрудничества и индивидуальный подход для каждого клиента.</p>
+      </div>
+
+      <div class="benefit-card reveal reveal-delay-5">
+        <div class="benefit-icon blue">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2" aria-hidden="true"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
+        </div>
+        <h3>Доставка по СНГ</h3>
+        <p>Отправляем по Кыргызстану, Казахстану, России, Узбекистану и другим странам СНГ. Быстро и надёжно.</p>
+      </div>
+
+      <div class="benefit-card reveal reveal-delay-6">
+        <div class="benefit-icon green">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2" aria-hidden="true"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <h3>Помощь с подбором</h3>
+        <p>Менеджер поможет выбрать ассортимент под ваш бюджет, формат и целевую аудиторию.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ─── BRANDS ─── -->
+<section id="brands">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="badge badge-purple" style="margin-bottom:14px;">Бренды</span>
+      <h2>Популярные корейские<br/>бренды в наличии</h2>
+      <p>Мы работаем с самыми востребованными и трендовыми брендами K-beauty</p>
+    </div>
+
+    <div class="brands-pills reveal">
+      <span class="brand-pill featured">ANUA</span>
+      <span class="brand-pill featured">SKIN1004</span>
+      <span class="brand-pill featured">TIRTIR</span>
+      <span class="brand-pill">Round Lab</span>
+      <span class="brand-pill">Isntree</span>
+      <span class="brand-pill">Beplain</span>
+      <span class="brand-pill">Manyo Factory</span>
+      <span class="brand-pill">Medi-Peel</span>
+      <span class="brand-pill">Dr. Ceuracle</span>
+      <span class="brand-pill">Numbuzin</span>
+      <span class="brand-pill">Celimax</span>
+      <span class="brand-pill">Beauty of Joseon</span>
+      <span class="brand-pill">Cosrx</span>
+      <span class="brand-pill">Some By Mi</span>
+      <span class="brand-pill">Klairs</span>
+      <span class="brand-pill">Laneige</span>
+      <span class="brand-pill">Innisfree</span>
+      <span class="brand-pill">Etude House</span>
+      <span class="brand-pill">Missha</span>
+      <span class="brand-pill">The Face Shop</span>
+      <span class="brand-pill">Purito</span>
+      <span class="brand-pill">Abib</span>
+      <span class="brand-pill">Ma:nyo</span>
+      <span class="brand-pill">Torriden</span>
+      <span class="brand-pill">Rovectin</span>
+      <span class="brand-pill">IOPE</span>
+      <span class="brand-pill">и многие другие</span>
+    </div>
+
+    <p class="brands-note reveal">
+      Не нашли нужный бренд? — Напишите нам, мы уточним наличие
+    </p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ─── CATEGORIES ─── -->
+<section id="categories" style="background:var(--white);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="badge badge-pink" style="margin-bottom:14px;">Ассортимент</span>
+      <h2>Категории товаров</h2>
+      <p>Полный ассортимент для ухода за кожей, волосами и декоративной косметики</p>
+    </div>
+
+    <div class="categories-grid">
+      <div class="cat-card reveal reveal-delay-1">
+        <div class="cat-icon-wrap" style="background:var(--berry-pale);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C24B6A" stroke-width="1.8" aria-hidden="true"><path d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+        </div>
+        <div>
+          <h3>Очищение</h3>
+          <p>Пенки, гели, масла, мицеллярные воды</p>
+        </div>
+      </div>
+
+      <div class="cat-card reveal reveal-delay-2">
+        <div class="cat-icon-wrap" style="background:var(--mint-pale);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3FBDB5" stroke-width="1.8" aria-hidden="true"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+        </div>
+        <div>
+          <h3>Тонеры</h3>
+          <p>Увлажняющие, успокаивающие, осветляющие</p>
+        </div>
+      </div>
+
+      <div class="cat-card reveal reveal-delay-3">
+        <div class="cat-icon-wrap" style="background:var(--purple-light);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7B68C8" stroke-width="1.8" aria-hidden="true"><path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>
+        </div>
+        <div>
+          <h3>Сыворотки</h3>
+          <p>Ампулы, эссенции, концентраты</p>
+        </div>
+      </div>
+
+      <div class="cat-card reveal reveal-delay-4">
+        <div class="cat-icon-wrap" style="background:#FFF5F0;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        </div>
+        <div>
+          <h3>Кремы</h3>
+          <p>Дневные, ночные, увлажняющие, питательные</p>
+        </div>
+      </div>
+
+      <div class="cat-card reveal reveal-delay-5">
+        <div class="cat-icon-wrap" style="background:#FFFDE7;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </div>
+        <div>
+          <h3>SPF / Солнцезащита</h3>
+          <p>Лёгкие санскрины, BB, CC кремы с SPF</p>
+        </div>
+      </div>
+
+      <div class="cat-card reveal reveal-delay-6">
+        <div class="cat-icon-wrap" style="background:#F0FDF4;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="1.8" aria-hidden="true"><path d="M20 14.66V20a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2h5.34"/><polygon points="18 2 22 6 12 16 8 16 8 12 18 2"/></svg>
+        </div>
+        <div>
+          <h3>Маски и патчи</h3>
+          <p>Тканевые маски, гидрогелевые патчи, ночные маски</p>
+        </div>
+      </div>
+
+      <div class="cat-card reveal reveal-delay-1">
+        <div class="cat-icon-wrap" style="background:#FDF2F5;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C24B6A" stroke-width="1.8" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <div>
+          <h3>Декоративная косметика</h3>
+          <p>Тушь, тинты, хайлайтеры, консилеры</p>
+        </div>
+      </div>
+
+      <div class="cat-card reveal reveal-delay-2">
+        <div class="cat-icon-wrap" style="background:#EFF6FF;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.8" aria-hidden="true"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/></svg>
+        </div>
+        <div>
+          <h3>Уход за телом</h3>
+          <p>Лосьоны, скрабы, маски для тела</p>
+        </div>
+      </div>
+
+      <div class="cat-card reveal reveal-delay-3">
+        <div class="cat-icon-wrap" style="background:var(--purple-light);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7B68C8" stroke-width="1.8" aria-hidden="true"><path d="M9.59 4.59A2 2 0 1111 8H2m10.59 11.41A2 2 0 1010 16H2m15.73-8.27A2.5 2.5 0 1119.5 12H2"/></svg>
+        </div>
+        <div>
+          <h3>Уход за волосами</h3>
+          <p>Шампуни, маски, сыворотки для волос</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ─── STEPS ─── -->
+<section id="steps">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>Как оформить заказ</h2>
+      <p>Просто и быстро — от выбора товаров до доставки прямо к вам</p>
+    </div>
+
+    <div class="steps-row">
+      <div class="step-item reveal reveal-delay-1">
+        <div class="step-num">1</div>
+        <h3>Укажите данные</h3>
+        <p>При заявке укажите: имя, город, магазин (Instagram) и список нужных товаров</p>
+      </div>
+      <div class="step-item reveal reveal-delay-2">
+        <div class="step-num">2</div>
+        <h3>Выберите товары</h3>
+        <p>Откройте каталог и выберите позиции. Отправьте заявку нам в WhatsApp</p>
+      </div>
+      <div class="step-item reveal reveal-delay-3">
+        <div class="step-num">3</div>
+        <h3>Оплатите заказ</h3>
+        <p>Получите подтверждение и оплатите 100% заказа — Mbank, Optima или Золотая корона</p>
+      </div>
+      <div class="step-item reveal reveal-delay-4">
+        <div class="step-num">4</div>
+        <h3>Получите доставку</h3>
+        <p>Мы организуем доставку. Укажите адрес и номер телефона — привезём по КГ и СНГ</p>
+      </div>
+    </div>
+
+    <!-- Catalog CTA -->
+    <div class="steps-catalog reveal" style="margin-top:52px;text-align:center;">
+      <a href="https://b2b.moysklad.ru/public/jL4aBdhiXQvt/catalog" target="_blank" rel="noopener noreferrer" class="btn btn-outline-white btn-lg" style="border-color:rgba(255,255,255,.5);font-size:15px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+        Открыть онлайн-каталог и выбрать товары
+      </a>
+      <p style="margin-top:14px;font-size:13px;color:rgba(255,255,255,.6);">Работаем с магазинами · Instagram-магазинами · Маркетплейсами · Офлайн-точками</p>
+    </div>
+
+    <!-- Min order & geography pills -->
+    <div class="steps-info reveal" style="margin-top:40px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <div class="step-info-pill">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
+        <span>Кыргызстан — от <strong>$200</strong></span>
+      </div>
+      <div class="step-info-pill">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+        <span>СНГ и Россия — от <strong>$500</strong></span>
+      </div>
+      <div class="step-info-pill">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        <span>Оплата: Mbank · Optima · Золотая корона</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider" style="background:rgba(255,255,255,.15);"></div>
+
+<!-- ─── AUDIENCE ─── -->
+<section id="audience" style="background:var(--cream);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="badge badge-mint" style="margin-bottom:14px;">Для кого</span>
+      <h2>HOLI KOREA подходит<br/>именно вам</h2>
+      <p>Работаем с разными форматами бизнеса — от магазинов до косметологов</p>
+    </div>
+
+    <div class="audience-grid">
+      <div class="audience-card reveal reveal-delay-1">
+        <div class="audience-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3FBDB5" stroke-width="2" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>Магазины косметики</h3>
+        <p>Пополняйте ассортимент проверенными брендами. Помогаем выбрать то, что хорошо продаётся.</p>
+      </div>
+
+      <div class="audience-card reveal reveal-delay-2">
+        <div class="audience-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3FBDB5" stroke-width="2" aria-hidden="true"><path d="M14.121 14.121L19 19m-7-7l5.879 5.879M14.121 14.121L9 19M14.121 14.121l-5.879-5.879M9 5l1.879 1.879M9 5l5 5M9 5L4.121 9.879M9 19l1.879-1.879M9 19l-1.879-1.879"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <h3>Салоны красоты</h3>
+        <p>Профессиональная корейская косметика для кабинетов и продажи клиентам после процедур.</p>
+      </div>
+
+      <div class="audience-card reveal reveal-delay-3">
+        <div class="audience-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3FBDB5" stroke-width="2" aria-hidden="true"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h3>Косметологи</h3>
+        <p>Профессиональный уход и средства домашнего применения — всё в одном месте.</p>
+      </div>
+
+      <div class="audience-card reveal reveal-delay-4">
+        <div class="audience-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3FBDB5" stroke-width="2" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+        </div>
+        <h3>Маркетплейс-продавцы</h3>
+        <p>Продаёте на Wildberries, Ozon, Kaspi? Обеспечим товаром с хорошей маржой.</p>
+      </div>
+
+      <div class="audience-card reveal reveal-delay-5">
+        <div class="audience-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3FBDB5" stroke-width="2" aria-hidden="true"><path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>
+        </div>
+        <h3>Начинающие предприниматели</h3>
+        <p>Поможем разобраться с ассортиментом, ценообразованием и первыми шагами в бизнесе.</p>
+      </div>
+
+      <div class="audience-card reveal reveal-delay-6">
+        <div class="audience-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3FBDB5" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><path d="M16 8h-6a2 2 0 000 4h4a2 2 0 010 4H8"/><path d="M12 18V6"/></svg>
+        </div>
+        <h3>Шоурумы</h3>
+        <p>Эксклюзивные позиции и актуальные новинки для шоурумов и концепт-сторов.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ─── GALLERY ─── -->
+<section id="gallery">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="badge badge-pink" style="margin-bottom:14px;">Наш склад</span>
+      <h2>Живой склад в Бишкеке</h2>
+      <p>Широкий выбор оригинальной корейской косметики всегда в наличии</p>
+    </div>
+
+    <div class="gallery-grid reveal">
+
+      <!-- Полки склада — wide -->
+      <div class="gallery-item span-2 always-label" style="background:#F0E8EF;">
+        <img
+          class="gi-photo"
+          src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=900&h=440&fit=crop&q=85"
+          alt="Полки с корейской косметикой на складе HOLI KOREA"
+          loading="lazy"
+        />
+        <div class="gi-overlay">
+          <p>Полки с продукцией корейских брендов</p>
+          <span>Склад HOLI KOREA · Бишкек</span>
+        </div>
+      </div>
+
+      <!-- Упаковка — tall -->
+      <div class="gallery-item tall always-label" style="background:#E8E5F0;">
+        <img
+          class="gi-photo"
+          src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=500&h=460&fit=crop&q=85"
+          alt="Коробки с товаром готовы к отправке"
+          loading="lazy"
+        />
+        <div class="gi-overlay">
+          <p>Коробки с товаром готовы к отправке</p>
+          <span>Упаковка и доставка</span>
+        </div>
+      </div>
+
+      <!-- Популярные позиции -->
+      <div class="gallery-item" style="background:#E5EFF0;">
+        <img
+          class="gi-photo"
+          src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=500&h=220&fit=crop&q=85"
+          alt="Популярные позиции корейской косметики"
+          loading="lazy"
+        />
+        <div class="gi-overlay">
+          <p>Популярные позиции</p>
+        </div>
+      </div>
+
+      <!-- Новинки -->
+      <div class="gallery-item" style="background:#E8F0E8;">
+        <img
+          class="gi-photo"
+          src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=500&h=220&fit=crop&q=85"
+          alt="Новинки корейского рынка косметики"
+          loading="lazy"
+        />
+        <div class="gi-overlay">
+          <p>Новинки корейского рынка</p>
+        </div>
+      </div>
+
+      <!-- Команда — wide -->
+      <div class="gallery-item span-2 always-label" style="background:#F0EDE8;">
+        <img
+          class="gi-photo"
+          src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=900&h=440&fit=crop&q=85"
+          alt="Команда менеджеров HOLI KOREA"
+          loading="lazy"
+        />
+        <div class="gi-overlay">
+          <p>Наша команда готова помочь с подбором</p>
+          <span>Менеджеры HOLI KOREA</span>
+        </div>
+      </div>
+
+    </div>
+
+    <p style="text-align:center;margin-top:24px;font-size:13px;color:var(--ink-50);">
+      Больше фото и видео — в нашем
+      <a href="https://www.instagram.com/holi.korea/" target="_blank" rel="noopener noreferrer" style="color:var(--berry);font-weight:600;text-decoration:none;">Instagram @holi.korea</a>
+    </p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ─── TRUST ─── -->
+<section id="trust" style="background:var(--cream);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="badge badge-purple" style="margin-bottom:14px;">О компании</span>
+      <h2>Holi — Korean Cosmetics<br/>Distributor (CIS)</h2>
+      <p>Дистрибьютор корейской косметики с базой в Корее. Более 10 лет работаем с партнёрами по СНГ и РФ. Актуальный ассортимент и стабильные поставки.</p>
+    </div>
+
+    <div class="trust-grid">
+      <div class="trust-list">
+        <div class="trust-item reveal reveal-delay-1">
+          <div class="trust-dot" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <h4>Только оригинальная продукция</h4>
+            <p>Прямые поставки из Кореи — никаких посредников и подделок</p>
+          </div>
+        </div>
+
+        <div class="trust-item reveal reveal-delay-2">
+          <div class="trust-dot" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <h4>Современные бренды и новинки</h4>
+            <p>1000+ позиций — популярные бренды и актуальные тренды K-beauty</p>
+          </div>
+        </div>
+
+        <div class="trust-item reveal reveal-delay-3">
+          <div class="trust-dot" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <h4>Быстрая обработка заказов</h4>
+            <p>Оперативно подтверждаем заказы и организуем доставку по КГ и СНГ</p>
+          </div>
+        </div>
+
+        <div class="trust-item reveal reveal-delay-4">
+          <div class="trust-dot" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <h4>Оптовые условия для роста</h4>
+            <p>Прозрачные цены, гибкие условия и персональный подход к каждому партнёру</p>
+          </div>
+        </div>
+
+        <div class="trust-item reveal reveal-delay-5">
+          <div class="trust-dot" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <h4>10+ лет с партнёрами по СНГ и РФ</h4>
+            <p>Стабильные поставки, живой склад в Бишкеке, самовывоз ежедневно</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-grid" id="statsGrid">
+        <div class="stat-glass s1 reveal reveal-delay-1">
+          <div class="stat-num">
+            <span class="n" data-target="80" id="ts1">0</span>
+            <span class="plus">+</span>
+          </div>
+          <div class="stat-lbl-g">брендов корейской косметики</div>
+        </div>
+        <div class="stat-glass s2 reveal reveal-delay-2">
+          <div class="stat-num">
+            <span class="n" data-target="500" id="ts2">0</span>
+            <span class="plus">+</span>
+          </div>
+          <div class="stat-lbl-g">оптовых клиентов по СНГ</div>
+        </div>
+        <div class="stat-glass s3 reveal reveal-delay-3">
+          <div class="stat-num">
+            <span class="n" data-target="10" id="ts3">0</span>
+            <span class="plus">+</span>
+          </div>
+          <div class="stat-lbl-g">лет на рынке корейской косметики</div>
+        </div>
+        <div class="stat-glass s4 reveal reveal-delay-4">
+          <div class="stat-num">
+            <span class="n" data-target="1000" id="ts4">0</span>
+            <span class="plus">+</span>
+          </div>
+          <div class="stat-lbl-g">позиций корейской косметики</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ─── FAQ ─── -->
+<section id="faq" style="background:var(--white);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="badge badge-mint" style="margin-bottom:14px;">FAQ</span>
+      <h2>Часто задаваемые<br/>вопросы</h2>
+      <p>Если не нашли ответ — напишите нам, ответим быстро</p>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">
+          Как получить оптовый прайс?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">Напишите нам в WhatsApp, Telegram или Instagram. Менеджер уточнит ваш формат бизнеса и отправит актуальный прайс-лист. Это бесплатно и без каких-либо обязательств.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-1">
+        <button class="faq-q" aria-expanded="false">
+          Есть ли минимальная сумма заказа?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">Да. Для Кыргызстана — от <strong>$200</strong>, для других стран СНГ и России — от <strong>$500</strong>. Оплата 100% при оформлении заказа: Mbank, Optima или Золотая корона.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-2">
+        <button class="faq-q" aria-expanded="false">
+          В какие страны есть доставка?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">Работаем по всему Кыргызстану (самовывоз с р-к Джунхай, стоянка Терминал, 7-8 контейнер, Бишкек) и организуем доставку по странам СНГ и России. Минимальный заказ для СНГ/РФ — от $500.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-3">
+        <button class="faq-q" aria-expanded="false">
+          Можно ли заказать подбор ассортимента?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">Да, это одна из наших главных услуг. Менеджер поможет подобрать ассортимент под ваш бюджет, формат магазина и целевую аудиторию. Мы знаем, что продаётся, и поделимся этим опытом.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-4">
+        <button class="faq-q" aria-expanded="false">
+          Все ли товары оригинальные?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">100% оригинальная продукция. Мы работаем только с официальными каналами поставок и дистрибьюторами из Южной Кореи. Никаких подделок или серого импорта — это принципиальная позиция.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-5">
+        <button class="faq-q" aria-expanded="false">
+          Как связаться с менеджером?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">Напишите нам в WhatsApp или Telegram — это самый быстрый способ. Также можно написать в Instagram @holi.korea. Отвечаем в рабочее время в течение часа, а чаще — быстрее.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── LOCATION ─── -->
+<section id="location">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="badge badge-pink" style="margin-bottom:14px;">Где нас найти</span>
+      <h2>Наш склад в Бишкеке</h2>
+      <p>Приезжайте — посмотрите товар вживую, заберёте самовывозом</p>
+    </div>
+
+    <div class="location-grid">
+      <!-- Map -->
+      <div class="map-wrap reveal">
+        <iframe
+          src="https://maps.google.com/maps?q=%D0%B4%D0%B6%D1%83%D0%BD%D1%85%D0%B0%D0%B9+%D1%80%D1%8B%D0%BD%D0%BE%D0%BA+%D0%91%D0%B8%D1%88%D0%BA%D0%B5%D0%BA&t=&z=15&ie=UTF8&iwloc=&output=embed"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="HOLI KOREA на карте — р-к Джунхай, Бишкек"
+        ></iframe>
+      </div>
+
+      <!-- Info -->
+      <div class="location-info reveal reveal-delay-2">
+
+        <div class="loc-address">
+          <div class="loc-address-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C24B6A" stroke-width="2" aria-hidden="true"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
+          </div>
+          <div class="loc-address-text">
+            <h4>Адрес</h4>
+            <p>р-к Джунхай, стоянка Терминал<br/>7-8 контейнер<br/>Бишкек, Кыргызстан 720001</p>
+          </div>
+        </div>
+
+        <div class="loc-hours-grid">
+          <div class="loc-hour-card">
+            <div class="loc-hour-label">График работы</div>
+            <div class="loc-hour-val">Ежедневно</div>
+          </div>
+          <div class="loc-hour-card">
+            <div class="loc-hour-label">Часы</div>
+            <div class="loc-hour-val">09:00 — 16:00</div>
+          </div>
+          <div class="loc-hour-card">
+            <div class="loc-hour-label">Минимальный заказ КГ</div>
+            <div class="loc-hour-val" style="color:var(--berry);">от $200</div>
+          </div>
+          <div class="loc-hour-card">
+            <div class="loc-hour-label">Минимальный заказ СНГ/РФ</div>
+            <div class="loc-hour-val" style="color:var(--berry);">от $500</div>
+          </div>
+        </div>
+
+        <div class="catalog-card">
+          <div class="catalog-card-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          </div>
+          <div style="flex:1;">
+            <h4>Онлайн-каталог товаров</h4>
+            <p>Выберите позиции и отправьте список в WhatsApp</p>
+            <a href="https://b2b.moysklad.ru/public/jL4aBdhiXQvt/catalog" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              Открыть каталог
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <a href="https://wa.me/996559996969" target="_blank" rel="noopener noreferrer" class="cta-social-btn wa" style="font-size:13px;padding:11px 18px;">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.555 4.122 1.524 5.856L.057 23.272a.75.75 0 00.92.92l5.416-1.467A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.96 9.96 0 01-5.06-1.377l-.361-.214-3.741 1.013 1.013-3.741-.214-.361A9.96 9.96 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+            WhatsApp
+          </a>
+          <a href="https://t.me/holikorea" target="_blank" rel="noopener noreferrer" class="cta-social-btn tg" style="font-size:13px;padding:11px 18px;">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+            Telegram
+          </a>
+          <a href="https://www.instagram.com/holi.korea/" target="_blank" rel="noopener noreferrer" class="cta-social-btn ig" style="font-size:13px;padding:11px 18px;">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            Instagram
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ─── CTA FINAL ─── -->
+<section id="cta">
+  <div class="container">
+    <div class="cta-inner">
+      <span class="badge" style="background:rgba(255,255,255,.12);color:#fff;margin-bottom:20px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        Связаться с нами
+      </span>
+
+      <h2 class="reveal">Хотите получить<br/>оптовый прайс?</h2>
+      <p class="reveal reveal-delay-1">Оставьте заявку — менеджер свяжется с вами и поможет подобрать товары для вашего бизнеса.</p>
+
+      <div class="cta-btns reveal reveal-delay-2">
+        <a href="https://wa.me/996559996969" target="_blank" rel="noopener noreferrer" class="btn btn-lg" style="background:var(--berry);color:#fff;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          Получить оптовый прайс
+        </a>
+        <a href="https://b2b.moysklad.ru/public/jL4aBdhiXQvt/catalog" target="_blank" rel="noopener noreferrer" class="btn btn-lg" style="background:rgba(255,255,255,.12);color:#fff;border:1.5px solid rgba(255,255,255,.35);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          Открыть каталог
+        </a>
+      </div>
+
+      <div class="cta-social reveal reveal-delay-3">
+        <a href="https://wa.me/996559996969" target="_blank" rel="noopener noreferrer" class="cta-social-btn wa">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.555 4.122 1.524 5.856L.057 23.272a.75.75 0 00.92.92l5.416-1.467A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.96 9.96 0 01-5.06-1.377l-.361-.214-3.741 1.013 1.013-3.741-.214-.361A9.96 9.96 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+          WhatsApp
+        </a>
+        <a href="https://www.instagram.com/holi.korea/" target="_blank" rel="noopener noreferrer" class="cta-social-btn ig">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          Instagram
+        </a>
+        <a href="https://t.me/holikorea" target="_blank" rel="noopener noreferrer" class="cta-social-btn tg">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          Telegram
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <a href="#" class="footer-logo" aria-label="HOLI KOREA">
+        <div class="footer-logo-mark" aria-hidden="true">HK</div>
+        <span class="footer-logo-name">HOLI KOREA</span>
+      </a>
+
+      <div class="footer-links">
+        <a href="#benefits">Преимущества</a>
+        <a href="#brands">Бренды</a>
+        <a href="#steps">Как заказать</a>
+        <a href="#faq">FAQ</a>
+        <a href="https://www.instagram.com/holi.korea/" target="_blank" rel="noopener noreferrer">Instagram</a>
+      </div>
+
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">
+        <span>© 2024 HOLI KOREA. Бишкек, Кыргызстан</span>
+        <span class="footer-credit">
+          Разработчик сайта — <a href="https://alihan-portfolio.vercel.app" target="_blank" rel="noopener noreferrer">Alihan</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ── Navbar scroll ── */
+  const navbar = document.getElementById('navbar');
+  const scrollLine = document.getElementById('scrollLine');
+
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY > 20;
+    navbar.classList.toggle('scrolled', scrolled);
+
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    scrollLine.style.width = (window.scrollY / total * 100) + '%';
+  }, { passive: true });
+
+  /* ── Intersection Observer for reveals ── */
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  revealEls.forEach(el => observer.observe(el));
+
+  /* ── FAQ accordion ── */
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  /* ── Smooth counter (hero stats) ── */
+  function animateCounter(el, target, duration = 1200) {
+    let start = null;
+    const step = (ts) => {
+      if (!start) start = ts;
+      const progress = Math.min((ts - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(eased * target);
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  const heroSection = document.getElementById('hero');
+  let countersStarted = false;
+  new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting && !countersStarted) {
+      countersStarted = true;
+      animateCounter(document.getElementById('count1'), 80);
+      animateCounter(document.getElementById('count2'), 10);
+      animateCounter(document.getElementById('count3'), 1000, 1800);
+    }
+  }, { threshold: 0.4 }).observe(heroSection);
+
+  /* ── Trust stats counter ── */
+  function animateNum(el, target, duration = 1400) {
+    const start = performance.now();
+    const step = (now) => {
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(eased * target);
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  let trustCountersDone = false;
+  const statsGrid = document.getElementById('statsGrid');
+  if (statsGrid) {
+    new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && !trustCountersDone) {
+        trustCountersDone = true;
+        animateNum(document.getElementById('ts1'), 80);
+        animateNum(document.getElementById('ts2'), 500, 1800);
+        animateNum(document.getElementById('ts3'), 10, 900);
+        animateNum(document.getElementById('ts4'), 1000, 2000);
+      }
+    }, { threshold: 0.3 }).observe(statsGrid);
+  }
+
+  /* ── Prefers-reduced-motion ── */
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    [{id:'ts1',v:80},{id:'ts2',v:500},{id:'ts3',v:10},{id:'ts4',v:1000}].forEach(({id,v}) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = v;
+    });
+  }
+</script>
+</body>
+</html>
