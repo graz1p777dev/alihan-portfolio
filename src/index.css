@@ -209,6 +209,13 @@ input:focus, textarea:focus { border-color: rgba(0,232,122,.4); box-shadow: 0 0 
   border: 1px solid rgba(0,232,122,0.2);
   padding: 3px 9px; border-radius: 5px;
 }
+/* Приватные проекты: система закрыта, публичной ссылки нет — бейдж
+   приглушённый, чтобы не читался как активная кнопка «Открыть». */
+.proj-badge-lock {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(255,255,255,0.06); color: #94A3B8;
+  border: 1px solid rgba(255,255,255,0.12);
+}
 .proj-visit-btn {
   display: inline-flex; align-items: center; gap: 6px;
   background: #00E87A; color: #07090F;

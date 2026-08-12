@@ -10,6 +10,10 @@ const EXT_ICON = (
   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
 )
 
+const LOCK_ICON = (
+  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+)
+
 export default function Projects({ t, openLb }) {
   // Открывает лайтбокс при клике по обёртке изображения, но игнорирует клики по кнопке «Открыть»
   function handleImgWrapClick(e, src, alt) {
@@ -87,10 +91,105 @@ export default function Projects({ t, openLb }) {
             </div>
           </div>
 
+          <div className="proj-card sr">
+            <div className="proj-img-wrap" style={{cursor:'zoom-in'}} onClick={e => handleImgWrapClick(e, '/img/Mostovoy-CRM.webp', 'CRM Мостовой')}>
+              <img src="/img/Mostovoy-CRM.webp" alt="CRM Мостовой" className="proj-img" loading="lazy" />
+              <div className="proj-overlay">
+                <span className="proj-badge proj-badge-lock">{LOCK_ICON} приватный · CRM</span>
+              </div>
+            </div>
+            <div className="proj-body">
+              <p className="font-mono text-[10px] text-orange mb-1">crm · ai · приватный доступ</p>
+              <h3 className="font-heading font-black text-lg text-text mb-1.5">CRM Мостовой</h3>
+              <p className="text-muted text-xs leading-relaxed mb-3">Система управления магазином техники: каталог, сделки, диалоги с клиентами, план по выручке и расчёт зарплаты в одном месте. Клиентам отвечает ИИ-бот в Telegram и WhatsApp — он консультирует сам, а сделка заводится в CRM автоматически с первого сообщения.</p>
+              <div className="flex flex-wrap gap-1.5">
+                <span className="tag tag-js">Next.js</span>
+                <span className="tag tag-db">Supabase</span>
+                <span className="tag tag-tg">Telegram</span>
+                <span className="tag tag-ai">AI</span>
+              </div>
+              <div className="mt-3 pt-3 border-t border-border/40">
+                <span className="inline-flex items-center gap-1.5 text-muted font-mono text-[11px]">
+                  {LOCK_ICON} закрытая система клиента
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div className="proj-card sr d1">
+            <div className="proj-img-wrap" style={{cursor:'zoom-in'}} onClick={e => handleImgWrapClick(e, '/img/Smilekit-CRM.webp', 'CRM SmileKit')}>
+              <img src="/img/Smilekit-CRM.webp" alt="CRM SmileKit" className="proj-img" loading="lazy" />
+              <div className="proj-overlay">
+                <span className="proj-badge proj-badge-lock">{LOCK_ICON} приватный · CRM</span>
+              </div>
+            </div>
+            <div className="proj-body">
+              <p className="font-mono text-[10px] text-purple mb-1">crm · ai · приватный доступ</p>
+              <h3 className="font-heading font-black text-lg text-text mb-1.5">CRM SmileKit</h3>
+              <p className="text-muted text-xs leading-relaxed mb-3">CRM бренда для домашнего отбеливания: воронка продаж, финансы, KPI, зарплаты и рассылки. Заявки приводит ИИ-бот — он ведёт переписку в Telegram и WhatsApp через amoCRM, отвечает на вопросы о продукте и передаёт клиента менеджеру, когда тот готов купить.</p>
+              <div className="flex flex-wrap gap-1.5">
+                <span className="tag tag-js">Next.js</span>
+                <span className="tag tag-db">Supabase</span>
+                <span className="tag tag-py">Python</span>
+                <span className="tag tag-ai">AI</span>
+              </div>
+              <div className="mt-3 pt-3 border-t border-border/40">
+                <span className="inline-flex items-center gap-1.5 text-muted font-mono text-[11px]">
+                  {LOCK_ICON} закрытая система клиента
+                </span>
+              </div>
+            </div>
+          </div>
+
         </div>
 
         {/* Websites catalog */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+          <div className="proj-card sr">
+            <div className="proj-img-wrap" style={{cursor:'zoom-in'}} onClick={e => handleImgWrapClick(e, '/img/Mostovoy.webp', 'Мостовой — магазин техники')}>
+              <img src="/img/Mostovoy.webp" alt="Мостовой — магазин техники" className="proj-img" loading="lazy" />
+              <div className="proj-overlay">
+                <span className="proj-badge">web · магазин техники</span>
+                <a href="https://mostovoy.vercel.app" target="_blank" rel="noopener" className="proj-visit-btn">
+                  {EXT_ICON} Открыть
+                </a>
+              </div>
+            </div>
+            <div className="proj-body">
+              <p className="font-mono text-[10px] text-orange mb-1">web · техника и рассрочка</p>
+              <h3 className="font-heading font-black text-base text-text mb-1.5">Мостовой</h3>
+              <p className="text-muted text-xs leading-relaxed mb-3">Витрина магазина техники: каталог на 700+ позиций, обмен старого устройства на новый и рассрочка. Заявки уходят в Telegram-бот и сразу становятся сделками в CRM.</p>
+              <div className="flex flex-wrap gap-1.5">
+                <span className="tag tag-js">JavaScript</span>
+                <span className="tag tag-dim">Express</span>
+                <span className="tag tag-tg">Telegram</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="proj-card sr d1">
+            <div className="proj-img-wrap" style={{cursor:'zoom-in'}} onClick={e => handleImgWrapClick(e, '/img/Smilekit.webp', 'SmileKit — отбеливающие полоски')}>
+              <img src="/img/Smilekit.webp" alt="SmileKit — отбеливающие полоски" className="proj-img" loading="lazy" />
+              <div className="proj-overlay">
+                <span className="proj-badge">web · landing</span>
+                <a href="https://smilekit.vercel.app" target="_blank" rel="noopener" className="proj-visit-btn">
+                  {EXT_ICON} Открыть
+                </a>
+              </div>
+            </div>
+            <div className="proj-body">
+              <p className="font-mono text-[10px] text-purple mb-1">web · уход за улыбкой</p>
+              <h3 className="font-heading font-black text-base text-text mb-1.5">SmileKit</h3>
+              <p className="text-muted text-xs leading-relaxed mb-3">Лендинг бренда отбеливающих полосок: продукт, отзывы, FAQ и заказ. Заказ передаётся ИИ-боту, который дальше ведёт клиента сам.</p>
+              <div className="flex flex-wrap gap-1.5">
+                <span className="tag tag-js">JavaScript</span>
+                <span className="tag tag-dim">HTML / CSS</span>
+                <span className="tag tag-ai">AI</span>
+              </div>
+            </div>
+          </div>
+
 
           <div className="proj-card sr">
             <div className="proj-img-wrap" style={{cursor:'zoom-in'}} onClick={e => handleImgWrapClick(e, '/img/Victorina.webp', 'Victorina — платформа тестов для юристов')}>
