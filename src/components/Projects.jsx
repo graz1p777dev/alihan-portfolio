@@ -31,7 +31,7 @@ export default function Projects({ t, openLb }) {
           <p className="text-muted mt-3 text-sm">{t('proj-sub')}</p>
         </div>
 
-        {/* Featured: 2 Demi projects */}
+        {/* Featured projects and CRM systems */}
         <div className="grid md:grid-cols-2 gap-5 mb-5">
 
           <div className="proj-card sr">
@@ -99,7 +99,7 @@ export default function Projects({ t, openLb }) {
               </div>
             </div>
             <div className="proj-body">
-              <p className="font-mono text-[10px] text-orange mb-1">crm · ai · приватный доступ</p>
+              <p className="font-mono text-[10px] text-orange mb-1">сделано мной · crm · ai</p>
               <h3 className="font-heading font-black text-lg text-text mb-1.5">CRM Мостовой</h3>
               <p className="text-muted text-xs leading-relaxed mb-3">Система управления магазином техники: каталог, сделки, диалоги с клиентами, план по выручке и расчёт зарплаты в одном месте. Клиентам отвечает ИИ-бот в Telegram и WhatsApp — он консультирует сам, а сделка заводится в CRM автоматически с первого сообщения.</p>
               <div className="flex flex-wrap gap-1.5">
@@ -124,7 +124,7 @@ export default function Projects({ t, openLb }) {
               </div>
             </div>
             <div className="proj-body">
-              <p className="font-mono text-[10px] text-purple mb-1">crm · ai · приватный доступ</p>
+              <p className="font-mono text-[10px] text-purple mb-1">сделано мной · crm · ai</p>
               <h3 className="font-heading font-black text-lg text-text mb-1.5">CRM SmileKit</h3>
               <p className="text-muted text-xs leading-relaxed mb-3">CRM бренда для домашнего отбеливания: воронка продаж, финансы, KPI, зарплаты и рассылки. Заявки приводит ИИ-бот — он ведёт переписку в Telegram и WhatsApp через amoCRM, отвечает на вопросы о продукте и передаёт клиента менеджеру, когда тот готов купить.</p>
               <div className="flex flex-wrap gap-1.5">
@@ -137,6 +137,44 @@ export default function Projects({ t, openLb }) {
                 <span className="inline-flex items-center gap-1.5 text-muted font-mono text-[11px]">
                   {LOCK_ICON} закрытая система клиента
                 </span>
+              </div>
+            </div>
+          </div>
+
+          <div className="proj-card sr">
+            <div className="proj-img-wrap" style={{cursor:'zoom-in'}} onClick={e => handleImgWrapClick(e, '/img/Cashflow.jpg', 'Cashflow Club OK4U')}>
+              <img src="/img/Cashflow.jpg" alt="Сайт Cashflow Club OK4U" className="proj-img" loading="lazy" />
+              <div className="proj-overlay">
+                <span className="proj-badge">сделано мной · web</span>
+              </div>
+            </div>
+            <div className="proj-body">
+              <p className="font-mono text-[10px] text-accent mb-1">сделано мной · агентство Азиза · web</p>
+              <h3 className="font-heading font-black text-lg text-text mb-1.5">Cashflow Club OK4U</h3>
+              <p className="text-muted text-xs leading-relaxed mb-3">Сайт клуба настольной игры Cashflow в Бишкеке: формат встреч, расписание, правила и запись на игру.</p>
+              <div className="flex flex-wrap gap-1.5">
+                <span className="tag tag-js">Сайт</span>
+                <span className="tag tag-dim">Запись на игру</span>
+                <span className="tag tag-db">Бишкек</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="proj-card sr d1">
+            <div className="proj-img-wrap" style={{cursor:'zoom-in'}} onClick={e => handleImgWrapClick(e, '/img/Cashflow-CRM.jpg', 'Cashflow CRM')}>
+              <img src="/img/Cashflow-CRM.jpg" alt="CRM проекта Cashflow" className="proj-img" loading="lazy" />
+              <div className="proj-overlay">
+                <span className="proj-badge">сделано мной · CRM</span>
+              </div>
+            </div>
+            <div className="proj-body">
+              <p className="font-mono text-[10px] text-purple mb-1">сделано мной · агентство Азиза · crm</p>
+              <h3 className="font-heading font-black text-lg text-text mb-1.5">Cashflow CRM</h3>
+              <p className="text-muted text-xs leading-relaxed mb-3">CRM для управления заявками и участниками клуба: воронка сделок, этапы записи, контакты, оплаты и заявки из Telegram.</p>
+              <div className="flex flex-wrap gap-1.5">
+                <span className="tag tag-db">CRM</span>
+                <span className="tag tag-tg">Telegram</span>
+                <span className="tag tag-ai">Автоматизация</span>
               </div>
             </div>
           </div>
@@ -157,7 +195,7 @@ export default function Projects({ t, openLb }) {
               </div>
             </div>
             <div className="proj-body">
-              <p className="font-mono text-[10px] text-orange mb-1">web · техника и рассрочка</p>
+              <p className="font-mono text-[10px] text-orange mb-1">сделано мной · web</p>
               <h3 className="font-heading font-black text-base text-text mb-1.5">Мостовой</h3>
               <p className="text-muted text-xs leading-relaxed mb-3">Витрина магазина техники: каталог на 700+ позиций, обмен старого устройства на новый и рассрочка. Заявки уходят в Telegram-бот и сразу становятся сделками в CRM.</p>
               <div className="flex flex-wrap gap-1.5">
@@ -179,7 +217,7 @@ export default function Projects({ t, openLb }) {
               </div>
             </div>
             <div className="proj-body">
-              <p className="font-mono text-[10px] text-purple mb-1">web · уход за улыбкой</p>
+              <p className="font-mono text-[10px] text-purple mb-1">сделано мной · web</p>
               <h3 className="font-heading font-black text-base text-text mb-1.5">SmileKit</h3>
               <p className="text-muted text-xs leading-relaxed mb-3">Лендинг бренда отбеливающих полосок: продукт, отзывы, FAQ и заказ. Заказ передаётся ИИ-боту, который дальше ведёт клиента сам.</p>
               <div className="flex flex-wrap gap-1.5">

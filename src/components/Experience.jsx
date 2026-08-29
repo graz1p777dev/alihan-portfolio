@@ -1,4 +1,4 @@
-// Секция «Опыт работы»: Codify, DemiResults, агентство Азиза Атавалиева и настройка серверов.
+// Секция «Опыт работы»: Codify, DemiResults, агентство Азиза Атавалиева, курсы и настройка серверов.
 // Тег «сейчас» / «previous» показывает статус позиции.
 export default function Experience() {
   return (
@@ -10,7 +10,7 @@ export default function Experience() {
           <h2 className="font-heading font-black text-4xl sm:text-5xl text-text">Опыт работы</h2>
         </div>
 
-        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-4">
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4">
           <div className="card p-6 sr d1">
             <div className="flex items-start justify-between gap-4 mb-5">
               <div className="w-10 h-10 rounded-xl bg-blue/10 flex items-center justify-center shrink-0">
@@ -42,9 +42,21 @@ export default function Experience() {
               </div>
               <span className="tag tag-db">сейчас</span>
             </div>
-            <p className="font-mono text-[10px] text-purple mb-2">Преподаватель курсов</p>
+            <p className="font-mono text-[10px] text-purple mb-2">AI-разработчик</p>
             <h3 className="font-heading font-black text-2xl text-text mb-3">Агентство Азиза Атавалиева</h3>
-            <p className="text-muted text-sm leading-relaxed">Преподаю детям на курсах по вайбкодингу.</p>
+            <p className="text-muted text-sm leading-relaxed">Автоматизирую рутинную работу менеджеров с помощью ИИ, создаю CRM-системы и сайты.</p>
+          </div>
+
+          <div className="card p-6 sr hover:border-blue/40">
+            <div className="flex items-start justify-between gap-4 mb-5">
+              <div className="w-10 h-10 rounded-xl bg-blue/10 flex items-center justify-center shrink-0">
+                <svg className="w-5 h-5 text-blue" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M12 14.25c3.728 0 6.75-1.51 6.75-3.375S15.728 7.5 12 7.5s-6.75 1.51-6.75 3.375S8.272 14.25 12 14.25Z"/><path strokeLinecap="round" strokeLinejoin="round" d="M5.25 10.875v4.875c0 1.864 3.022 3.375 6.75 3.375s6.75-1.511 6.75-3.375v-4.875M18.75 10.875 21 9.75m0 0-9-4.5-9 4.5m18 0v6"/></svg>
+              </div>
+              <span className="tag tag-py">сейчас</span>
+            </div>
+            <p className="font-mono text-[10px] text-blue mb-2">Преподаватель</p>
+            <h3 className="font-heading font-black text-2xl text-text mb-3">Курсы по вайбкодингу</h3>
+            <p className="text-muted text-sm leading-relaxed">Провожу курсы по вайбкодингу для детей.</p>
           </div>
 
           <div className="card p-6 sr hover:border-orange/40">

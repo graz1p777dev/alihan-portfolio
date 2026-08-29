@@ -32,8 +32,12 @@ Junior Developer — DemiResults (2024–н.в.)
   Реализация автоматических уведомлений и интеграций.
   Мобильное приложение (iOS & Android, в разработке).
 
-Преподаватель курсов — агентство Азиза Атавалиева (сейчас)
-  Преподавание курсов по вайбкодингу для детей.
+AI-разработчик — агентство Азиза Атавалиева (сейчас)
+  Автоматизация рутинной работы менеджеров с помощью ИИ.
+  Разработка CRM-систем и сайтов.
+
+Преподаватель курсов по вайбкодингу (сейчас)
+  Провожу курсы по вайбкодингу для детей.
 
 Настройка серверов (фриланс, 2024)
   Установка и настройка Linux-серверов, Nginx, деплой Django-проектов.
@@ -125,7 +129,11 @@ Junior Developer — DemiResults (2024–present)
   Implemented automated notifications and integrations.
   Mobile app (iOS & Android, in development).
 
-Course Instructor — Aziz Atavaliev's agency (current)
+AI Developer — Aziz Atavaliev's agency (current)
+  Automate routine manager tasks with AI.
+  Build CRM systems and websites.
+
+Vibe Coding Instructor (current)
   Teach vibe coding courses for children.
 
 Server Setup (freelance, 2024)
