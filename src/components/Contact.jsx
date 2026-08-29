@@ -22,7 +22,7 @@ export default function Contact({ t }) {
           <p className="text-muted text-sm mb-6 max-w-xs mx-auto">{t('contact-cd')}</p>
           <a href="https://t.me/graz1p777" target="_blank" rel="noopener" className="btn-g w-full justify-center text-[15px]" style={{padding:'14px'}}>
             {TG_ICON}
-            Написать в Telegram
+            {t('contact-telegram')}
           </a>
         </div>
 

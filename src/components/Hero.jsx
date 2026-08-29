@@ -44,7 +44,7 @@ export default function Hero({ t }) {
 
           <div>
             <h1 className="font-heading font-black text-[2.6rem] sm:text-6xl xl:text-[72px] leading-[0.93] text-text hero-h1">
-              Привет,<br />я <span className="grad">Алихан</span>
+              {t('hero-greeting')}<br />{t('hero-i')} <span className="grad">{t('hero-name')}</span>
             </h1>
             <p className="mt-4 font-mono text-accent text-lg flex items-center gap-2 hero-sub">
               <span className="opacity-50">›</span>
@@ -53,7 +53,7 @@ export default function Hero({ t }) {
           </div>
 
           <p className="text-muted text-base leading-relaxed max-w-lg">
-            Работаю с <span className="text-text font-medium">Python</span> и <span className="text-text font-medium">JavaScript</span> — пишу backend на Django, делаю сайты, Telegram-боты и автоматизации для бизнеса.
+            {t('hero-pitch')}
           </p>
 
           <div className="flex flex-wrap gap-2">
@@ -68,9 +68,9 @@ export default function Hero({ t }) {
           <div className="flex flex-wrap gap-3 pt-1 hero-cta">
             <a href="#projects" className="btn-g">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z"/></svg>
-              Проекты
+              {t('hero-projects')}
             </a>
-            <a href="#contact" className="btn-o">Связаться</a>
+            <a href="#contact" className="btn-o">{t('hero-contact')}</a>
           </div>
         </div>
 
