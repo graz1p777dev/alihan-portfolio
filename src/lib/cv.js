@@ -27,9 +27,12 @@ DevOps    : Linux, Nginx, Docker (основы), Vercel, n8n
 Tech Support — Codify (2024–н.в.)
   Техническая поддержка и помощь клиентам платформы Codify.
 
-Техспециалист и преподаватель — DemiResults (2024–н.в.)
-  Работа в агентстве маркетолога Азиза Атавалиева.
-  Техническое сопровождение, автоматизации и интеграции.
+Junior Developer — DemiResults (2024–н.в.)
+  Разработка Telegram-бота для CRM и управления заявками.
+  Реализация автоматических уведомлений и интеграций.
+  Мобильное приложение (iOS & Android, в разработке).
+
+Преподаватель курсов — агентство Азиза Атавалиева (сейчас)
   Преподавание курсов по вайбкодингу для детей.
 
 Настройка серверов (фриланс, 2024)
@@ -117,9 +120,12 @@ WORK EXPERIENCE
 Tech Support — Codify (2024–present)
   Technical support and client assistance for the Codify platform.
 
-Technical Specialist and Instructor — DemiResults (2024–present)
-  Work at the marketing agency of Aziz Atavaliev.
-  Technical support, automation, and integrations.
+Junior Developer — DemiResults (2024–present)
+  Built a Telegram CRM bot for managing client requests.
+  Implemented automated notifications and integrations.
+  Mobile app (iOS & Android, in development).
+
+Course Instructor — Aziz Atavaliev's agency (current)
   Teach vibe coding courses for children.
 
 Server Setup (freelance, 2024)

@@ -1,16 +1,16 @@
-// Секция «Опыт работы»: три карточки — Codify (прошлое), DemiResults (текущее), настройка серверов.
+// Секция «Опыт работы»: Codify, DemiResults, агентство Азиза Атавалиева и настройка серверов.
 // Тег «сейчас» / «previous» показывает статус позиции.
 export default function Experience() {
   return (
     <section id="experience" className="relative z-10 py-14 md:py-24 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <div className="text-center mb-8 md:mb-14 sr">
           <p className="font-mono text-xs text-accent mb-2">// 03 — experience</p>
           <div className="accent-line mx-auto mb-5"></div>
           <h2 className="font-heading font-black text-4xl sm:text-5xl text-text">Опыт работы</h2>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-4">
           <div className="card p-6 sr d1">
             <div className="flex items-start justify-between gap-4 mb-5">
               <div className="w-10 h-10 rounded-xl bg-blue/10 flex items-center justify-center shrink-0">
@@ -30,12 +30,24 @@ export default function Experience() {
               </div>
               <span className="tag tag-dj">сейчас</span>
             </div>
-            <p className="font-mono text-[10px] text-accent mb-2">Техспециалист · преподаватель</p>
+            <p className="font-mono text-[10px] text-accent mb-2">Генеральный техспециалист</p>
             <h3 className="font-heading font-black text-2xl text-text mb-3">DemiResults</h3>
-            <p className="text-muted text-sm leading-relaxed">Работаю в агентстве маркетолога Азиза Атавалиева: занимаюсь техническим сопровождением, автоматизациями и интеграциями, а также преподаю детям на курсах по вайбкодингу.</p>
+            <p className="text-muted text-sm leading-relaxed">Техническое сопровождение, автоматизации, интеграции, CRM, Telegram-боты, внедрение AI-инструментов и настройка рабочих процессов компании.</p>
           </div>
 
-          <div className="card p-6 sr d3 hover:border-orange/40">
+          <div className="card p-6 sr d3 hover:border-purple/40">
+            <div className="flex items-start justify-between gap-4 mb-5">
+              <div className="w-10 h-10 rounded-xl bg-purple/10 flex items-center justify-center shrink-0">
+                <svg className="w-5 h-5 text-purple" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84 51.143 51.143 0 0 0-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.5 8.038V14.25"/></svg>
+              </div>
+              <span className="tag tag-db">сейчас</span>
+            </div>
+            <p className="font-mono text-[10px] text-purple mb-2">Преподаватель курсов</p>
+            <h3 className="font-heading font-black text-2xl text-text mb-3">Агентство Азиза Атавалиева</h3>
+            <p className="text-muted text-sm leading-relaxed">Преподаю детям на курсах по вайбкодингу.</p>
+          </div>
+
+          <div className="card p-6 sr hover:border-orange/40">
             <div className="flex items-start justify-between gap-4 mb-5">
               <div className="w-10 h-10 rounded-xl bg-orange/10 flex items-center justify-center shrink-0">
                 <svg className="w-5 h-5 text-orange" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3m3 3a3 3 0 1 0 0 6h13.5a3 3 0 1 0 0-6m-16.5-3a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3m-19.5 0a4.5 4.5 0 0 1 .9-2.7L5.737 5.1a3.375 3.375 0 0 1 2.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 0 1 .9 2.7m0 0a3 3 0 0 1-3 3"/></svg>
