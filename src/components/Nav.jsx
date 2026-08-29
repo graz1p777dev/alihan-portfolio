@@ -28,8 +28,8 @@ export default function Nav({ lang, setLang, t, onOpenCv }) {
           <li><a href="#about"      className="nav-item hover:text-text transition-colors">about</a></li>
           <li><a href="#services"   className="nav-item hover:text-text transition-colors">services</a></li>
           <li><a href="#experience" className="nav-item hover:text-text transition-colors">experience</a></li>
-          <li><a href="#skills"     className="nav-item hover:text-text transition-colors">skills</a></li>
           <li><a href="#projects"   className="nav-item hover:text-text transition-colors">projects</a></li>
+          <li><a href="#skills"     className="nav-item hover:text-text transition-colors">skills</a></li>
           <li><a href="#stats"      className="nav-item hover:text-text transition-colors">stats</a></li>
           <li><a href="#contact"    className="nav-item hover:text-text transition-colors">contact</a></li>
         </ul>
@@ -63,7 +63,7 @@ export default function Nav({ lang, setLang, t, onOpenCv }) {
         <div className="mt-2">
           <div className="glass border border-border/60 rounded-2xl px-5 py-4">
             <ul className="flex flex-col gap-1 font-mono text-sm text-muted mb-4">
-              {['about','services','experience','skills','projects','stats','contact'].map(s => (
+              {['about','services','experience','projects','skills','stats','contact'].map(s => (
                 <li key={s}><a href={`#${s}`} className="block hover:text-accent py-2 transition-colors" onClick={close}>{s}</a></li>
               ))}
             </ul>

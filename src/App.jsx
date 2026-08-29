@@ -52,7 +52,7 @@ export default function App() {
   // Назначает классы .reveal и .reveal-dN дочерним элементам секций для каскадного появления.
   // Карточки проектов получают задержку по модулю 6, чтобы цикл повторялся в сетке.
   useEffect(() => {
-    const revealSections = ['#about','#services','#experience','#skills','#projects','#stats','#contact']
+    const revealSections = ['#about','#services','#experience','#projects','#skills','#stats','#contact']
     revealSections.forEach(sel => {
       const sec = document.querySelector(sel)
       if (!sec) return
@@ -178,9 +178,9 @@ export default function App() {
       <Hero t={t} />
       <About t={t} />
       <Services t={t} />
-      <Experience />
-      <Skills t={t} />
+      <Experience t={t} />
       <Projects t={t} openLb={openLb} />
+      <Skills t={t} />
       <Stats t={t} />
       <Contact t={t} />
       <Footer />

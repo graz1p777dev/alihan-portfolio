@@ -6,7 +6,7 @@ export default function Skills({ t }) {
     <section id="skills" className="relative z-10 py-14 md:py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-8 md:mb-14 sr">
-          <p className="font-mono text-xs text-accent mb-2">// 04 — skills</p>
+          <p className="font-mono text-xs text-accent mb-2">// 05 — skills</p>
           <div className="accent-line mx-auto mb-5"></div>
           <h2 className="font-heading font-black text-4xl sm:text-5xl text-text">{t('skills-h2')}</h2>
         </div>
@@ -18,14 +18,14 @@ export default function Skills({ t }) {
             <h3 className="font-heading font-bold text-text flex items-center gap-2 mb-6">
               <span className="font-mono text-accent text-xs">01</span>
               <span className="w-px h-4 bg-border"></span>
-              Основные языки
+              {t('skills-primary')}
             </h3>
             <div className="space-y-5">
               <div>
                 <div className="flex justify-between items-center mb-2">
                   <div className="flex items-center gap-2">
                     <span className="tag tag-py">Python</span>
-                    <span className="hidden sm:inline text-muted text-xs">backend · боты · автоматизация</span>
+                    <span className="hidden sm:inline text-muted text-xs">{t('skills-python-meta')}</span>
                   </div>
                   <span className="font-mono text-xs text-accent">primary</span>
                 </div>
@@ -35,7 +35,7 @@ export default function Skills({ t }) {
                 <div className="flex justify-between items-center mb-2">
                   <div className="flex items-center gap-2">
                     <span className="tag tag-js">JavaScript</span>
-                    <span className="hidden sm:inline text-muted text-xs">frontend · сайты · логика</span>
+                    <span className="hidden sm:inline text-muted text-xs">{t('skills-js-meta')}</span>
                   </div>
                   <span className="font-mono text-xs text-muted">skill</span>
                 </div>
@@ -47,7 +47,7 @@ export default function Skills({ t }) {
               <h3 className="font-heading font-bold text-text flex items-center gap-2 mb-5">
                 <span className="font-mono text-purple text-xs">02</span>
                 <span className="w-px h-4 bg-border"></span>
-                Frontend стек
+                {t('skills-frontend')}
               </h3>
               <div className="grid sm:grid-cols-3 gap-2">
                 <div className="tag tag-tg justify-center">React</div>
@@ -60,20 +60,20 @@ export default function Skills({ t }) {
               <h3 className="font-heading font-bold text-text flex items-center gap-2 mb-5">
                 <span className="font-mono text-blue text-xs">03</span>
                 <span className="w-px h-4 bg-border"></span>
-                Backend стек
+                {t('skills-backend')}
               </h3>
               <div className="space-y-4">
                 <div>
                   <div className="flex justify-between items-center mb-2">
                     <span className="tag tag-dj">Django · DRF</span>
-                    <span className="hidden sm:inline font-mono text-xs text-muted">API · сервер</span>
+                    <span className="hidden sm:inline font-mono text-xs text-muted">{t('skills-api-meta')}</span>
                   </div>
                   <div className="bar"><div className="bar-fill" data-w="76" style={{background:'linear-gradient(90deg,#00E87A,#16A34A)'}}></div></div>
                 </div>
                 <div>
                   <div className="flex justify-between items-center mb-2">
                     <span className="tag tag-db">PostgreSQL · Supabase</span>
-                    <span className="hidden sm:inline font-mono text-xs text-muted">базы данных</span>
+                    <span className="hidden sm:inline font-mono text-xs text-muted">{t('skills-db-meta')}</span>
                   </div>
                   <div className="bar"><div className="bar-fill" data-w="68" style={{background:'linear-gradient(90deg,#8B5CF6,#6366F1)'}}></div></div>
                 </div>
@@ -88,9 +88,9 @@ export default function Skills({ t }) {
               <h3 className="font-heading font-bold text-text flex items-center gap-2 mb-2">
                 <span className="font-mono text-purple text-xs">04</span>
                 <span className="w-px h-4 bg-border"></span>
-                Знакомые языки
+                {t('skills-familiar')}
               </h3>
-              <p className="text-muted text-xs mb-4 font-mono">// писал программы, знаю базовую логику</p>
+              <p className="text-muted text-xs mb-4 font-mono">{t('skills-familiar-sub')}</p>
               <div className="flex flex-wrap gap-2">
                 <div className="tag tag-cpp flex items-center gap-1.5">C++<span className="text-[9px] opacity-60">vars · loops · funcs</span></div>
                 <div className="tag tag-dim flex items-center gap-1.5">C<span className="text-[9px] opacity-60">basics</span></div>
@@ -105,7 +105,7 @@ export default function Skills({ t }) {
               <h3 className="font-heading font-bold text-text flex items-center gap-2 mb-4">
                 <span className="font-mono text-blue text-xs">05</span>
                 <span className="w-px h-4 bg-border"></span>
-                Mobile разработка
+                {t('skills-mobile')}
               </h3>
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
@@ -131,7 +131,7 @@ export default function Skills({ t }) {
               <h3 className="font-heading font-bold text-text flex items-center gap-2 mb-5">
                 <span className="font-mono text-orange text-xs">06</span>
                 <span className="w-px h-4 bg-border"></span>
-                Инструменты & интеграции
+                {t('skills-tools')}
               </h3>
               <div className="flex flex-wrap gap-2">
                 <span className="tag tag-dim">Git</span>
@@ -163,11 +163,11 @@ export default function Skills({ t }) {
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-5">
             <div>
               <p className="font-mono text-xs text-accent mb-2">// live api activity</p>
-              <h3 className="font-heading font-bold text-text text-2xl">Codewars & GitHub активность</h3>
+              <h3 className="font-heading font-bold text-text text-2xl">{t('skills-activity')}</h3>
             </div>
             <div className="flex items-center gap-2 font-mono text-xs text-muted">
               <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
-              <span id="activity-updated">обновляется...</span>
+              <span id="activity-updated">{t('skills-updating')}</span>
             </div>
           </div>
 
@@ -197,16 +197,16 @@ export default function Skills({ t }) {
           <div className="grid lg:grid-cols-2 gap-5">
             <div>
               <div className="flex items-center justify-between mb-3">
-                <h4 className="font-heading font-bold text-text">Последние действия GitHub</h4>
+                <h4 className="font-heading font-bold text-text">{t('skills-github-recent')}</h4>
                 <a href="https://github.com/graz1p777dev" target="_blank" rel="noopener noreferrer" className="font-mono text-xs text-accent hover:text-text transition-colors">open github</a>
               </div>
               <ul className="activity-feed text-sm" id="gh-feed">
-                <li><span className="text-muted">Загрузка GitHub API...</span></li>
+                <li><span className="text-muted">{t('skills-github-loading')}</span></li>
               </ul>
             </div>
             <div>
               <div className="flex items-center justify-between mb-3">
-                <h4 className="font-heading font-bold text-text">Codewars профиль</h4>
+                <h4 className="font-heading font-bold text-text">{t('skills-codewars-profile')}</h4>
                 <a href="https://www.codewars.com/users/graz1p777dev" target="_blank" rel="noopener noreferrer" className="font-mono text-xs text-accent hover:text-text transition-colors">open codewars</a>
               </div>
               <div className="space-y-3">
@@ -224,7 +224,7 @@ export default function Skills({ t }) {
                   </div>
                   <div className="bar"><div className="bar-fill" id="cw-cpp-bar" data-w="0" style={{background:'linear-gradient(90deg,#64748B,#C084FC)'}}></div></div>
                 </div>
-                <p className="text-muted text-xs leading-relaxed">Данные подтягиваются из публичного Codewars API и GitHub API при открытии страницы.</p>
+                <p className="text-muted text-xs leading-relaxed">{t('skills-api-note')}</p>
               </div>
             </div>
           </div>

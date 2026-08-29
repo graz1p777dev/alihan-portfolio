@@ -25,7 +25,7 @@ export default function Projects({ t, openLb }) {
     <section id="projects" className="relative z-10 py-14 md:py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-8 md:mb-14 sr">
-          <p className="font-mono text-xs text-accent mb-2">// 05 — projects</p>
+          <p className="font-mono text-xs text-accent mb-2">// 04 — projects</p>
           <div className="accent-line mx-auto mb-5"></div>
           <h2 className="font-heading font-black text-4xl sm:text-5xl text-text">{t('proj-h2')}</h2>
           <p className="text-muted mt-3 text-sm">{t('proj-sub')}</p>
