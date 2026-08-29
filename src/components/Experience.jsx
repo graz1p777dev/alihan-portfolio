@@ -30,9 +30,9 @@ export default function Experience() {
               </div>
               <span className="tag tag-dj">сейчас</span>
             </div>
-            <p className="font-mono text-[10px] text-accent mb-2">Генеральный техспециалист</p>
+            <p className="font-mono text-[10px] text-accent mb-2">Техспециалист · преподаватель</p>
             <h3 className="font-heading font-black text-2xl text-text mb-3">DemiResults</h3>
-            <p className="text-muted text-sm leading-relaxed">Техническое сопровождение, автоматизации, интеграции, CRM, Telegram-боты, внедрение AI-инструментов и настройка рабочих процессов компании.</p>
+            <p className="text-muted text-sm leading-relaxed">Работаю в агентстве маркетолога Азиза Атавалиева: занимаюсь техническим сопровождением, автоматизациями и интеграциями, а также преподаю детям на курсах по вайбкодингу.</p>
           </div>
 
           <div className="card p-6 sr d3 hover:border-orange/40">
