@@ -146,6 +146,9 @@ export default function Projects({ t, openLb }) {
               <img src="/img/Cashflow.jpg" alt="Сайт Cashflow Club OK4U" className="proj-img" loading="lazy" />
               <div className="proj-overlay">
                 <span className="proj-badge">сделано мной · web</span>
+                <a href="https://cashflow-five-mu.vercel.app/" target="_blank" rel="noopener" className="proj-visit-btn">
+                  {EXT_ICON} Открыть
+                </a>
               </div>
             </div>
             <div className="proj-body">
